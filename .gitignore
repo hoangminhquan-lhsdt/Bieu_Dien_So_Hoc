@@ -2,6 +2,6 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/So_Nguyen_Lon/v15
+/.vs
 /So_Nguyen_Lon/Debug
 /Debug
