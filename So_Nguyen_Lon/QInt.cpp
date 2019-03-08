@@ -15,10 +15,10 @@ QInt::~QInt()
 
 istream & operator>>(istream & in, QInt & N)
 {
-	// TODO: insert return statement here
+	return in;
 }
 
 ostream & operator<<(ostream & out, const QInt & N)
 {
-	// TODO: insert return statement here
+	return out;
 }
