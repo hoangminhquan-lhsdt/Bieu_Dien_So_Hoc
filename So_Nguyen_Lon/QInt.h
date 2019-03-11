@@ -13,5 +13,5 @@ public:
 	friend ostream& operator<<(ostream & out, const QInt & N);
 	QInt operator+(const QInt & N);
 	QInt operator-(const QInt & N);
-
+	QInt(string x);
 };

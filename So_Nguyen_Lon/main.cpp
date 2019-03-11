@@ -28,9 +28,11 @@ string DecStrToBinStr(string x)
 	}
 	return Result;
 }
+
 int main() {
 
-	cout << DecStrToBinStr("1234235235235244534636546346474576346346376785623546493232")<<endl;
+	QInt N(DecStrToBinStr("1234235235235244534636546"));
+	cout << DecStrToBinStr("1234235235235244534636546")<<endl;
 	system("pause");
 	return 0;
 }
