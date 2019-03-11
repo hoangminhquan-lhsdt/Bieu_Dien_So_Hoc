@@ -14,4 +14,8 @@ public:
 	QInt operator+(const QInt & N);
 	QInt operator-(const QInt & N);
 	QInt(string x);
+	QInt operator&(const QInt & N);
+	QInt operator|(const QInt & N);
+	QInt operator^(const QInt & N);
+	QInt operator~();
 };
