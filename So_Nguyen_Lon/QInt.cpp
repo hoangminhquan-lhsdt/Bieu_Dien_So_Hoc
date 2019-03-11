@@ -21,21 +21,23 @@ QInt::~QInt()
 {
 }
 
-QInt::QInt(string x)
+QInt QInt::BinToQInt(string x)
 {
+	QInt Result; 
 	string Temp;
 	int count = 0;
 	for (int i = 0; i < 4; i++)
 		data[i] = 0;
-	while (x.length() >= 32&&count <4)
+	while (x.length() >= 32 && count < 4)
 	{
 		Temp = x.substr(x.length() - 32);
 		x.erase(x.length() - 32);
-		this->data[3-count] = BinDec(Temp) + this->data[3 - count];
+		Result.data[3 - count] = BinDec(Temp) + Result.data[3 - count];
 		count++;
 	}
-	this->data[3 - count] = BinDec(x) + this->data[3 - count];
-	
+	Result.data[3 - count] = BinDec(x) + Result.data[3 - count];
+
+	return Result;
 }
 
 QInt QInt::operator&(const QInt & N)

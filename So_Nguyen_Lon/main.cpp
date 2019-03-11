@@ -1,4 +1,4 @@
- #define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
 
@@ -31,25 +31,9 @@ string DecStrToBinStr(string x)
 
 int main() {
 
-	/*QInt N(DecStrToBinStr("4294967296"));
-	cout << DecStrToBinStr("1234235235235244534636546")<<endl;*/
-
-
-	QInt test("1");
-	cout << test<<endl;
-
-	QInt T("10001011100010111000101110001011");
-	cout << T << endl;
-
-	QInt Nhan;
-	Nhan = test & T;
-	cout <<"Oper &"<< endl << Nhan << endl;
-	Nhan = test | T;
-	cout << "Oper |" << endl<< Nhan << endl;
-	Nhan = test ^ T;
-	cout << "Oper ^" << endl << Nhan << endl;
-	Nhan = ~test;
-	cout << "Oper ~" << endl << Nhan << endl;
+	QInt N;
+	N=N.BinToQInt(DecStrToBinStr("4294967296"));
+	cout << DecStrToBinStr("1234235235235244534636546")<<endl;
 	system("pause");
 	return 0;
 }
