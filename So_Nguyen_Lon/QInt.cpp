@@ -34,6 +34,7 @@ QInt::QInt(string x)
 		this->data[3-count] = BinDec(Temp) + this->data[3 - count];
 		count++;
 	}
+	this->data[3 - count] = BinDec(x) + this->data[3 - count];
 	
 }
 
