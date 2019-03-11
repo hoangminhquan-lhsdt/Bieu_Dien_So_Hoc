@@ -31,9 +31,10 @@ string DecStrToBinStr(string x)
 
 int main() {
 
-	QInt N;
-	N=N.BinToQInt(DecStrToBinStr("4294967296"));
-	cout << DecStrToBinStr("1234235235235244534636546")<<endl;
+	QInt N,M;
+	N=N.BinToQInt(DecStrToBinStr("9223372049740023808"));
+	M = N << 5;
+	//cout << DecStrToBinStr("1234235235235244534636546")<<endl;
 	system("pause");
 	return 0;
 }

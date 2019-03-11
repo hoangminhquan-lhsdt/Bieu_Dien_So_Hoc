@@ -18,4 +18,6 @@ public:
 	QInt operator|(const QInt & N);
 	QInt operator^(const QInt & N);
 	QInt operator~();
+	QInt operator=(const QInt & N);
+	QInt operator<<(int x);
 };

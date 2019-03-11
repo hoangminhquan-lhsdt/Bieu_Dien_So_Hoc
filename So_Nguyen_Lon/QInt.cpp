@@ -80,6 +80,33 @@ QInt QInt::operator~()
 	return X;
 }
 
+QInt QInt::operator<<(int x)
+{
+	QInt Result;
+	Result = (*this);
+	for (int i = 0; i < x; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			if (Result.data[j] >= pow(2, 31))
+			{
+				Result.data[j] -= pow(2, 31);
+				if (j != 0)
+					Result.data[j - 1] += 1;
+			}
+			Result.data[j] <<= 1;
+		}
+	}
+	return Result;
+}
+QInt QInt::operator=(const QInt & N)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		(*this).data[i] = N.data[i];
+	}
+	return(*this);
+}
 
 
 istream & operator>>(istream & in, QInt & N)
