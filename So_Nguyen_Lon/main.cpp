@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+ #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
 
@@ -38,12 +38,14 @@ int main() {
 	QInt test("1111001010010101010000010111110101010101001010101");
 	cout << test<<endl;
 
-	QInt T("1111001010010101010000010111110101010101001010101");
+	QInt T("0000001010010101010000010111110100000000000000000");
 	cout << T << endl;
 
 	QInt Nhan;
 	Nhan = test & T;
-	cout << Nhan << endl;
+	cout <<"Oper &"<< endl << Nhan << endl;
+	Nhan = test | T;
+	cout << "Oper |" << endl<< Nhan << endl;
 	system("pause");
 	return 0;
 }

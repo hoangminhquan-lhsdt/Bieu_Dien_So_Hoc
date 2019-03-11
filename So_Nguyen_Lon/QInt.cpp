@@ -47,6 +47,15 @@ QInt QInt::operator&(const QInt & N)
 	return X;
 }
 
+QInt QInt::operator|(const QInt & N)
+{
+	QInt X;
+	int i;
+	for (i = 0; i < 4; i++)
+		X.data[i] = this->data[i] | N.data[i];
+	return X;
+}
+
 istream & operator>>(istream & in, QInt & N)
 {
 	return in;
