@@ -31,8 +31,20 @@ string DecStrToBinStr(string x)
 
 int main() {
 
-	QInt N(DecStrToBinStr("4294967296"));
-	cout << DecStrToBinStr("1234235235235244534636546")<<endl;
+	//QInt N(DecStrToBinStr("4294967296"));
+	//cout << DecStrToBinStr("1234235235235244534636546")<<endl;
+
+
+	QInt Test("110100101010110101001010111110101010000101010101010010110101010101011010011010");
+	cout << Test << endl;
+	string Nhan;
+	Nhan = Test.DecToBin();
+	cout << Nhan << endl;
+	cout << "do dai chuoi: " << Nhan.length() << endl;
+
+
+
+
 	system("pause");
 	return 0;
 }

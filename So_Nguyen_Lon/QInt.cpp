@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <string>
 #include "QInt.h"
 
 using namespace std;
@@ -21,6 +22,12 @@ QInt::~QInt()
 {
 }
 
+QInt QInt::operator<<(const int k)
+{
+
+	return QInt();
+}
+
 QInt::QInt(string x)
 {
 	string Temp;
@@ -38,12 +45,60 @@ QInt::QInt(string x)
 	
 }
 
+
+
+string QInt::DecToBin()
+{
+	string nhan;
+	int i;
+	for (i = 0; i <4; i++)
+	{
+		nhan += Tra2(this->data[i]);
+	}
+	return nhan;
+}
+
+string QInt::Tra2(unsigned int a)
+{
+	int sodu;
+	if (a == 0)
+	{ 
+		string tra(32, '0'); 
+		return tra;
+	}
+	else
+	{
+		string tra;
+		while (a != 0)
+		{
+			sodu = a % 2;
+			tra.push_back(sodu + '0');
+			a = a / 2;
+		}
+		if (tra.length() < 32)
+		{
+			string c(32 - tra.length(), '0');
+			tra += c;
+		}
+
+			reverse(tra.begin(), tra.end());
+		return tra;
+	}
+}
+
 istream & operator>>(istream & in, QInt & N)
 {
+
 	return in;
 }
 
 ostream & operator<<(ostream & out, const QInt & N)
 {
+	int i;
+	for (i = 0; i < 4; i++)
+		cout << N.data[i] << endl;
 	return out;
 }
+
+
+
