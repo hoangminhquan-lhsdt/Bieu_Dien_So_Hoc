@@ -11,8 +11,8 @@ public:
 	~QInt();
 	//unsigned int data[4];
 	// input/output operators
-	friend istream& operator>>(istream & in, QInt & N);
-	friend ostream& operator<<(ostream & out, const QInt & N);
+	void ScanQInt();
+	void PrintQInt();
 
 	// assignment operators
 	QInt operator=(const QInt & N);
@@ -37,7 +37,7 @@ public:
 	QInt operator~();
 	
 	// bitshift operators
-	QInt operator<<(int K);
+	QInt operator<<(int K); // Q = Q << 1; for (int i = K....)
 	QInt operator>>(int K);
 	QInt rol(int K);
 	QInt ror(int K);

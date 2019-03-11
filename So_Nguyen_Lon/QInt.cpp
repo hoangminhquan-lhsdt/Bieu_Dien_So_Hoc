@@ -13,45 +13,36 @@ QInt::QInt()
 
 
 QInt::~QInt()
+{ 
+	delete[] this->data;
+}
+
+void QInt::ScanQInt()
 {
 }
 
-
-istream & operator>>(istream & in, QInt & N)
+void QInt::PrintQInt()
 {
-
-	return in;
 }
-
-ostream & operator<<(ostream & out, const QInt & N)
-{
-	return out;
-}
-
-
+/*
 QInt QInt::operator=(const QInt & N)
 {
-	return QInt();
 }
 
 QInt QInt::operator+(const QInt & N)
 {
-	return QInt();
 }
 
 QInt QInt::operator-(const QInt & N)
 {
-	return QInt();
 }
 
 QInt QInt::operator*(const QInt & N)
 {
-	return QInt();
 }
 
 QInt QInt::operator/(const QInt & N)
 {
-	return QInt();
 }
 
 bool QInt::operator>(const QInt & N)
@@ -81,40 +72,33 @@ bool QInt::operator==(const QInt & N)
 
 QInt QInt::operator&(const QInt & N)
 {
-	return QInt();
 }
 
 QInt QInt::operator|(const QInt & N)
 {
-	return QInt();
 }
 
 QInt QInt::operator^(const QInt & N)
 {
-	return QInt();
 }
 
 QInt QInt::operator~()
 {
-	return QInt();
 }
 
 QInt QInt::operator<<(int K)
 {
-	return QInt();
 }
 
 QInt QInt::operator>>(int K)
 {
-	return QInt();
 }
 
 QInt QInt::rol(int K)
 {
-	return QInt();
 }
 
 QInt QInt::ror(int K)
 {
-	return QInt();
 }
+*/

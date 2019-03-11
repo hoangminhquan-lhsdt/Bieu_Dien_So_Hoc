@@ -1,20 +1,21 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 
-#include "QInt.h"
+//#include "QInt.h"
 
 using namespace std;
 
-struct Terminal_Input {
+struct Input_Struct {
 	int p[2];
 	string s1;
 	char op;
 	string s2;
 };
 
-Terminal_Input Doc_Input(char* argv[], int argc) {
-	Terminal_Input ti;
+Input_Struct Doc_Terminal(char* argv[], int argc) {
+	Input_Struct ti;
 	ti.p[0] = atoi(argv[1]);
 	ti.p[1] = 0;
 	if (argc == 4) {
@@ -29,12 +30,28 @@ Terminal_Input Doc_Input(char* argv[], int argc) {
 	return ti;
 }
 
-int main(int argc, char* argv[]) {
-	Terminal_Input ti = Doc_Input(argv, argc);
-	if (argc == 5)
-		cout << ti.p[0] << endl << ti.s1 << endl << ti.op << endl << ti.s2 << endl;
-	else if (argc == 4)
-		cout << ti.p[0] << endl << ti.p[1] << endl << ti.s1 << endl;
+// read 
+Input_Struct Doc_File() {
+	Input_Struct ti;
+	
+	fstream f;
+	f.open("input.txt", ios::in);
+
+	int p[2];
+	string line;
+	getline(f, line);
+
+	cout << line;
+
+	return ti;
+}
+
+int main(char* argv[], int argc) {
+	if (argc == 1)
+		Input_Struct ti = Doc_File();
+	else
+		Input_Struct ti = Doc_Terminal(argv, argc);
+
 	system("pause");
 	return 0;
 }
