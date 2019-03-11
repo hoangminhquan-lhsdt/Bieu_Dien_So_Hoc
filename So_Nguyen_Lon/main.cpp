@@ -35,10 +35,10 @@ int main() {
 	cout << DecStrToBinStr("1234235235235244534636546")<<endl;*/
 
 
-	QInt test("1111001010010101010000010111110101010101001010101");
+	QInt test("1");
 	cout << test<<endl;
 
-	QInt T("0000001010010101010000010111110100000000000000000");
+	QInt T("10001011100010111000101110001011");
 	cout << T << endl;
 
 	QInt Nhan;
@@ -46,6 +46,10 @@ int main() {
 	cout <<"Oper &"<< endl << Nhan << endl;
 	Nhan = test | T;
 	cout << "Oper |" << endl<< Nhan << endl;
+	Nhan = test ^ T;
+	cout << "Oper ^" << endl << Nhan << endl;
+	Nhan = ~test;
+	cout << "Oper ~" << endl << Nhan << endl;
 	system("pause");
 	return 0;
 }

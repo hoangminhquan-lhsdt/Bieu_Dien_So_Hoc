@@ -1,2 +1,4 @@
-﻿  main.cpp
+﻿  QInt.cpp
+c:\users\dieph\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(8): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\dieph\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(10): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
   So_Nguyen_Lon.vcxproj -> C:\Users\dieph\Source\Repos\laohacsieudeptrai\So_Nguyen_Lon\x64\Debug\So_Nguyen_Lon.exe

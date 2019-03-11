@@ -56,6 +56,30 @@ QInt QInt::operator|(const QInt & N)
 	return X;
 }
 
+QInt QInt::operator^(const QInt & N)
+{
+	QInt X;
+	int i;
+	for (i = 0; i < 4; i++)
+		X.data[i] = this->data[i] ^ N.data[i];
+	return X;
+}
+
+QInt QInt::operator~()
+{
+	QInt X;
+	int i,j;
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 31; j >= 0; j--)
+			this->data[i] = this->data[i] ^ (1 << (32 - j - 1));
+		X.data[i] = this->data[i];
+	}
+	return X;
+}
+
+
+
 istream & operator>>(istream & in, QInt & N)
 {
 	return in;
