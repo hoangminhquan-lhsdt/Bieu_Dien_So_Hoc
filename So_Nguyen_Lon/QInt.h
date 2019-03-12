@@ -1,4 +1,5 @@
 #pragma once
+#include "conio.h"
 #include <iostream>
 using namespace std;
 
@@ -29,7 +30,8 @@ public:
 	bool operator>=(const QInt & N);
 	bool operator<=(const QInt & N);
 	bool operator==(const QInt & N);
-	bool operator!=(const QInt &N);
+	bool operator!=
+(const QInt &N);
 
 	// bitwise operators
 	QInt operator&(const QInt & N);
@@ -46,3 +48,5 @@ public:
 	// base conversion
 
 };
+
+string SumString(const string &a, const string &b);

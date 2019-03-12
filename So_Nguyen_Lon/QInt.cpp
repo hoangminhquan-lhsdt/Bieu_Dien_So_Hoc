@@ -6,16 +6,22 @@ using namespace std;
 
 QInt::QInt()
 {
+
 }
 
 
 QInt::~QInt()
 {
+
 }
 
-int ctoi(char x)
+int ctoi(char a) //Digit from 0-9 only
 {
-	return x - '0';
+	return int(a) - 48;
+}
+char itoc(int a) //Digit from 0-9 only
+{
+	return char(a + 48);
 }
 
 bool QInt::operator>(const QInt & N)
@@ -119,19 +125,40 @@ string SumString(const string &a, const string &b)
 	}
 	for (int i = 0; i < n; i++)
 	{
-		sum = ctoi(a[a.size() - i]) + ctoi(b[b.size() - i]);
+		sum = ctoi(a[a.size()-1 - i]) + ctoi(b[b.size()-1 - i]);
 		if (sum > 10)
 		{
 			count = sum % 10;
 			sum /= 10;
 		}
+		ans.push_back(itoc(sum));
 	}
-	return string();
+
+	if (a.size() < b.size())
+	{
+		for (int i = 0; i < b.size() - n; i++)
+		{
+			ans.push_back(b[b.size() - n - i]);
+		}
+	}
+	else
+	{
+		for (int i = 0; i < a.size() - n; i++)
+		{
+			ans.push_back(a[a.size() - n - i - 1]);
+		}
+	}
+	reverse(ans.begin(), ans.end());
+	return ans;
+
 }
+
 
 string QIntToString(const QInt &N)
 {
 	return string();
+
+
 }
 	
 

@@ -77,7 +77,11 @@ vector<Input_Struct> Doc_File() {
 
 int main(int argc, char* argv[]) 
 {
-	
+	string a, b;
+	cout << "Nhap chuoi a va b " << endl;
+	cin >> a >> b;
+	cout << SumString(a, b);
+	_getch();
 	return 0;
 }
 
