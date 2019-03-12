@@ -142,7 +142,13 @@ QInt QInt::operator~()
 QInt QInt::operator<<(int x)
 {
 	QInt Result;
+	bool Temp=false;
 	Result = (*this);
+	if (Result.data[0] >= pow(2, 31))
+	{
+		Temp = true;
+		Result.data[0] -= pow(2, 31);
+	}
 	for (int i = 0; i < x; i++)
 	{
 		for (int j = 0; j < 4; j++)
@@ -156,13 +162,21 @@ QInt QInt::operator<<(int x)
 			Result.data[j] <<= 1;
 		}
 	}
+	if (Temp&&Result.data[0] < pow(2, 31))
+		Result.data[0] += pow(2, 31);
 	return Result;
 }
 
 QInt QInt::operator>>(int x)
 {
 	QInt Result;
+	bool Temp=false;
 	Result = (*this);
+	if (Result.data[0] >= pow(2, 31))
+	{
+		Temp = true;
+		Result.data[0] -= pow(2, 31);
+	}
 	for (int i = 0; i < x; i++)
 	{
 		for (int j = 3; j >= 0; j--)
@@ -175,16 +189,24 @@ QInt QInt::operator>>(int x)
 			Result.data[j] >>= 1;
 		}
 	}
+	if(Temp)
+		Result.data[0] += pow(2, 31);
 	return Result;
 }
 
 QInt QInt::rol(int x)
 {
 	QInt Result;
-	bool Temp=false;
+	bool Temp=false,Temp1;
 	Result = (*this);
+	if (Result.data[0] >= pow(2, 31))
+	{
+		Temp = true;
+		Result.data[0] -= pow(2, 31);
+	}
 	for (int i = 0; i < x; i++)
 	{
+		Temp = false;
 		for (int j = 0; j < 4; j++)
 		{
 			if (Result.data[j] >= pow(2, 31))
@@ -192,25 +214,29 @@ QInt QInt::rol(int x)
 				Result.data[j] -= pow(2, 31);
 				if (j != 0)
 					Result.data[j - 1] += 1;
-				else
-					Temp = true;
-
 			}
 			Result.data[j] <<= 1;
-			if (Temp)
-				Result.data[3]++;
 		}
+		if (Result.data[0] >= pow(2, 31))
+			Result.data[3]++;
 	}
+	if (Temp&&Result.data[0] < pow(2, 31))
+		Result.data[0] += pow(2, 31);
 	return Result;
 }
-
 QInt QInt::ror(int x)
 {
 	QInt Result;
-	bool Temp = false;
+	bool Temp = false,Temp1;
 	Result = (*this);
+	if (Result.data[0] >= pow(2, 31))
+	{
+		Temp = true;
+		Result.data[0] -= pow(2, 31);
+	}
 	for (int i = 0; i < x; i++)
 	{
+		Temp1 = false;
 		for (int j = 3; j >= 0; j--)
 		{
 			if (Result.data[j] % 2 == 1)
@@ -218,13 +244,15 @@ QInt QInt::ror(int x)
 				if (j != 3)
 					Result.data[j + 1] += pow(2, 31);
 				else
-					Temp = true;
+					Temp1 = true;
 			}
 			Result.data[j] >>= 1;
-			if (Temp)
-				Result.data[0] += pow(2, 31);
 		}
+		if (Temp1)
+			Result.data[0] += pow(2, 30);
 	}
+	if (Temp&&Result.data[0] < pow(2, 31))
+		Result.data[0] += pow(2, 31);
 	return Result;
 }
 

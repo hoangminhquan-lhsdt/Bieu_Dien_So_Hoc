@@ -7,9 +7,11 @@ using namespace std;
 
 int main() {
 
-    QInt N("5"),M("1"),Q;
+	int x=-2, y, z;
+	x = 1 | (-2);
+    QInt N("-2"),M("1"),Q;
 	//M = ~N+QInt("1");
-	Q = N - M;
+	Q = N.rol(1);
 	//cout << DecStrToBinStr("1234235235235244534636546")<<endl;
 	system("pause");
 	return 0;
