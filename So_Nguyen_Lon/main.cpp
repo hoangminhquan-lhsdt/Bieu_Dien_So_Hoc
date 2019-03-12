@@ -75,18 +75,9 @@ vector<Input_Struct> Doc_File() {
 	return Req_List;
 }
 
-int main(int argc, char* argv[]) {
-	if (argc == 1) {
-		vector<Input_Struct> Req_List = Doc_File();
-		for (int i = 0; i < Req_List.size(); i++) {
-			cout << "Request " << i + 1 << ":\n";
-			cout << Req_List[i].p[0] << " " << Req_List[i].p[1] << " " << Req_List[i].s1 << " " << Req_List[i].op << " " << Req_List[i].s2 << endl << endl;
-		}
-	}
-	else
-		Input_Struct ti = Doc_Terminal(argc, argv);
-
-
-	system("pause");
+int main(int argc, char* argv[]) 
+{
+	
 	return 0;
 }
+
