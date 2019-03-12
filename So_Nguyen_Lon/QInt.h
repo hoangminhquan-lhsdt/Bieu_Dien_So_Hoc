@@ -20,4 +20,5 @@ public:
 	QInt operator~();
 	QInt operator=(const QInt & N);
 	QInt operator<<(int x);
+	QInt operator>>(int x);
 };

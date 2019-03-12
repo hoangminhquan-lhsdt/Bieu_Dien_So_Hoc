@@ -99,6 +99,26 @@ QInt QInt::operator<<(int x)
 	}
 	return Result;
 }
+
+QInt QInt::operator>>(int x)
+{
+	QInt Result;
+	Result = (*this);
+	for (int i = 0; i < x; i++)
+	{
+		for (int j = 3; j >= 0; j--)
+		{
+			if (Result.data[j] %2==1)
+			{
+				if (j != 3)
+					Result.data[j +1] += pow(2,31);
+			}
+			Result.data[j] >>= 1;
+		}
+	}
+	return Result;
+}
+
 QInt QInt::operator=(const QInt & N)
 {
 	for (int i = 0; i < 4; i++)
