@@ -1,1 +1,6 @@
-﻿  So_Nguyen_Lon.vcxproj -> E:\Study\KTMT&HN\Project\SoNguyenLon\laohacsieudeptrai\So_Nguyen_Lon\x64\Debug\So_Nguyen_Lon.exe
+﻿  QInt.cpp
+e:\study\ktmt&hn\project\songuyenlon\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(8): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+e:\study\ktmt&hn\project\songuyenlon\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(10): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+e:\study\ktmt&hn\project\songuyenlon\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(94): warning C4244: '-=': conversion from 'double' to 'unsigned int', possible loss of data
+e:\study\ktmt&hn\project\songuyenlon\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(115): warning C4244: '+=': conversion from 'double' to 'unsigned int', possible loss of data
+  So_Nguyen_Lon.vcxproj -> E:\Study\KTMT&HN\Project\SoNguyenLon\laohacsieudeptrai\So_Nguyen_Lon\x64\Debug\So_Nguyen_Lon.exe

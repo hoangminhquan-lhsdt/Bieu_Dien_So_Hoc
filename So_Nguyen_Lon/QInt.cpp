@@ -70,12 +70,13 @@ QInt QInt::operator^(const QInt & N)
 QInt QInt::operator~()
 {
 	QInt X;
+	X = (*this);
 	int i,j;
 	for (i = 0; i < 4; i++)
 	{
 		for (j = 31; j >= 0; j--)
-			this->data[i] = this->data[i] ^ (1 << (32 - j - 1));
-		X.data[i] = this->data[i];
+			X.data[i] = X.data[i] ^ (1 << (32 - j - 1));
+		
 	}
 	return X;
 }

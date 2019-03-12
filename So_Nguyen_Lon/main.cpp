@@ -32,7 +32,8 @@ string DecStrToBinStr(string x)
 int main() {
 
     QInt N,M;
-	N=N.BinToQInt(DecStrToBinStr("9223372049740023808"));
+	N=N.BinToQInt(DecStrToBinStr("1"));
+	M= ~N;
 	M = N >> 1;
 	//cout << DecStrToBinStr("1234235235235244534636546")<<endl;
 	system("pause");
