@@ -17,5 +17,7 @@ public:
 	QInt(string x);
 	string DecToBin();
 	string Tra2(unsigned int a);
+	string BinToHex();
+	string Tra1016(unsigned int a);
 };
 

@@ -35,14 +35,17 @@ int main() {
 	//cout << DecStrToBinStr("1234235235235244534636546")<<endl;
 
 
-	QInt Test("110100101010110101001010111110101010000101010101010010110101010101011010011010");
+	QInt Test("110100101010110101001010111110101010000101010101010011010101010100101");
 	cout << Test << endl;
 	string Nhan;
 	Nhan = Test.DecToBin();
 	cout << Nhan << endl;
 	cout << "do dai chuoi: " << Nhan.length() << endl;
 
-
+	Nhan = Test.BinToHex();
+	cout << "Chuyen QInt 2 den 16:" << Nhan << endl;
+	cout << "do dai cua chuoi: " << Nhan.length() << endl;
+	//101010101010010110101010101011010011010
 
 
 	system("pause");
