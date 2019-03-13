@@ -67,7 +67,7 @@ QInt QInt::operator+(const QInt & N)
 	for (int i = 3; i >=0; i--)
 	{
 		Result.data[i] += this->data[i] + N.data[i];
-		if (Result.data[i] <= this->data[i]&& Result.data[i] <= N.data[i] && i!=0)
+		if ((Result.data[i] < this->data[i]|| Result.data[i] < N.data[i] )&& i!=0)
 			Result.data[i - 1]++;
 	}
 	return Result;
