@@ -49,4 +49,9 @@ public:
 
 };
 
+
+int removedot(string &a);
+void insertdot(string &a, int x);
 string SumString(const string &a, const string &b);
+string Multiply(string s1, string s2);
+

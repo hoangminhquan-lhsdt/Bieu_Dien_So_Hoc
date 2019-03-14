@@ -80,7 +80,10 @@ int main(int argc, char* argv[])
 	string a, b;
 	cout << "Nhap chuoi a va b " << endl;
 	cin >> a >> b;
-	cout << SumString(a, b);
+	removedot(a);
+	cout << a << endl;
+	insertdot(a, 2);
+	cout << a;
 	_getch();
 	return 0;
 }
