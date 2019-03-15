@@ -88,33 +88,74 @@ QInt QInt::operator-(const QInt & N)
 
 QInt QInt::operator/(const QInt & N)
 {
-	QInt A;
+	QInt A,X=N;
 	QInt src = *this;
+	bool SignA=false,SignB=false;
 	if (src > QInt("0"))
-		A = QInt("0");
+	{
+
+		A = QInt("0");	
+	}
 	else
 		A = QInt("-1");
-
+	if (src >= QInt("0"))
+		SignA=true;
+	if (X >= QInt("0"))
+		SignB = true;
 	int k = 128;
-
 	while (k > 0) {
 		A = A << 1;
 		int temp = (src.data[0] >> 31) & 1;
 		src = src << 1;
 		if (temp == 1)
 			A = A + QInt("1");
-
-		
-		A = A - N;
-
-		if (A < QInt("0")) {
-			//src = src & QInt("0"); 110'1' -> 110'0'
-			//src = src & ~QInt("1");
-			A = A + N;
+		if (SignA)
+		{
+			
+			if (SignB)
+			{
+				A = A - X;
+				if (A < QInt("0"))
+				{
+					A = A + X;
+				}
+				else
+					src = src + QInt("1");
+			}
+			else
+			{
+				A = A + X;
+				if (A < QInt("0"))
+				{
+					A = A - X;
+				}
+				else
+					src = src + QInt("1");
+			}
 		}
 		else
-			src = src + QInt("1");
-
+		{
+			if (SignB)
+			{
+				A = A + X;
+				if (A > QInt("0"))
+				{
+					A = A - X;
+				}
+				else
+					src = src + QInt("1");
+			}
+			else
+			{
+				A = A - X;
+				if (A > QInt("0"))
+				{
+					A = A + X;
+				}
+				else
+					src = src + QInt("1");
+			}
+		}
 		k--;
 	}
 	return src;
