@@ -85,29 +85,35 @@ QInt QInt::operator-(const QInt & N)
 QInt QInt::operator/(const QInt & N)
 {
 	QInt A;
-	if ((*this) > QInt("0"))
+	QInt src = *this;
+	if (src > QInt("0"))
 		A = QInt("0");
 	else
-		A = QInt("340,282,366,920,938,000,000,000,000,000,000,000,000");
+		A = QInt("-1");
 
 	int k = 128;
 
 	while (k > 0) {
 		A = A << 1;
-		(*this) = (*this) << 1;
+		int temp = (src.data[0] >> 31) & 1;
+		src = src << 1;
+		if (temp == 1)
+			A = A + QInt("1");
+
 
 		A = A - N;
 
 		if (A < QInt("0")) {
-			(*this) = (*this) & QInt("0");
+			//src = src & QInt("0"); 110'1' -> 110'0'
+			//src = src & ~QInt("1");
 			A = A + N;
 		}
 		else
-			(*this) = (*this) | QInt("1");
+			src = src + QInt("1");
 
 		k--;
 	}
-	return (*this);
+	return src;
 }
 
 QInt QInt::operator*(const QInt & N)
@@ -119,7 +125,7 @@ QInt QInt::operator*(const QInt & N)
 		X = QInt("0") - X;
 		Temp = true;
 	}
-	QInt Result;
+	QInt Result; // 1011 * 101
 	int count = 0;
 	while (X != QInt("0"))
 	{
