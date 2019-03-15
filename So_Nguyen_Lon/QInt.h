@@ -16,8 +16,6 @@ public:
 	void ScanQInt();
 	void PrintQInt();
 
-	// assignment operators
-	QInt operator=(const QInt & N);
 
 	// arithmetic operators
 	QInt operator+(const QInt & N);
@@ -45,17 +43,10 @@ public:
 	QInt rol(int K);
 	QInt ror(int K);
 
+	QInt operator=(const QInt & N);
+
 	// base conversion
 
 	QInt BinToQInt(string x);
-	QInt operator&(const QInt & N);
-	QInt operator|(const QInt & N);
-	QInt operator^(const QInt & N);
-	QInt operator~();
-	QInt operator=(const QInt & N);
-	QInt operator<<(int x);
-	QInt operator>>(int x);
-	QInt rol(int x);
-	QInt ror(int x);
-};
+	};
 string DecStrToBinStr(string x);

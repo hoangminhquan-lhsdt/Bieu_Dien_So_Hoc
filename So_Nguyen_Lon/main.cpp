@@ -1,7 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
-
+#include <vector>
+#include <fstream>
 #include "QInt.h"
 
 using namespace std;
@@ -75,7 +76,7 @@ vector<Input_Struct> Doc_File() {
 }
 
 int main(int argc, char* argv[]) {
-	if (argc == 1) {
+/*	if (argc == 1) {
 		vector<Input_Struct> Req_List = Doc_File();
 		for (int i = 0; i < Req_List.size(); i++) {
 			cout << "Request " << i + 1 << ":\n";
@@ -88,12 +89,14 @@ int main(int argc, char* argv[]) {
 
 	int x=-2, y, z;
 	x = 1 | (-2);
-    QInt N("2"),M("1"),Q;
-	Q = N + M;
+*/
+	QInt N("-2"),M("-3"),Q;
+	int x;
+	Q = N *M;
 	////M = ~N+QInt("1");
 	//Q = N.rol(1);
 	////cout << DecStrToBinStr("1234235235235244534636546")<<endl;
-	system("pause");
+ 	system("pause");
 	return 0;
 }
 
