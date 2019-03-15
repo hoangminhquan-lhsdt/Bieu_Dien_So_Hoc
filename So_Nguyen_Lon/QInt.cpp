@@ -6,6 +6,10 @@
 using namespace std;
 string DecStrToBinStr(string x)
 {
+	if (x == "0")
+	{
+		return x;
+	}
 	string Result, Temp, p; //p thuong
 	char buffer[10];
 	while (x != "0")
@@ -100,7 +104,7 @@ QInt QInt::operator/(const QInt & N)
 		if (temp == 1)
 			A = A + QInt("1");
 
-
+		
 		A = A - N;
 
 		if (A < QInt("0")) {
@@ -127,7 +131,7 @@ QInt QInt::operator*(const QInt & N)
 	}
 	QInt Result; // 1011 * 101
 	int count = 0;
-	while (X != QInt("0"))
+	while (X != QInt("0")&&X!=QInt("-1"))
 	{
 		if (X.data[3] % 2 == 1)
 			Y = (*this);
@@ -204,13 +208,7 @@ QInt QInt::operator~()
 QInt QInt::operator<<(int x)
 {
 	QInt Result;
-	bool Temp=false;
 	Result = (*this);
-	if (Result.data[0] >= pow(2, 31))
-	{
-		Temp = true;
-		Result.data[0] -= pow(2, 31);
-	}
 	for (int i = 0; i < x; i++)
 	{
 		for (int j = 0; j < 4; j++)
@@ -224,20 +222,18 @@ QInt QInt::operator<<(int x)
 			Result.data[j] <<= 1;
 		}
 	}
-	if (Temp&&Result.data[0] < pow(2, 31))
-		Result.data[0] += pow(2, 31);
+	
 	return Result;
 }
 
 QInt QInt::operator>>(int x)
 {
 	QInt Result;
-	bool Temp=false;
+	bool Temp = false;
 	Result = (*this);
 	if (Result.data[0] >= pow(2, 31))
 	{
 		Temp = true;
-		Result.data[0] -= pow(2, 31);
 	}
 	for (int i = 0; i < x; i++)
 	{
@@ -252,10 +248,8 @@ QInt QInt::operator>>(int x)
 			
 		}
 		if (Temp)
-			Result.data[0] += pow(2, 30);
+			Result.data[0] += pow(2, 31);
 	}
-	if(Temp)
-		Result.data[0] += pow(2, 31);
 	return Result;
 }
 
@@ -343,15 +337,19 @@ bool QInt::operator>(const QInt & N)
 		return true;
 	if (SignA > SignB)
 		return false;
+	int x = 0;
 	for (int i = 0; i < 4; i++)
 	{
 			if ((*this).data[i] < N.data[i])
 			{
-				if ((*this).data[i] <= N.data[i])
 					return false;
 			}
+			if ((*this).data[i] == N.data[i])
+				x++;
 		
 	}
+	if (x == 4)
+		return false;
 	return true;
 }
 
@@ -363,14 +361,19 @@ bool QInt::operator<(const QInt & N)
 		return true;
 	if (SignA < SignB)
 		return false;
+	int x = 0;
 	for (int i = 0; i < 4; i++)
 	{
 		if ((*this).data[i] > N.data[i])
 		{
-			if ((*this).data[i] >= N.data[i])
-				return false;
+			return false;
 		}
+		if ((*this).data[i] == N.data[i])
+			x++;
+
 	}
+	if (x == 4)
+		return false;
 	return true;
 }
 

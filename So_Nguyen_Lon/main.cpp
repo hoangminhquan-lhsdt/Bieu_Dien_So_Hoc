@@ -90,9 +90,9 @@ int main(int argc, char* argv[]) {
 
 
 	int x=-2, y, z;
-	x = 1 | (-2);
-    QInt N("15"),M("3"),Q;
-	Q = N / M;
+	x = 1 << 31;
+    QInt N("75"),M("3"),Q;
+	Q = N /M;
 	////M = ~N+QInt("1");
 	//Q = N.rol(1);
 	////cout << DecStrToBinStr("1234235235235244534636546")<<endl;
