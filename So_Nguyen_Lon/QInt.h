@@ -32,6 +32,7 @@ public:
 	bool operator>=(const QInt & N);
 	bool operator<=(const QInt & N);
 	bool operator==(const QInt & N);
+	bool operator!=(const QInt &N);
 
 	// bitwise operators
 	QInt operator&(const QInt & N);
