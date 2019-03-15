@@ -5,6 +5,7 @@
 #include <fstream>
 
 #include "QInt.h"
+#include "Qfloat.h"
 
 using namespace std;
 
