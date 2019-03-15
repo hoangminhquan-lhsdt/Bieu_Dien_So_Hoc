@@ -12,7 +12,6 @@ public:
 	QInt();
 	QInt(string x);//Khởi tạo từ chuỗi Dec cả - và dương 
 	~QInt();
-
 	// input/output operators
 	void ScanQInt();
 	void PrintQInt();

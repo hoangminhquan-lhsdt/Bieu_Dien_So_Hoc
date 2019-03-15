@@ -265,20 +265,6 @@ QInt QInt::operator=(const QInt & N)
 	return(*this);
 }
 
-
-istream & operator>>(istream & in, QInt & N)
-{
-	return in;
-}
-
-ostream & operator<<(ostream & out, const QInt & N)
-{
-	int i;
-	for (i = 0; i < 4; i++)
-		cout << N.data[i]<<endl;
-	return out;
-}
-
 int ctoi(char x)
 {
 	return x - '0';
