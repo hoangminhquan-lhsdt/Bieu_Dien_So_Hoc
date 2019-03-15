@@ -80,6 +80,34 @@ QInt QInt::operator-(const QInt & N)
 	return (*this)+Temp;
 }
 
+QInt QInt::operator/(const QInt & N)
+{
+	QInt A;
+	if ((*this) > QInt("0"))
+		A = QInt("0");
+	else
+		A = QInt("340,282,366,920,938,000,000,000,000,000,000,000,000");
+
+	int k = 128;
+
+	while (k > 0) {
+		A = A << 1;
+		(*this) = (*this) << 1;
+
+		A = A - N;
+
+		if (A < QInt("0")) {
+			(*this) = (*this) & QInt("0");
+			A = A + N;
+		}
+		else
+			(*this) = (*this) | QInt("1");
+
+		k--;
+	}
+	return (*this);
+}
+
 QInt QInt::BinToQInt(string x)
 {
 	QInt Result; 
