@@ -158,6 +158,8 @@ QInt QInt::operator/(const QInt & N)
 		}
 		k--;
 	}
+	if (SignA != SignB)
+		src = QInt("0") - src;
 	return src;
 }
 
