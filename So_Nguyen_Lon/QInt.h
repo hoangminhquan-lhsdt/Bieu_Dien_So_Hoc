@@ -1,6 +1,7 @@
 #pragma once
 #include "conio.h"
 #include <iostream>
+#include <string.h>
 using namespace std;
 
 
@@ -46,12 +47,13 @@ public:
 	QInt ror(int K);
 
 	// base conversion
-
+	string BinToDec();
 };
 
 
 int removedot(string &a);
 void insertdot(string &a, int x);
-string SumString(const string &a, const string &b);
+string Sum(const string &a, const string &b);
 string Multiply(string s1, string s2);
+string Exponential(string s1, int n);
 

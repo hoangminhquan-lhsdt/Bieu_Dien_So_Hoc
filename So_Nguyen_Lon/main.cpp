@@ -77,13 +77,13 @@ vector<Input_Struct> Doc_File() {
 
 int main(int argc, char* argv[]) 
 {
+	QInt x;
 	string a, b;
 	cout << "Nhap chuoi a va b " << endl;
 	cin >> a >> b;
-	removedot(a);
-	cout << a << endl;
-	insertdot(a, 2);
-	cout << a;
+	cout << Multiply(a, b)<<endl;
+	string c = Exponential(a, 4);
+	cout << c;
 	_getch();
 	return 0;
 }

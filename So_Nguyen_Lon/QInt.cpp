@@ -114,6 +114,16 @@ bool QInt::operator!=(const QInt & N)
 	return true;
 }
 
+int checkstatusdigits(string &a)
+{
+	if (a[0] == '-')
+	{
+		a.erase(0,1); // xóa dấu -
+		return 0; // a ban đầu là số âm 
+	}
+	return 1; // số dương
+}
+
 int removedot(string &a) //Trả về số phần tử sau dấu chấm và xóa dấu
 {
 	int n = a.length(), i, j, x = 0;
@@ -155,7 +165,7 @@ void insertdot(string &a, int x) //Chèn dấu chấm vào trước x số ( tí
 	}
 }
 
-string SumString(const string &a, const string &b)
+string Sum(const string &a, const string &b)
 {
 	string ans;
 	int sum, n = b.size(), count;
@@ -201,10 +211,12 @@ string Multiply(string s1, string s2)
 	int reb = 0, i, j, Sum = 0, x, y, n1, n2;
 	n1 = s1.length();
 	n2 = s2.length();
+
+	int y1 = checkstatusdigits(s1), y2 = checkstatusdigits(s2);
 	int x1 = removedot(s1), x2 = removedot(s2);
 	for (i = 1; i < (n1 + n2); i++)
 	{
-		Sum += reb;
+
 		for (j = 0; j < i; j++)
 		{
 			if (((n1 + j - i) >= 0 && (n1 +j-i <= n1))&&((n2-j-1>=0)&&(n2-j-1<=n2)))
@@ -215,15 +227,18 @@ string Multiply(string s1, string s2)
 			}
 		}
 		
-		reb = Sum / 10;
+
 		sumchar = itoc(Sum % 10);
-		Sum -= Sum % 10;
+		Sum /= 10;
 		c.push_back(sumchar);
 	}
 	reverse(c.begin(), c.end());
 	insertdot(c, x1 + x2);
 
-
+	if (y1 != y2 && (c!="0")) //trái dấu 
+	{
+		c.insert(c.begin(), '-');
+	}
 	return c;
 }
 
@@ -243,13 +258,20 @@ string Exponential(string s1, int n)
 	//	return Divide((char*)("1"), c);
 }
 
-
-string QIntToString(const QInt &N)
+string QInt::BinToDec()
 {
-	return string();
-
-
+	string ans;
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 31; j++)
+		{
+			if ((1 << 31 - j) | (*this).data[i])
+			{
+				if ((i == 0) && (j == 0)) continue;
+				ans = Sum(ans, Exponential("2", 128 - 32 * i - j));
+			}
+		}
+	}
+	return ans;
 }
 	
-
-
