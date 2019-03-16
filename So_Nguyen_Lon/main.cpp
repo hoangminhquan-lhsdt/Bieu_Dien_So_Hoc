@@ -77,14 +77,11 @@ vector<Input_Struct> Doc_File() {
 
 int main(int argc, char* argv[]) 
 {
+	string s;
 	QInt x;
-	string a, b;
-	cout << "Nhap chuoi a va b " << endl;
-	cin >> a >> b;
-	cout << Multiply(a, b)<<endl;
-	string c;
-	c = Sum(Exponential("2", 24), Exponential("2", 10));
-	cout << c;
+	s=x.BinToDec();
+
+	cout << s;
 	_getch();
 	return 0;
 }

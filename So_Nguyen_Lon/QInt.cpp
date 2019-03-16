@@ -281,7 +281,6 @@ string Multiply(string s1, string s2)
 	return c;
 }
 
-
 string Exponential(string s1, int n)
 {
 	string c = s1;
@@ -302,15 +301,16 @@ string QInt::BinToDec()
 {
 	string ans;
 	string test = "2";
+
 	for (int i = 0; i < 4; i++)
 	{
 		for (int j = 0; j < 31; j++)
 		{
-			if ((1 << 31 - j) | (*this).data[i])
+			if((1 << 31 - j) & (*this).data[i])
 			{
-				if ((i == 0) && (j == 0)) continue;
-;				ans = Sum(ans, Exponential("2", 128 - 32 * i - j) );
+				cout << 1;
 			}
+			else cout << 0;
 		}
 	}
 	return ans;
