@@ -10,7 +10,9 @@ private:
 	unsigned int data[4];
 public:
 	QInt();
-	QInt(string x);//Khởi tạo từ chuỗi Dec cả - và dương 
+	QInt(string x);
+	
+	//Khởi tạo từ chuỗi Dec cả - và dương 
 	~QInt();
 
 	// input/output functions
@@ -48,5 +50,10 @@ public:
 
 	// base conversions
 	QInt BinToQInt(string x);
+	QInt(string x, int mode);
+	string QIntToBin();
+	string QIntToHex();
+	string Tra2(unsigned int a);
+	string Tra1016(unsigned int a);
 };
 

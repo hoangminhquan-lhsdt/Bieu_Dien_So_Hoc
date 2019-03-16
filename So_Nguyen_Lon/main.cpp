@@ -89,7 +89,8 @@ int main(int argc, char* argv[]) {
 
 	int x=-2, y, z;
 	x = 1 << 31;
-    QInt N("-7"),M("3"),Q;
+    QInt N("7"),M("3"),Q;
+	cout << N.QIntToBin();
 	Q = N / M;
 	////M = ~N+QInt("1");
 	//Q = N.rol(1);
