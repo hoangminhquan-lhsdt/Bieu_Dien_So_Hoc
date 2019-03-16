@@ -1,7 +1,7 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
 #pragma once
 #include <iostream>
-#include <string>
+#include "Source.h"
 using namespace std;
 
 
@@ -49,4 +49,4 @@ public:
 	// base conversions
 	QInt BinToQInt(string x);
 };
-string DecStrToBinStr(string x);
+

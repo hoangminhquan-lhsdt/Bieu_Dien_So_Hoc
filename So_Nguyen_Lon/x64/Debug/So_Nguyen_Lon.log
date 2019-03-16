@@ -1,1 +1,23 @@
-﻿  So_Nguyen_Lon.vcxproj -> C:\Users\Admin\Source\Repos\laohacsieudeptrai\So_Nguyen_Lon\x64\Debug\So_Nguyen_Lon.exe
+﻿  main.cpp
+c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\main.cpp(90): warning C4101: 'z': unreferenced local variable
+c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\main.cpp(90): warning C4101: 'y': unreferenced local variable
+  QInt.cpp
+c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(207): warning C4244: '-=': conversion from 'double' to 'unsigned int', possible loss of data
+c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(234): warning C4244: '+=': conversion from 'double' to 'unsigned int', possible loss of data
+c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(240): warning C4244: '+=': conversion from 'double' to 'unsigned int', possible loss of data
+c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(253): warning C4244: '-=': conversion from 'double' to 'unsigned int', possible loss of data
+c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(262): warning C4244: '-=': conversion from 'double' to 'unsigned int', possible loss of data
+c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(272): warning C4244: '+=': conversion from 'double' to 'unsigned int', possible loss of data
+c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(248): warning C4101: 'Temp1': unreferenced local variable
+c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(283): warning C4244: '-=': conversion from 'double' to 'unsigned int', possible loss of data
+c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(293): warning C4244: '+=': conversion from 'double' to 'unsigned int', possible loss of data
+c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(300): warning C4244: '+=': conversion from 'double' to 'unsigned int', possible loss of data
+c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(303): warning C4244: '+=': conversion from 'double' to 'unsigned int', possible loss of data
+  Source.cpp
+c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(11): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(44): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(48): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
+  LINK : C:\Users\Admin\source\repos\laohacsieudeptrai\So_Nguyen_Lon\x64\Debug\So_Nguyen_Lon.exe not found or not built by the last incremental link; performing full link
+  So_Nguyen_Lon.vcxproj -> C:\Users\Admin\source\repos\laohacsieudeptrai\So_Nguyen_Lon\x64\Debug\So_Nguyen_Lon.exe

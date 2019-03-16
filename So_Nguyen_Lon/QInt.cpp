@@ -2,42 +2,6 @@
 #pragma once
 #include <iostream>
 #include "QInt.h"
-
-using namespace std;
-string DecStrToBinStr(string x)
-{
-	if (x == "0")
-	{
-		return x;
-	}
-	string Result, Temp, p; //p thuong
-	char buffer[10];
-	while (x != "0")
-	{
-		Temp.clear();
-		p.clear();
-		Result = _itoa((x[x.length() - 1] - '0') % 2, buffer, 10) + Result;
-		for (int i = 0; i < x.length(); i++)
-		{
-			Temp += x[i];
-			p += _itoa(stoi(Temp) / 2, buffer, 10);
-			Temp = _itoa(stoi(Temp) % 2, buffer, 10);
-		}
-		while (p[0] == '0' && p.length() != 1)
-		{
-			p.erase(0, 1);
-		}
-		x = p;
-	}
-	return Result;
-}
-int BinDec(string x)
-{
-	int s = 0, n = x.length();
-	for (int i = 0; i < n; i++)
-		s += (x[i]-'0')*pow(2, n - 1 - i);
-	return s;
-}
 QInt::QInt()
 {
 	for (int i = 0; i < 4; i++)
@@ -61,6 +25,7 @@ QInt::QInt(string x)
 		(*this) = ~(*this)+QInt("1");
 	}
 }
+
 QInt::~QInt()
 {
 }
@@ -189,23 +154,6 @@ QInt QInt::operator*(const QInt & N)
 		Result = QInt("0") - Result;
 	return Result;
 }
-QInt QInt::BinToQInt(string x)
-{
-	QInt Result; 
-	string Temp;
-	int count = 0;
-	for (int i = 0; i < 4; i++)
-		data[i] = 0;
-	while (x.length() >= 32 && count < 4)
-	{
-		Temp = x.substr(x.length() - 32);
-		x.erase(x.length() - 32);
-		Result.data[3 - count] = BinDec(Temp) + Result.data[3 - count];
-		count++;
-	}
-	Result.data[3 - count] = BinDec(x) + Result.data[3 - count];
-	return Result;
-}
 
 QInt QInt::operator&(const QInt & N)
 {
@@ -326,6 +274,7 @@ QInt QInt::rol(int x)
 		Result.data[0] += pow(2, 31);
 	return Result;
 }
+
 QInt QInt::ror(int x)
 {
 	QInt Result;
@@ -365,11 +314,6 @@ QInt QInt::operator=(const QInt & N)
 		(*this).data[i] = N.data[i];                                                                                                                                                                                                                                                                 
 	}
 	return(*this);
-}
-
-int ctoi(char x)
-{
-	return x - '0';
 }
 
 bool QInt::operator>(const QInt & N)
@@ -488,31 +432,23 @@ bool QInt::operator!=(const QInt & N)
 	return false;
 }
 
-string SumString(const string &a, const string &b)
+QInt QInt::BinToQInt(string x)
 {
-	string ans;
-	int sum, n = b.size(), count;
-
-	if (a.size() < b.size())
+	QInt Result;
+	string Temp;
+	int count = 0;
+	for (int i = 0; i < 4; i++)
+		data[i] = 0;
+	while (x.length() >= 32 && count < 4)
 	{
-		n=a.size();
+		Temp = x.substr(x.length() - 32);
+		x.erase(x.length() - 32);
+		Result.data[3 - count] = BinDec(Temp) + Result.data[3 - count];
+		count++;
 	}
-	for (int i = 0; i < n; i++)
-	{
-		sum = ctoi(a[a.size() - i]) + ctoi(b[b.size() - i]);
-		if (sum > 10)
-		{
-			count = sum % 10;
-			sum /= 10;
-		}
-	}
-	return string();
+	Result.data[3 - count] = BinDec(x) + Result.data[3 - count];
+	return Result;
 }
 
-string QIntToString(const QInt &N)
-{
-	return string();
-}
-	
 
 

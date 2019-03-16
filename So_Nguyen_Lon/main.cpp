@@ -3,10 +3,8 @@
 #include <string>
 #include <vector>
 #include <fstream>
-
 #include "QInt.h"
 #include "Qfloat.h"
-
 using namespace std;
 
 struct Input_Struct {
