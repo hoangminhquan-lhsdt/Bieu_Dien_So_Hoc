@@ -79,8 +79,7 @@ int main(int argc, char* argv[])
 {
 	string s;
 	QInt x;
-	s=x.BinToDec();
-
+	s= x.BinToDec();
 	cout << s;
 	_getch();
 	return 0;

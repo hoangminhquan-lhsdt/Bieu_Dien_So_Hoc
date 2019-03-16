@@ -6,6 +6,10 @@ using namespace std;
 
 QInt::QInt()
 {
+	data[0] = 0;
+	data[1] = 0;
+	data[2] = 0;
+	data[3] = 4;
 
 }
 
@@ -308,9 +312,9 @@ string QInt::BinToDec()
 		{
 			if((1 << 31 - j) & (*this).data[i])
 			{
-				cout << 1;
+				ans.push_back('1');
 			}
-			else cout << 0;
+			else ans.push_back('0');
 		}
 	}
 	return ans;
