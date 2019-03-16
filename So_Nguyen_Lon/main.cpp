@@ -82,7 +82,8 @@ int main(int argc, char* argv[])
 	cout << "Nhap chuoi a va b " << endl;
 	cin >> a >> b;
 	cout << Multiply(a, b)<<endl;
-	string c = Exponential(a, 4);
+	string c;
+	c = Sum(Exponential("2", 24), Exponential("2", 10));
 	cout << c;
 	_getch();
 	return 0;

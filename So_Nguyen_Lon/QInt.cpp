@@ -165,26 +165,61 @@ void insertdot(string &a, int x) //Chèn dấu chấm vào trước x số ( tí
 	}
 }
 
-string Sum(const string &a, const string &b)
+string Sum(string a,  string b)
 {
 	string ans;
-	int sum, n = b.size(), count;
-
-	if (a.size() < b.size())
+	int sum=0, n = b.size(), count,n1=a.size(),n2=b.size();
+	if (n1 > n2)
 	{
-		n=a.size();
+		n = n1;
 	}
+	int x1 = removedot(a), x2 = removedot(b), x3, x4, i;
+	if (x1 > x2)
+	{
+		x3 = x1;
+		x4 = x1 - x2;
+		for (i = 1; i <= x4; i++)
+		{
+			b.insert(b.begin()+b.length(),1,'0');
+		}
+	}
+	else {
+		x3 = x2;
+		x4 = x2 - x1;
+		for (i = 1; i <= x4; i++)
+		{
+			a.insert(a.begin() + a.length(), 1,'0');
+		}
+	}
+
+	if (n1 > n2)
+	{
+		for (i = 1; i <=(n1 - n2); i++)
+		{
+			b.insert(b.begin(), '0');
+		}
+	}
+	else
+	{
+		for (i = 1; i <= n2-n1; i++)
+		{
+			a.insert(a.begin(), '0');
+		}
+	}
+
+
 	for (int i = 0; i < n; i++)
 	{
-		sum = ctoi(a[a.size()-1 - i]) + ctoi(b[b.size()-1 - i]);
-		if (sum > 10)
-		{
-			count = sum % 10;
-			sum /= 10;
-		}
+		sum += ctoi(a[a.size()-1 - i]) + ctoi(b[b.size()-1 - i]);
+
+
+		ans.push_back(itoc(sum%10));
+		sum /= 10;
+	}
+	if (sum > 0)
+	{
 		ans.push_back(itoc(sum));
 	}
-
 	if (a.size() < b.size())
 	{
 		for (int i = 0; i < b.size() - n; i++)
@@ -232,6 +267,10 @@ string Multiply(string s1, string s2)
 		Sum /= 10;
 		c.push_back(sumchar);
 	}
+	if (Sum > 0)
+	{
+		c.push_back(itoc(Sum));
+	}
 	reverse(c.begin(), c.end());
 	insertdot(c, x1 + x2);
 
@@ -242,6 +281,7 @@ string Multiply(string s1, string s2)
 	return c;
 }
 
+
 string Exponential(string s1, int n)
 {
 	string c = s1;
@@ -249,7 +289,7 @@ string Exponential(string s1, int n)
 	int i;
 	
 	if (n == 0)
-		return (char*)("1");
+		return (string)("1");
 	for (i = 1; i < n; i++)
 		c = Multiply(c, s1);
 	if (n > 0)
@@ -261,6 +301,7 @@ string Exponential(string s1, int n)
 string QInt::BinToDec()
 {
 	string ans;
+	string test = "2";
 	for (int i = 0; i < 4; i++)
 	{
 		for (int j = 0; j < 31; j++)
@@ -268,7 +309,7 @@ string QInt::BinToDec()
 			if ((1 << 31 - j) | (*this).data[i])
 			{
 				if ((i == 0) && (j == 0)) continue;
-				ans = Sum(ans, Exponential("2", 128 - 32 * i - j));
+;				ans = Sum(ans, Exponential("2", 128 - 32 * i - j) );
 			}
 		}
 	}

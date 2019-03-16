@@ -53,7 +53,7 @@ public:
 
 int removedot(string &a);
 void insertdot(string &a, int x);
-string Sum(const string &a, const string &b);
+string Sum( string a,  string b);
 string Multiply(string s1, string s2);
 string Exponential(string s1, int n);
 
