@@ -87,7 +87,7 @@ int main(int argc, char* argv[]) {
 	}
 	else
 		Input_Struct ti = Doc_Terminal(argc, argv);
-
+		
 
 	int x=-2, y, z;
 	x = 1 << 31;
@@ -99,7 +99,9 @@ int main(int argc, char* argv[]) {
 	//Q = N.rol(1);
 	////cout << DecStrToBinStr("1234235235235244534636546")<<endl;
 
-	system("pause");
+
+
+	
 	return 0;
 }
 

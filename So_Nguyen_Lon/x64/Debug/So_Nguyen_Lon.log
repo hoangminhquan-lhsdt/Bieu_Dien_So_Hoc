@@ -1,4 +1,4 @@
 ﻿  main.cpp
-c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\main.cpp(90): warning C4101: 'z': unreferenced local variable
-c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\main.cpp(90): warning C4101: 'y': unreferenced local variable
-  So_Nguyen_Lon.vcxproj -> C:\Users\Admin\source\repos\laohacsieudeptrai\So_Nguyen_Lon\x64\Debug\So_Nguyen_Lon.exe
+c:\users\dieph\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\main.cpp(92): warning C4101: 'z': unreferenced local variable
+c:\users\dieph\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\main.cpp(92): warning C4101: 'y': unreferenced local variable
+  So_Nguyen_Lon.vcxproj -> C:\Users\dieph\Source\Repos\laohacsieudeptrai\So_Nguyen_Lon\x64\Debug\So_Nguyen_Lon.exe

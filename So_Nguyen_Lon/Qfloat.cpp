@@ -41,9 +41,29 @@ Qfloat::Qfloat(string x)
 	i = ReExpo(ketqua, temp);//trả về giá trị quá k 
 	a2 = QuadExpo(i);//trả về chuỗi quá k expo
 	ketqua.erase(1, ketqua.length());
-	ketqua += a1 + a2;
+	ketqua += a2 + a1;
 	this->data[0] = ketqua.length();
 	//chuyển từ ketqua vào Qfloat và xóa các phần tử dư thừa và thêm nếu thiếu
+	if (ketqua.length() > 128)
+		ketqua.erase(128);
+	else if(ketqua.length()<128)
+	{
+		string moi(128 - ketqua.length(), '0');
+		ketqua+=moi;
+	}
+	//chuyển vào Qfloat
+	string Temp;
+	int count = 0;
+	for (int i = 0; i < 4; i++)
+		data[i] = 0;
+	while (ketqua.length() >= 32 && count < 4)
+	{
+		Temp = ketqua.substr(ketqua.length() - 32);
+		ketqua.erase(ketqua.length() - 32);
+		this->data[3 - count] = BinDec(Temp) + this->data[3 - count];
+		count++;
+	}
+	this->data[3 - count] = BinDec(x) + this->data[3 - count];
 }
 
 
