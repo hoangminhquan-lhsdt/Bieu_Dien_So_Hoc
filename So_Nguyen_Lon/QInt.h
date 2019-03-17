@@ -54,5 +54,6 @@ public:
 	QInt BinToQInt(string x);
 	string QIntToBin();
 	string QIntToHex();
+	string QIntToDec();
 };
 

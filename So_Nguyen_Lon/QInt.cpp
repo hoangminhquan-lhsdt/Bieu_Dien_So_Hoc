@@ -491,3 +491,21 @@ string QInt::QIntToHex()
 	return re;
 }
 
+string QInt::QIntToDec()
+{
+	string ans;
+	string test = "2";
+
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 31; j++)
+		{
+			if ((1 << 31 - j) & (*this).data[i])
+			{
+				ans.push_back('1');
+			}
+			else ans.push_back('0');
+		}
+	}
+	return ans;
+}
