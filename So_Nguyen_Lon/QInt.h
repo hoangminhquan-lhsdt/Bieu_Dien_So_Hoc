@@ -11,9 +11,11 @@ private:
 public:
 	QInt();
 	QInt(string x);
-	
+	QInt(string x, int mode); // QInt A("287415890", 10);
+
 	//Khởi tạo từ chuỗi Dec cả - và dương 
 	~QInt();
+
 
 	// input/output functions
 	void ScanQInt();
@@ -50,10 +52,7 @@ public:
 
 	// base conversions
 	QInt BinToQInt(string x);
-	QInt(string x, int mode);
 	string QIntToBin();
 	string QIntToHex();
-	string Tra2(unsigned int a);
-	string Tra1016(unsigned int a);
 };
 

@@ -2,6 +2,7 @@
 #pragma once
 #include <iostream>
 #include "QInt.h"
+
 QInt::QInt()
 {
 	for (int i = 0; i < 4; i++)
@@ -467,8 +468,6 @@ QInt::QInt(string x,int mode)
 
 }
 
-
-
 string QInt::QIntToBin()
 {
 	string nhan;
@@ -479,6 +478,7 @@ string QInt::QIntToBin()
 	}
 	return nhan;
 }
+
 string QInt::QIntToHex()
 {
 	int i;
@@ -489,57 +489,5 @@ string QInt::QIntToHex()
 			re += Tra1016(this->data[i]);
 		}
 	return re;
-}
-string QInt::Tra2(unsigned int a)
-{
-	int sodu;
-	if (a == 0)
-	{
-		string tra(32, '0');
-		return tra;
-	}
-	else
-	{
-		string tra;
-		while (a != 0)
-		{
-			sodu = a % 2;
-			tra.push_back(sodu + '0');
-			a = a / 2;
-		}
-		if (tra.length() < 32)
-		{
-			string c(32 - tra.length(), '0');
-			tra += c;
-		}
-
-		reverse(tra.begin(), tra.end());
-		return tra;
-	}
-}
-
-
-
-string QInt::Tra1016(unsigned int a)
-{
-	int sodu;
-	string tra;
-	while (a != 0)
-	{
-		sodu = a % 16;
-		switch (sodu)
-		{
-		case 10: tra.push_back('A'); break;
-		case 11: tra.push_back('B'); break;
-		case 12: tra.push_back('C'); break;
-		case 13: tra.push_back('D'); break;
-		case 14: tra.push_back('E'); break;
-		case 15: tra.push_back('F'); break;
-		default: tra.push_back(sodu + '0'); break;
-		}
-		a = a / 16;
-	}
-	reverse(tra.begin(), tra.end());
-	return tra;
 }
 

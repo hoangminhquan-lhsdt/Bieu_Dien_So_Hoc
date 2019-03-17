@@ -1,9 +1,11 @@
 #include "Source.h"
 #include "QInt.h"
+
 int ctoi(char x)
 {
 	return x - '0';
 }
+
 int BinDec(string x)
 {
 	int s = 0, n = x.length();
@@ -11,6 +13,7 @@ int BinDec(string x)
 		s += (x[i] - '0')*pow(2, n - 1 - i);
 	return s;
 }
+
 string DecStrToBinStr(string x)
 {
 	if (x == "0")
@@ -38,6 +41,7 @@ string DecStrToBinStr(string x)
 	}
 	return Result;
 }
+
 string SumString(const string &a, const string &b)
 {
 	string ans;
@@ -57,4 +61,55 @@ string SumString(const string &a, const string &b)
 		}
 	}
 	return string();
+}
+
+string Tra2(unsigned int a)
+{
+	int sodu;
+	if (a == 0)
+	{
+		string tra(32, '0');
+		return tra;
+	}
+	else
+	{
+		string tra;
+		while (a != 0)
+		{
+			sodu = a % 2;
+			tra.push_back(sodu + '0');
+			a = a / 2;
+		}
+		if (tra.length() < 32)
+		{
+			string c(32 - tra.length(), '0');
+			tra += c;
+		}
+
+		reverse(tra.begin(), tra.end());
+		return tra;
+	}
+}
+
+string Tra1016(unsigned int a)
+{
+	int sodu;
+	string tra;
+	while (a != 0)
+	{
+		sodu = a % 16;
+		switch (sodu)
+		{
+		case 10: tra.push_back('A'); break;
+		case 11: tra.push_back('B'); break;
+		case 12: tra.push_back('C'); break;
+		case 13: tra.push_back('D'); break;
+		case 14: tra.push_back('E'); break;
+		case 15: tra.push_back('F'); break;
+		default: tra.push_back(sodu + '0'); break;
+		}
+		a = a / 16;
+	}
+	reverse(tra.begin(), tra.end());
+	return tra;
 }
