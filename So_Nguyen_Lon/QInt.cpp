@@ -3,37 +3,6 @@
 #include <iostream>
 #include "QInt.h"
 
-using namespace std;
-string DecStrToBinStr(string x)
-{
-	string Result, Temp, p; //p thuong
-	char buffer[10];
-	while (x != "0")
-	{
-		Temp.clear();
-		p.clear();
-		Result = _itoa((x[x.length() - 1] - '0') % 2, buffer, 10) + Result;
-		for (int i = 0; i < x.length(); i++)
-		{
-			Temp += x[i];
-			p += _itoa(stoi(Temp) / 2, buffer, 10);
-			Temp = _itoa(stoi(Temp) % 2, buffer, 10);
-		}
-		while (p[0] == '0' && p.length() != 1)
-		{
-			p.erase(0, 1);
-		}
-		x = p;
-	}
-	return Result;
-}
-int BinDec(string x)
-{
-	int s = 0, n = x.length();
-	for (int i = 0; i < n; i++)
-		s += (x[i]-'0')*pow(2, n - 1 - i);
-	return s;
-}
 QInt::QInt()
 {
 	for (int i = 0; i < 4; i++)
@@ -57,6 +26,7 @@ QInt::QInt(string x)
 		(*this) = ~(*this)+QInt("1");
 	}
 }
+
 QInt::~QInt()
 {
 }
@@ -64,10 +34,12 @@ QInt::~QInt()
 QInt QInt::operator+(const QInt & N)
 {
 	QInt Result;
+	unsigned int Temp;
 	for (int i = 3; i >=0; i--)
 	{
+		Temp = Result.data[i];
 		Result.data[i] += this->data[i] + N.data[i];
-		if ((Result.data[i] < this->data[i]|| Result.data[i] < N.data[i] )&& i!=0)
+		if ((Result.data[i] < this->data[i]|| Result.data[i] < N.data[i]||(this->data[i]==N.data[i]&&Temp==1&&Result.data[i]== Temp + this->data[i] + N.data[i]))&& i!=0)
 			Result.data[i - 1]++;
 	}
 	return Result;
@@ -80,21 +52,107 @@ QInt QInt::operator-(const QInt & N)
 	return (*this)+Temp;
 }
 
-QInt QInt::BinToQInt(string x)
+QInt QInt::operator/(const QInt & N)
 {
-	QInt Result; 
-	string Temp;
-	int count = 0;
-	for (int i = 0; i < 4; i++)
-		data[i] = 0;
-	while (x.length() >= 32 && count < 4)
+	QInt A,X=N;
+	QInt src = *this;
+	bool SignA=false,SignB=false;
+	if (src > QInt("0"))
 	{
-		Temp = x.substr(x.length() - 32);
-		x.erase(x.length() - 32);
-		Result.data[3 - count] = BinDec(Temp) + Result.data[3 - count];
+
+		A = QInt("0");	
+	}
+	else
+		A = QInt("-1");
+	if (src >= QInt("0"))
+		SignA=true;
+	if (X >= QInt("0"))
+		SignB = true;
+	int k = 128;
+	while (k > 0) {
+		A = A << 1;
+		int temp = (src.data[0] >> 31) & 1;
+		src = src << 1;
+		if (temp == 1)
+			A = A + QInt("1");
+		if (SignA)
+		{
+			
+			if (SignB)
+			{
+				A = A - X;
+				if (A < QInt("0"))
+				{
+					A = A + X;
+				}
+				else
+					src = src + QInt("1");
+			}
+			else
+			{
+				A = A + X;
+				if (A < QInt("0"))
+				{
+					A = A - X;
+				}
+				else
+					src = src + QInt("1");
+			}
+		}
+		else
+		{
+			if (SignB)
+			{
+				A = A + X;
+				if (A > QInt("0"))
+				{
+					A = A - X;
+				}
+				else
+					src = src + QInt("1");
+			}
+			else
+			{
+				A = A - X;
+				if (A > QInt("0"))
+				{
+					A = A + X;
+				}
+				else
+					src = src + QInt("1");
+			}
+		}
+		k--;
+	}
+	if (SignA != SignB)
+		src = QInt("0") - src;
+	return src;
+}
+
+QInt QInt::operator*(const QInt & N)
+{
+	QInt X=N, Y;
+	bool Temp = false;
+	if (X < QInt("0"))
+	{
+		X = QInt("0") - X;
+		Temp = true;
+	}
+	QInt Result; // 1011 * 101
+	int count = 0;
+	while (X != QInt("0")&&X!=QInt("-1"))
+	{
+		if (X.data[3] % 2 == 1)
+			Y = (*this);
+		else
+			Y = QInt("0");
+		X = X >> 1;
+		Y = Y << count;
+		Result = Result + Y;
 		count++;
 	}
-	Result.data[3 - count] = BinDec(x) + Result.data[3 - count];
+	if (Temp)
+		Result = QInt("0") - Result;
 	return Result;
 }
 
@@ -142,13 +200,7 @@ QInt QInt::operator~()
 QInt QInt::operator<<(int x)
 {
 	QInt Result;
-	bool Temp=false;
 	Result = (*this);
-	if (Result.data[0] >= pow(2, 31))
-	{
-		Temp = true;
-		Result.data[0] -= pow(2, 31);
-	}
 	for (int i = 0; i < x; i++)
 	{
 		for (int j = 0; j < 4; j++)
@@ -162,20 +214,18 @@ QInt QInt::operator<<(int x)
 			Result.data[j] <<= 1;
 		}
 	}
-	if (Temp&&Result.data[0] < pow(2, 31))
-		Result.data[0] += pow(2, 31);
+	
 	return Result;
 }
 
 QInt QInt::operator>>(int x)
 {
 	QInt Result;
-	bool Temp=false;
+	bool Temp = false;
 	Result = (*this);
 	if (Result.data[0] >= pow(2, 31))
 	{
 		Temp = true;
-		Result.data[0] -= pow(2, 31);
 	}
 	for (int i = 0; i < x; i++)
 	{
@@ -187,10 +237,11 @@ QInt QInt::operator>>(int x)
 					Result.data[j +1] += pow(2,31);
 			}
 			Result.data[j] >>= 1;
+			
 		}
+		if (Temp)
+			Result.data[0] += pow(2, 31);
 	}
-	if(Temp)
-		Result.data[0] += pow(2, 31);
 	return Result;
 }
 
@@ -224,6 +275,7 @@ QInt QInt::rol(int x)
 		Result.data[0] += pow(2, 31);
 	return Result;
 }
+
 QInt QInt::ror(int x)
 {
 	QInt Result;
@@ -260,56 +312,72 @@ QInt QInt::operator=(const QInt & N)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		(*this).data[i] = N.data[i];
+		(*this).data[i] = N.data[i];                                                                                                                                                                                                                                                                 
 	}
 	return(*this);
 }
 
-int ctoi(char x)
-{
-	return x - '0';
-}
-
 bool QInt::operator>(const QInt & N)
-{
+{ 
+	int SignA = this->data[0] >> 31 & 1;
+	int SignB = N.data[0] >> 31 & 1;
+	if (SignA < SignB)
+		return true;
+	if (SignA > SignB)
+		return false;
+	int x = 0;
 	for (int i = 0; i < 4; i++)
 	{
-		for (int u = 1; u < 31; u++)
-		{
-			if (((1 << 31 - u) | (*this).data[i]) <= ((1 << 31 - u) | N.data[i]))
+			if ((*this).data[i] < N.data[i])
 			{
-				return false;
+					return false;
 			}
-		}
+			if ((*this).data[i] == N.data[i])
+				x++;
+		
 	}
+	if (x == 4)
+		return false;
 	return true;
 }
 
 bool QInt::operator<(const QInt & N)
 {
+	int SignA = this->data[0] >> 31 & 1;
+	int SignB = N.data[0] >> 31 & 1;
+	if (SignA > SignB)
+		return true;
+	if (SignA < SignB)
+		return false;
+	int x = 0;
 	for (int i = 0; i < 4; i++)
 	{
-		for (int u = 1; u < 31; u++)
+		if ((*this).data[i] > N.data[i])
 		{
-			if (((1 << 31 - u) | (*this).data[i]) >= ((1 << 31 - u) | N.data[i]))
-			{
-				return false;
-			}
+			return false;
 		}
+		if ((*this).data[i] == N.data[i])
+			x++;
+
 	}
+	if (x == 4)
+		return false;
 	return true;
 }
 
 bool QInt::operator>=(const QInt & N)
 {
+	int SignA = this->data[0] >> 31 & 1;
+	int SignB = N.data[0] >> 31 & 1;
+	if (SignA < SignB)
+		return true;
+	if (SignA > SignB)
+		return false;
 	for (int i = 0; i < 4; i++)
 	{
-		for (int u = 1; u < 31; u++)
+		if ((*this).data[i] < N.data[i])
 		{
-			if (((1 << 31 - u) | (*this).data[i]) < ((1 << 31 - u) | N.data[i]))
-			{
 				return false;
-			}
 		}
 	}
 	return true;
@@ -317,14 +385,17 @@ bool QInt::operator>=(const QInt & N)
 
 bool QInt::operator<=(const QInt & N)
 {
+	int SignA = this->data[0] >> 31 & 1;
+	int SignB = N.data[0] >> 31 & 1;
+	if (SignA > SignB)
+		return true;
+	if (SignA < SignB)
+		return false;
 	for (int i = 0; i < 4; i++)
 	{
-		for (int u = 1; u < 31; u++)
+		if ((*this).data[i] > N.data[i])
 		{
-			if (((1 << 31 - u) | (*this).data[i]) > ((1 << 31 - u) | N.data[i]))
-			{
 				return false;
-			}
 		}
 	}
 	return true;
@@ -332,14 +403,15 @@ bool QInt::operator<=(const QInt & N)
 
 bool QInt::operator==(const QInt & N)
 {
+	int SignA = this->data[0] >> 31 & 1;
+	int SignB = N.data[0] >> 31 & 1;
+	if (SignA != SignB)
+		return false;
 	for (int i = 0; i < 4; i++)
 	{
-		for (int u = 1; u < 31; u++)
+		if ((*this).data[i] != N.data[i])
 		{
-			if (((1 << 31 - u) | (*this).data[i]) != ((1 << 31 - u) | N.data[i]))
-			{
-				return false;
-			}
+			return false;
 		}
 	}
 	return true;
@@ -347,44 +419,93 @@ bool QInt::operator==(const QInt & N)
 
 bool QInt::operator!=(const QInt & N)
 {
+	int SignA = this->data[0] >> 31 & 1;
+	int SignB = N.data[0] >> 31 & 1;
+	if (SignA != SignB)
+		return true;
 	for (int i = 0; i < 4; i++)
 	{
-		for (int u = 1; u < 31; u++)
+		if ((*this).data[i] != N.data[i])
 		{
-			if (((1 << 31 - u) | (*this).data[i]) == ((1 << 31 - u) | N.data[i]))
-			{
-				return false;
-			}
+			return true;
 		}
 	}
-	return true;
+	return false;
 }
 
-string SumString(const string &a, const string &b)
+QInt QInt::BinToQInt(string x)
+{
+	QInt Result;
+	string Temp;
+	int count = 0;
+	for (int i = 0; i < 4; i++)
+		data[i] = 0;
+	while (x.length() >= 32 && count < 4)
+	{
+		Temp = x.substr(x.length() - 32);
+		x.erase(x.length() - 32);
+		Result.data[3 - count] = BinDec(Temp) + Result.data[3 - count];
+		count++;
+	}
+	Result.data[3 - count] = BinDec(x) + Result.data[3 - count];
+	return Result;
+}
+
+QInt::QInt(string x,int mode)
+{
+	string Temp;
+	int count = 0;
+	for (int i = 0; i < 4; i++)
+		data[i] = 0;
+	while (x.length() >= 32 && count < 4)
+	{
+		Temp = x.substr(x.length() - 32);
+		x.erase(x.length() - 32);
+		this->data[3 - count] = BinDec(Temp) + this->data[3 - count];
+		count++;
+	}
+	this->data[3 - count] = BinDec(x) + this->data[3 - count];
+
+}
+
+string QInt::QIntToBin()
+{
+	string nhan;
+	int i;
+	for (i = 0; i < 4; i++)
+	{
+		nhan += Tra2(this->data[i]);
+	}
+	return nhan;
+}
+
+string QInt::QIntToHex()
+{
+	int i;
+	string re;
+	for (i = 0; i < 4; i++)
+		if (this->data[i] != 0)
+		{
+			re += Tra1016(this->data[i]);
+		}
+	return re;
+}
+
+string QInt::QIntToDec()
 {
 	string ans;
-	int sum, n = b.size(), count;
+	string test = "2";
 
-	if (a.size() < b.size())
+	for (int i = 0; i < 4; i++)
 	{
-		n=a.size();
-	}
-	for (int i = 0; i < n; i++)
-	{
-		sum = ctoi(a[a.size() - i]) + ctoi(b[b.size() - i]);
-		if (sum > 10)
+		for (int j = 0; j < 31; j++)
 		{
-			count = sum % 10;
-			sum /= 10;
+			if ((1 << 31 - j) & (*this).data[i])
+			{
+				ans.push_back('1');
+			}
+			else ans.push_back('0');
 		}
 	}
-	return string();
+	return ans;
 }
-
-string QIntToString(const QInt &N)
-{
-	return string();
-}
-	
-
-

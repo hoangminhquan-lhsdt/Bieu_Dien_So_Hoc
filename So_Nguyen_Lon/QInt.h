@@ -1,7 +1,7 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
 #pragma once
 #include <iostream>
-#include <string>
+#include "Source.h"
 using namespace std;
 
 
@@ -10,8 +10,12 @@ private:
 	unsigned int data[4];
 public:
 	QInt();
-	QInt(string x);//Khởi tạo từ chuỗi Dec cả - và dương 
+	QInt(string x);
+	QInt(string x, int mode); // QInt A("287415890", 10);
+
+	//Khởi tạo từ chuỗi Dec cả - và dương 
 	~QInt();
+
 
 	// input/output functions
 	void ScanQInt();
@@ -48,5 +52,8 @@ public:
 
 	// base conversions
 	QInt BinToQInt(string x);
+	string QIntToBin();
+	string QIntToHex();
+	string QIntToDec();
 };
-string DecStrToBinStr(string x);
+

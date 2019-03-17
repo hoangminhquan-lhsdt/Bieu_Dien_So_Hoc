@@ -1,18 +1,4 @@
-﻿  QInt.cpp
-e:\study\ktmt&hn\project\songuyenlon\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-e:\study\ktmt&hn\project\songuyenlon\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(34): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
-e:\study\ktmt&hn\project\songuyenlon\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(150): warning C4244: '-=': conversion from 'double' to 'unsigned int', possible loss of data
-e:\study\ktmt&hn\project\songuyenlon\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(158): warning C4244: '-=': conversion from 'double' to 'unsigned int', possible loss of data
-e:\study\ktmt&hn\project\songuyenlon\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(166): warning C4244: '+=': conversion from 'double' to 'unsigned int', possible loss of data
-e:\study\ktmt&hn\project\songuyenlon\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(178): warning C4244: '-=': conversion from 'double' to 'unsigned int', possible loss of data
-e:\study\ktmt&hn\project\songuyenlon\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(187): warning C4244: '+=': conversion from 'double' to 'unsigned int', possible loss of data
-e:\study\ktmt&hn\project\songuyenlon\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(193): warning C4244: '+=': conversion from 'double' to 'unsigned int', possible loss of data
-e:\study\ktmt&hn\project\songuyenlon\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(205): warning C4244: '-=': conversion from 'double' to 'unsigned int', possible loss of data
-e:\study\ktmt&hn\project\songuyenlon\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(214): warning C4244: '-=': conversion from 'double' to 'unsigned int', possible loss of data
-e:\study\ktmt&hn\project\songuyenlon\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(224): warning C4244: '+=': conversion from 'double' to 'unsigned int', possible loss of data
-e:\study\ktmt&hn\project\songuyenlon\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(200): warning C4101: 'Temp1': unreferenced local variable
-e:\study\ktmt&hn\project\songuyenlon\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(235): warning C4244: '-=': conversion from 'double' to 'unsigned int', possible loss of data
-e:\study\ktmt&hn\project\songuyenlon\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(245): warning C4244: '+=': conversion from 'double' to 'unsigned int', possible loss of data
-e:\study\ktmt&hn\project\songuyenlon\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(252): warning C4244: '+=': conversion from 'double' to 'unsigned int', possible loss of data
-e:\study\ktmt&hn\project\songuyenlon\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(255): warning C4244: '+=': conversion from 'double' to 'unsigned int', possible loss of data
-  So_Nguyen_Lon.vcxproj -> E:\Study\KTMT&HN\Project\SoNguyenLon\laohacsieudeptrai\So_Nguyen_Lon\x64\Debug\So_Nguyen_Lon.exe
+﻿  main.cpp
+c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\main.cpp(90): warning C4101: 'z': unreferenced local variable
+c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\main.cpp(90): warning C4101: 'y': unreferenced local variable
+  So_Nguyen_Lon.vcxproj -> C:\Users\Admin\source\repos\laohacsieudeptrai\So_Nguyen_Lon\x64\Debug\So_Nguyen_Lon.exe

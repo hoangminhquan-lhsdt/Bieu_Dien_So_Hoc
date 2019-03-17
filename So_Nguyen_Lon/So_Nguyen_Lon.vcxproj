@@ -22,10 +22,12 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Qfloat.cpp" />
     <ClCompile Include="QInt.cpp" />
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Qfloat.h" />
     <ClInclude Include="QInt.h" />
+    <ClInclude Include="Source.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

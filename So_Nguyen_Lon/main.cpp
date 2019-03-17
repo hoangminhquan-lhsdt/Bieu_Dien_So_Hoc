@@ -3,10 +3,10 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <conio.h>
 
 #include "QInt.h"
 #include "Qfloat.h"
-
 using namespace std;
 
 struct Input_Struct {
@@ -90,12 +90,15 @@ int main(int argc, char* argv[]) {
 
 
 	int x=-2, y, z;
-	x = 1 | (-2);
-    QInt N("2"),M("1"),Q;
-	Q = N + M;
+	x = 1 << 31;
+    QInt N("7"),M("3"),Q;
+	cout << N.QIntToBin();
+	Q = N / M;
+	
 	////M = ~N+QInt("1");
 	//Q = N.rol(1);
 	////cout << DecStrToBinStr("1234235235235244534636546")<<endl;
+
 	system("pause");
 	return 0;
 }
