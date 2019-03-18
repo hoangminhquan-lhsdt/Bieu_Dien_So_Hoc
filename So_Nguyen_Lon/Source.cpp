@@ -266,3 +266,19 @@ string Exponential(string s1, int n)
 	//else
 	//	return Divide((char*)("1"), c);
 }
+
+string HexToBin(const string &x)
+{
+	string kq;
+	string temp[] = { "0000","0001","0010","0011","0100","0101","0110","0111","1000","1001","1010","1011","1100","1101","1110","1111" };
+	for (int i = 0; i < x.length(); i++)
+	{
+		if (x[i] >= '0' && x[i] <= '9')
+			kq += temp[x[i] - '0'];
+		if (x[i] >= 'A' && x[i]<='F')
+			kq += temp[x[i] - 'A' + 10];
+	
+	}
+	cout << kq;
+	return kq;
+}

@@ -47,7 +47,7 @@ QInt::QInt(string x, int mode)
 	}
 	if (mode == 16)
 	{
-
+		(*this) = this->BinToQInt(HexToBin(x));
 	}
 }
 QInt::~QInt()

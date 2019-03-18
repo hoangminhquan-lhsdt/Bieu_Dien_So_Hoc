@@ -4,7 +4,7 @@
 #include <vector>
 #include <fstream>
 #include <conio.h>
-
+#include"Source.h"
 #include "QInt.h"
 #include "Qfloat.h"
 using namespace std;
@@ -91,7 +91,9 @@ int main(int argc, char* argv[]) {
 
 	int x=-2, y, z;
 	x = 1 << 31;
-    QInt N("7",10),M("3",10),Q;
+	string as;
+	as = HexToBin("AF");
+    QInt N("AF",16),M("3",10),Q;
 	Q=N.rol(1);
 	Q = N / M;
 	system("pause");
