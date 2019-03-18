@@ -91,14 +91,9 @@ int main(int argc, char* argv[]) {
 
 	int x=-2, y, z;
 	x = 1 << 31;
-    QInt N("7"),M("3"),Q;
-	cout << N.QIntToBin();
+    QInt N("7",10),M("3",10),Q;
+	Q=N.rol(1);
 	Q = N / M;
-	
-	////M = ~N+QInt("1");
-	//Q = N.rol(1);
-	////cout << DecStrToBinStr("1234235235235244534636546")<<endl;
-
 	system("pause");
 	return 0;
 }

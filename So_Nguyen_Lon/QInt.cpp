@@ -9,24 +9,47 @@ QInt::QInt()
 		data[i] = 0;
 }
 
-QInt::QInt(string x)
+
+
+QInt::QInt(string x, int mode)
 {
-	bool Temp;
-	if (x[0] == '-')
+	if (mode == 2)
 	{
-		Temp = true;
-		x.erase(0, 1);
+		string Temp;
+		int count = 0;
+		for (int i = 0; i < 4; i++)
+			data[i] = 0;
+		while (x.length() >= 32 && count < 4)
+		{
+			Temp = x.substr(x.length() - 32);
+			x.erase(x.length() - 32);
+			this->data[3 - count] = BinDec(Temp) + this->data[3 - count];
+			count++;
+		}
+		this->data[3 - count] = BinDec(x) + this->data[3 - count];
 	}
-	else
-		Temp = false;
-	
-	(*this)=this->BinToQInt(DecStrToBinStr(x));
-	if (Temp)
+	if(mode==10) //String Dec to QInt
 	{
-		(*this) = ~(*this)+QInt("1");
+		bool Temp;
+		if (x[0] == '-')
+		{
+			Temp = true;
+			x.erase(0, 1);
+		}
+		else
+			Temp = false;
+
+		(*this) = this->BinToQInt(DecStrToBinStr(x));
+		if (Temp)
+		{
+			(*this) = ~(*this) + QInt("1",10);
+		}
+	}
+	if (mode == 16)
+	{
+
 	}
 }
-
 QInt::~QInt()
 {
 }
@@ -48,7 +71,7 @@ QInt QInt::operator+(const QInt & N)
 QInt QInt::operator-(const QInt & N)
 {
 	QInt Temp=N;
-	Temp = ~Temp + QInt("1");
+	Temp = ~Temp + QInt("1", 10);
 	return (*this)+Temp;
 }
 
@@ -57,16 +80,16 @@ QInt QInt::operator/(const QInt & N)
 	QInt A,X=N;
 	QInt src = *this;
 	bool SignA=false,SignB=false;
-	if (src > QInt("0"))
+	if (src > QInt("0", 10))
 	{
 
-		A = QInt("0");	
+		A = QInt("0", 10);
 	}
 	else
-		A = QInt("-1");
-	if (src >= QInt("0"))
+		A = QInt("-1", 10);
+	if (src >= QInt("0", 10))
 		SignA=true;
-	if (X >= QInt("0"))
+	if (X >= QInt("0", 10))
 		SignB = true;
 	int k = 128;
 	while (k > 0) {
@@ -74,29 +97,29 @@ QInt QInt::operator/(const QInt & N)
 		int temp = (src.data[0] >> 31) & 1;
 		src = src << 1;
 		if (temp == 1)
-			A = A + QInt("1");
+			A = A + QInt("1", 10);
 		if (SignA)
 		{
 			
 			if (SignB)
 			{
 				A = A - X;
-				if (A < QInt("0"))
+				if (A < QInt("0", 10))
 				{
 					A = A + X;
 				}
 				else
-					src = src + QInt("1");
+					src = src + QInt("1", 10);
 			}
 			else
 			{
 				A = A + X;
-				if (A < QInt("0"))
+				if (A < QInt("0", 10))
 				{
 					A = A - X;
 				}
 				else
-					src = src + QInt("1");
+					src = src + QInt("1", 10);
 			}
 		}
 		else
@@ -104,28 +127,28 @@ QInt QInt::operator/(const QInt & N)
 			if (SignB)
 			{
 				A = A + X;
-				if (A > QInt("0"))
+				if (A > QInt("0", 10))
 				{
 					A = A - X;
 				}
 				else
-					src = src + QInt("1");
+					src = src + QInt("1", 10);
 			}
 			else
 			{
 				A = A - X;
-				if (A > QInt("0"))
+				if (A > QInt("0", 10))
 				{
 					A = A + X;
 				}
 				else
-					src = src + QInt("1");
+					src = src + QInt("1", 10);
 			}
 		}
 		k--;
 	}
 	if (SignA != SignB)
-		src = QInt("0") - src;
+		src = QInt("0", 10) - src;
 	return src;
 }
 
@@ -133,26 +156,26 @@ QInt QInt::operator*(const QInt & N)
 {
 	QInt X=N, Y;
 	bool Temp = false;
-	if (X < QInt("0"))
+	if (X < QInt("0", 10))
 	{
-		X = QInt("0") - X;
+		X = QInt("0", 10) - X;
 		Temp = true;
 	}
 	QInt Result; // 1011 * 101
 	int count = 0;
-	while (X != QInt("0")&&X!=QInt("-1"))
+	while (X != QInt("0", 10)&&X!=QInt("-1", 10))
 	{
 		if (X.data[3] % 2 == 1)
 			Y = (*this);
 		else
-			Y = QInt("0");
+			Y = QInt("0", 10);
 		X = X >> 1;
 		Y = Y << count;
 		Result = Result + Y;
 		count++;
 	}
 	if (Temp)
-		Result = QInt("0") - Result;
+		Result = QInt("0", 10) - Result;
 	return Result;
 }
 
@@ -248,13 +271,8 @@ QInt QInt::operator>>(int x)
 QInt QInt::rol(int x)
 {
 	QInt Result;
-	bool Temp=false,Temp1;
 	Result = (*this);
-	if (Result.data[0] >= pow(2, 31))
-	{
-		Temp = true;
-		Result.data[0] -= pow(2, 31);
-	}
+	bool Temp;
 	for (int i = 0; i < x; i++)
 	{
 		Temp = false;
@@ -265,30 +283,25 @@ QInt QInt::rol(int x)
 				Result.data[j] -= pow(2, 31);
 				if (j != 0)
 					Result.data[j - 1] += 1;
+				else
+					Temp = true;
 			}
 			Result.data[j] <<= 1;
 		}
-		if (Result.data[0] >= pow(2, 31))
+		if (Temp)
 			Result.data[3]++;
 	}
-	if (Temp&&Result.data[0] < pow(2, 31))
-		Result.data[0] += pow(2, 31);
 	return Result;
 }
 
 QInt QInt::ror(int x)
 {
 	QInt Result;
-	bool Temp = false,Temp1;
+	bool Temp = false;
 	Result = (*this);
-	if (Result.data[0] >= pow(2, 31))
-	{
-		Temp = true;
-		Result.data[0] -= pow(2, 31);
-	}
 	for (int i = 0; i < x; i++)
 	{
-		Temp1 = false;
+		Temp = false;
 		for (int j = 3; j >= 0; j--)
 		{
 			if (Result.data[j] % 2 == 1)
@@ -296,15 +309,13 @@ QInt QInt::ror(int x)
 				if (j != 3)
 					Result.data[j + 1] += pow(2, 31);
 				else
-					Temp1 = true;
+					Temp = true;
 			}
 			Result.data[j] >>= 1;
 		}
-		if (Temp1)
-			Result.data[0] += pow(2, 30);
+		if (Temp)
+			Result.data[0] += pow(2, 31);
 	}
-	if (Temp&&Result.data[0] < pow(2, 31))
-		Result.data[0] += pow(2, 31);
 	return Result;
 }
 
@@ -451,22 +462,7 @@ QInt QInt::BinToQInt(string x)
 	return Result;
 }
 
-QInt::QInt(string x,int mode)
-{
-	string Temp;
-	int count = 0;
-	for (int i = 0; i < 4; i++)
-		data[i] = 0;
-	while (x.length() >= 32 && count < 4)
-	{
-		Temp = x.substr(x.length() - 32);
-		x.erase(x.length() - 32);
-		this->data[3 - count] = BinDec(Temp) + this->data[3 - count];
-		count++;
-	}
-	this->data[3 - count] = BinDec(x) + this->data[3 - count];
 
-}
 
 string QInt::QIntToBin()
 {

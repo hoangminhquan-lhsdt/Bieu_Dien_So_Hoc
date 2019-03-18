@@ -42,27 +42,6 @@ string DecStrToBinStr(string x)
 	return Result;
 }
 
-string SumString(const string &a, const string &b)
-{
-	string ans;
-	int sum, n = b.size(), count;
-
-	if (a.size() < b.size())
-	{
-		n = a.size();
-	}
-	for (int i = 0; i < n; i++)
-	{
-		sum = ctoi(a[a.size() - i]) + ctoi(b[b.size() - i]);
-		if (sum > 10)
-		{
-			count = sum % 10;
-			sum /= 10;
-		}
-	}
-	return string();
-}
-
 string Tra2(unsigned int a)
 {
 	int sodu;
@@ -136,15 +115,13 @@ int removedot(string &a) //Trả về số phần tử sau dấu chấm và xóa
 	{
 		if (a[i] == '.')
 		{
-			a.erase(i, 1
-			);
+			a.erase(i, 1);
 			return x;
 		}
 		else
 			x++;
 	}
 	return 0;
-
 }
 
 void insertdot(string &a, int x) //Chèn dấu chấm vào trước x số ( tính từ phải sang
@@ -196,7 +173,6 @@ string Sum(string a, string b)
 			a.insert(a.begin() + a.length(), 1, '0');
 		}
 	}
-
 	if (n1 > n2)
 	{
 		for (i = 1; i <= (n1 - n2); i++)
@@ -211,13 +187,9 @@ string Sum(string a, string b)
 			a.insert(a.begin(), '0');
 		}
 	}
-
-
 	for (int i = 0; i < n; i++)
 	{
 		sum += ctoi(a[a.size() - 1 - i]) + ctoi(b[b.size() - 1 - i]);
-
-
 		ans.push_back(itoc(sum % 10));
 		sum /= 10;
 	}
@@ -241,7 +213,6 @@ string Sum(string a, string b)
 	}
 	reverse(ans.begin(), ans.end());
 	return ans;
-
 }
 
 string Multiply(string s1, string s2)
@@ -251,7 +222,6 @@ string Multiply(string s1, string s2)
 	int reb = 0, i, j, Sum = 0, x, y, n1, n2;
 	n1 = s1.length();
 	n2 = s2.length();
-
 	int y1 = checkstatusdigits(s1), y2 = checkstatusdigits(s2);
 	int x1 = removedot(s1), x2 = removedot(s2);
 	for (i = 1; i < (n1 + n2); i++)
@@ -266,8 +236,6 @@ string Multiply(string s1, string s2)
 				Sum += x * y;
 			}
 		}
-
-
 		sumchar = itoc(Sum % 10);
 		Sum /= 10;
 		c.push_back(sumchar);
@@ -278,7 +246,6 @@ string Multiply(string s1, string s2)
 	}
 	reverse(c.begin(), c.end());
 	insertdot(c, x1 + x2);
-
 	if (y1 != y2 && (c != "0")) //trái dấu 
 	{
 		c.insert(c.begin(), '-');
@@ -289,9 +256,7 @@ string Multiply(string s1, string s2)
 string Exponential(string s1, int n)
 {
 	string c = s1;
-
 	int i;
-
 	if (n == 0)
 		return (string)("1");
 	for (i = 1; i < n; i++)

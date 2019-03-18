@@ -4,13 +4,11 @@
 #include "Source.h"
 using namespace std;
 
-
 class QInt {
 private:
 	unsigned int data[4];
 public:
 	QInt();
-	QInt(string x);
 	QInt(string x, int mode); // QInt A("287415890", 10);
 
 	//Khởi tạo từ chuỗi Dec cả - và dương 
