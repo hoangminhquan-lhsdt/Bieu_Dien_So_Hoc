@@ -89,14 +89,16 @@ int main(int argc, char* argv[]) {
 		Input_Struct ti = Doc_Terminal(argc, argv);
 
 
-	int x=-2, y, z;
-	x = 1 << 31;
-	string as;
-	as = HexToBin("AF");
-    QInt N("AF",16),M("3",10),Q;
-	Q=N.rol(1);
-	Q = N / M;
+	/*x.ScanQInt();
+	x.PrintQInt();
+	cout << "He 2: " << x.QIntToBin() << endl;
+	cout << "He 16: " << x.QIntToHex() << endl;
+	QInt y= x << 2;
+	cout << "x << 2 = ";
+	y.PrintQInt();*/
+	QInt a("-5"), b("5");
+	QInt c = a + b;
+	c.PrintQInt();
 	system("pause");
-	return 0;
 }
 

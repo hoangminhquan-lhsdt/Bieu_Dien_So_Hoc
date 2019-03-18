@@ -9,6 +9,24 @@ QInt::QInt()
 		data[i] = 0;
 }
 
+QInt::QInt(string x)
+{
+		bool Temp;
+		if (x[0] == '-')
+		{
+			Temp = true;
+			x.erase(0, 1);
+		}
+		else
+			Temp = false;
+
+		(*this) = this->BinToQInt(DecStrToBinStr(x));
+		if (Temp)
+		{
+			(*this) = ~(*this) + QInt("1");
+		}
+}
+
 
 
 QInt::QInt(string x, int mode)
@@ -505,7 +523,6 @@ string QInt::QIntToDec()
 	}
 	return ans;
 }
-
 
 void QInt::ScanQInt()
 {

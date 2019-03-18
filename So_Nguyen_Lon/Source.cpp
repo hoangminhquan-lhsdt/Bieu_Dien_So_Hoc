@@ -282,3 +282,17 @@ string HexToBin(const string &x)
 	cout << kq;
 	return kq;
 }
+
+bool checkBase10(const string &x)
+{
+
+	int i = 0;
+	if (x[i] == '-')
+		i++;
+	for (i; i < x.length(); i++)
+		if (x[i] > '9' || x[i] < '0')
+			return false;
+	return true;
+}
+
+
