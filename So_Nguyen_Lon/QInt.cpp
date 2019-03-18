@@ -541,7 +541,7 @@ void QInt::ScanQInt()
 	}
 	string bin = DecStrToBinStr(x);
 	(*this) = BinToQInt(bin);
-	if (negative == true)
+	if (negative)
 	{
 		QInt bu2("1");
 		(*this) = ~(*this) + bu2;
