@@ -1,9 +1,10 @@
-#define _CRT_SECURE_NO_WARNINGS
+﻿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
 #include <vector>
 #include <fstream>
 #include <conio.h>
+#include <map>
 #include"Source.h"
 #include "QInt.h"
 #include "Qfloat.h"
@@ -77,28 +78,263 @@ vector<Input_Struct> Doc_File() {
 	return Req_List;
 }
 
+string Convert(Input_Struct in) {
+	if (in.p[0] == 2 && in.p[1] == 10) {
+		return QInt(in.s1, 2).QIntToDec();
+	}
+	else if (in.p[0] == 2 && in.p[1] == 16) {
+		return QInt(in.s1, 2).QIntToHex();
+	}
+
+	else if (in.p[0] == 10 && in.p[1] == 2) {
+		return QInt(in.s1, 10).QIntToBin();
+	}
+	else if (in.p[0] == 10 && in.p[1] == 16) {
+		return QInt(in.s1, 10).QIntToHex();
+	}
+
+	else if (in.p[0] == 16 && in.p[1] == 2) {
+		return QInt(in.s1, 16).QIntToBin();
+	}
+	else {
+		return QInt(in.s1, 16).QIntToDec();
+	}
+}
+
 int main(int argc, char* argv[]) {
-	if (argc == 1) {
-		vector<Input_Struct> Req_List = Doc_File();
+	bool mode = false; // true = file, false = tham số dòng lệnh
+
+	string operators[17] = { "+", "-", "*", "/", "<", ">", "==", "<=", ">=", "&", "|", "^", "~", "<<", ">>", "rol", "ror" };
+
+	vector<Input_Struct> Req_List;
+	if (argc == 1) {  // tham số duy nhất là tên file thực thi -> đọc từ input.txt
+		Req_List = Doc_File();
+		if (Req_List.size() == 0) {
+			cout << "Loi: khong doc duoc file input.txt\n";
+			return 0;
+		}
 		for (int i = 0; i < Req_List.size(); i++) {
 			cout << "Request " << i + 1 << ":\n";
 			cout << Req_List[i].p[0] << " " << Req_List[i].p[1] << " " << Req_List[i].s1 << " " << Req_List[i].op << " " << Req_List[i].s2 << endl << endl;
 		}
 	}
-	else
-		Input_Struct ti = Doc_Terminal(argc, argv);
+	else {  // Nhiều tham số -> chạy bằng tham số dòng lệnh
+		mode = true;
+		Req_List.push_back(Doc_Terminal(argc, argv));
+	}
 
+	if (mode) {  // Đọc 1 request từ tham số dòng lệnh, vd "Ten_File.exe 2 110001011101 * 11001110"
+		if (Req_List[0].p[1] == 0) {
+			QInt num1(Req_List[0].s1, Req_List[0].p[0]), num2(Req_List[0].s2, Req_List[0].p[0]);
+			int i = 0;
+			for (i; i < 18; i++) {
+				if (Req_List[0].op == operators[i])
+					break;
+			}
+			QInt result;
+			switch (i) {
+				case 1: {
+					result = num1 + num2;
+					break;
+				}
+				case 2: {
+					result = num1 - num2;
+					break;
+				}
+				case 3: {
+					result = num1 * num2;
+					break;
+				}
+				case 4: {
+					result = num1 / num2;
+					break;
+				}
+				case 5: {
+					if (num1 < num2) cout << "True";
+					else cout << "False";
+					break;
+				}
+				case 6: {
+					if (num1 > num2) cout << "True";
+					else cout << "False";
+					break;
+				}
+				case 7: {
+					if (num1 == num2) cout << "True";
+					else cout << "False";
+					break;
+				}
+				case 8: {
+					if (num1 <= num2) cout << "True";
+					else cout << "False";
+					break;
+				}
+				case 9: {
+					if (num1 >= num2) cout << "True";
+					else cout << "False";
+					break;
+				}
+				case 10: {
+					result = num1 & num2;
+					break;
+				}
+				case 11: {
+					result = num1 | num2;
+					break;
+				}
+				case 12: {
+					result = num1 ^ num2;
+					break;
+				}
+				case 13: {
+					//result = num1 ~ num2;
+					break;
+				}
+				case 14: {
+					result = num1 << stoi(num2.QIntToDec());
+					break;
+				}
+				case 15: {
+					result = num1 >> stoi(num2.QIntToDec());
+					break;
+				}
+				case 16: {
+					result = num1.rol(stoi(num2.QIntToDec()));
+					break;
+				}
+				case 17: {
+					result = num1.ror(stoi(num2.QIntToDec()));
+					break;
+				}
+			}
+			switch (Req_List[0].p[0]) {
+				case 2: {
+					cout << result.QIntToBin();
+					break;
+				}
+				case 10: {
+					cout << result.QIntToDec();
+					break;
+				}
+				case 16: {
+					cout << result.QIntToHex();
+					break;
+				}
+			}
+		}
+		else {
+			string out = Convert(Req_List[0]);
+			cout << out << endl;
+		}
+	}
+	else {  // Đọc nhiều requests từ file input.txt
+		for (int k = 0; k < Req_List.size(); k++) {
+			if (Req_List[k].p[1] == 0) {
+				QInt num1(Req_List[k].s1, Req_List[k].p[0]), num2(Req_List[k].s2, Req_List[k].p[0]);
+				int i = 0;
+				for (i; i < 18; i++) {
+					if (Req_List[k].op == operators[i])
+						break;
+				}
+				QInt result;
+				switch (i) {
+					case 1: {
+						result = num1 + num2;
+						break;
+					}
+					case 2: {
+						result = num1 - num2;
+						break;
+					}
+					case 3: {
+						result = num1 * num2;
+						break;
+					}
+					case 4: {
+						result = num1 / num2;
+						break;
+					}
+					case 5: {
+						if (num1 < num2) cout << "True";
+						else cout << "False";
+						break;
+					}
+					case 6: {
+						if (num1 > num2) cout << "True";
+						else cout << "False";
+						break;
+					}
+					case 7: {
+						if (num1 == num2) cout << "True";
+						else cout << "False";
+						break;
+					}
+					case 8: {
+						if (num1 <= num2) cout << "True";
+						else cout << "False";
+						break;
+					}
+					case 9: {
+						if (num1 >= num2) cout << "True";
+						else cout << "False";
+						break;
+					}
+					case 10: {
+						result = num1 & num2;
+						break;
+					}
+					case 11: {
+						result = num1 | num2;
+						break;
+					}
+					case 12: {
+						result = num1 ^ num2;
+						break;
+					}
+					case 13: {
+						//result = num1 ~ num2;
+						break;
+					}
+					case 14: {
+						result = num1 << stoi(num2.QIntToDec());
+						break;
+					}
+					case 15: {
+						result = num1 >> stoi(num2.QIntToDec());
+						break;
+					}
+					case 16: {
+						result = num1.rol(stoi(num2.QIntToDec()));
+						break;
+					}
+					case 17: {
+						result = num1.ror(stoi(num2.QIntToDec()));
+						break;
+					}
+				}
+				switch (Req_List[k].p[0]) {
+					case 2: {
+						cout << result.QIntToBin();
+						break;
+					}
+					case 10: {
+						cout << result.QIntToDec();
+						break;
+					}
+					case 16: {
+						cout << result.QIntToHex();
+						break;
+					}
+				}
+			}
+			else {
+				string out = Convert(Req_List[k]);
+				cout << out << endl;
+			}
+		}
+	}
 
-	/*x.ScanQInt();
-	x.PrintQInt();
-	cout << "He 2: " << x.QIntToBin() << endl;
-	cout << "He 16: " << x.QIntToHex() << endl;
-	QInt y= x << 2;
-	cout << "x << 2 = ";
-	y.PrintQInt();*/
-	QInt a("-5"), b("5");
-	QInt c = a + b;
-	c.PrintQInt();
 	system("pause");
+	return 0;
 }
 
