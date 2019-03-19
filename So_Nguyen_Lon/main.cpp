@@ -97,8 +97,9 @@ int main(int argc, char* argv[]) {
 	cout << "x << 2 = ";
 	y.PrintQInt();*/
 	QInt a("-5"), b("5");
+	a.ScanQInt();
 	QInt c = a + b;
-	c.PrintQInt();
+	a.PrintQInt();
 	system("pause");
 }
 
