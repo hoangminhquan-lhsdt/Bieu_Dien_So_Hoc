@@ -104,6 +104,9 @@ string Convert(Input_Struct in) {
 int main(int argc, char* argv[]) {
 	string operators[17] = { "+", "-", "*", "/", "<", ">", "==", "<=", ">=", "&", "|", "^", "~", "<<", ">>", "rol", "ror" };
 
+	fstream f;
+	f.open("output.txt", ios::out);
+
 	vector<Input_Struct> Req_List;
 	if (argc == 1) {  // tham số duy nhất là tên file thực thi -> đọc từ input.txt
 		Req_List = Doc_File();
@@ -203,14 +206,17 @@ int main(int argc, char* argv[]) {
 			switch (Req_List[k].p[0]) {
 				case 2: {
 					cout << result.QIntToBin() << endl;
+					f << result.QIntToBin() << endl;
 					break;
 				}
 				case 10: {
 					cout << result.QIntToDec() << endl;
+					f << result.QIntToDec() << endl;
 					break;
 				}
 				case 16: {
 					cout << result.QIntToHex() << endl;
+					f << result.QIntToHex() << endl;
 					break;
 				}
 			}
@@ -218,10 +224,12 @@ int main(int argc, char* argv[]) {
 		else {
 			string out = Convert(Req_List[k]);
 			cout << out << endl;
+			f << out << endl;
 		}
 	}
 
 
+	f.close();
 	system("pause");
 	return 0;
 }
