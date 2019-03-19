@@ -102,8 +102,6 @@ string Convert(Input_Struct in) {
 }
 
 int main(int argc, char* argv[]) {
-	bool mode = false; // true = file, false = tham số dòng lệnh
-
 	string operators[17] = { "+", "-", "*", "/", "<", ">", "==", "<=", ">=", "&", "|", "^", "~", "<<", ">>", "rol", "ror" };
 
 	vector<Input_Struct> Req_List;
@@ -118,12 +116,11 @@ int main(int argc, char* argv[]) {
 			cout << Req_List[i].p[0] << " " << Req_List[i].p[1] << " " << Req_List[i].s1 << " " << Req_List[i].op << " " << Req_List[i].s2 << endl << endl;
 		}
 	}
-	else {  // Nhiều tham số -> chạy bằng tham số dòng lệnh
-		mode = true;
+	else  // Nhiều tham số -> chạy bằng tham số dòng lệnh
 		Req_List.push_back(Doc_Terminal(argc, argv));
-	}
 
-	if (mode) {  // Đọc 1 request từ tham số dòng lệnh, vd "Ten_File.exe 2 110001011101 * 11001110"
+
+	if (Req_List.size() == 1) {  // Đọc 1 request từ tham số dòng lệnh, vd "Ten_File.exe 2 110001011101 * 11001110"
 		if (Req_List[0].p[1] == 0) {
 			QInt num1(Req_List[0].s1, Req_List[0].p[0]), num2(Req_List[0].s2, Req_List[0].p[0]);
 			int i = 0;
@@ -132,7 +129,7 @@ int main(int argc, char* argv[]) {
 					break;
 			}
 			QInt result;
-			switch (i) {
+			switch (i+1) {
 				case 1: {
 					result = num1 + num2;
 					break;
@@ -209,15 +206,15 @@ int main(int argc, char* argv[]) {
 			}
 			switch (Req_List[0].p[0]) {
 				case 2: {
-					cout << result.QIntToBin();
+					cout << result.QIntToBin() << endl;
 					break;
 				}
 				case 10: {
-					cout << result.QIntToDec();
+					cout << result.QIntToDec() << endl;
 					break;
 				}
 				case 16: {
-					cout << result.QIntToHex();
+					cout << result.QIntToHex() << endl;
 					break;
 				}
 			}
@@ -237,7 +234,7 @@ int main(int argc, char* argv[]) {
 						break;
 				}
 				QInt result;
-				switch (i) {
+				switch (i+1) {
 					case 1: {
 						result = num1 + num2;
 						break;
@@ -314,15 +311,15 @@ int main(int argc, char* argv[]) {
 				}
 				switch (Req_List[k].p[0]) {
 					case 2: {
-						cout << result.QIntToBin();
+						cout << result.QIntToBin() << endl;
 						break;
 					}
 					case 10: {
-						cout << result.QIntToDec();
+						cout << result.QIntToDec() << endl;
 						break;
 					}
 					case 16: {
-						cout << result.QIntToHex();
+						cout << result.QIntToHex() << endl;
 						break;
 					}
 				}
