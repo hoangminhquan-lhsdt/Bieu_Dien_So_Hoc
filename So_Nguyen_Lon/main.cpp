@@ -111,21 +111,17 @@ int main(int argc, char* argv[]) {
 			cout << "Loi: khong doc duoc file input.txt\n";
 			return 0;
 		}
-		for (int i = 0; i < Req_List.size(); i++) {
-			cout << "Request " << i + 1 << ":\n";
-			cout << Req_List[i].p[0] << " " << Req_List[i].p[1] << " " << Req_List[i].s1 << " " << Req_List[i].op << " " << Req_List[i].s2 << endl << endl;
-		}
 	}
 	else  // Nhiều tham số -> chạy bằng tham số dòng lệnh
 		Req_List.push_back(Doc_Terminal(argc, argv));
 
 
-	if (Req_List.size() == 1) {  // Đọc 1 request từ tham số dòng lệnh, vd "Ten_File.exe 2 110001011101 * 11001110"
-		if (Req_List[0].p[1] == 0) {
-			QInt num1(Req_List[0].s1, Req_List[0].p[0]), num2(Req_List[0].s2, Req_List[0].p[0]);
+	for (int k = 0; k < Req_List.size(); k++) {
+		if (Req_List[k].p[1] == 0) {
+			QInt num1(Req_List[k].s1, Req_List[k].p[0]), num2(Req_List[k].s2, Req_List[k].p[0]);
 			int i = 0;
 			for (i; i < 18; i++) {
-				if (Req_List[0].op == operators[i])
+				if (Req_List[k].op == operators[i])
 					break;
 			}
 			QInt result;
@@ -204,7 +200,7 @@ int main(int argc, char* argv[]) {
 					break;
 				}
 			}
-			switch (Req_List[0].p[0]) {
+			switch (Req_List[k].p[0]) {
 				case 2: {
 					cout << result.QIntToBin() << endl;
 					break;
@@ -220,116 +216,11 @@ int main(int argc, char* argv[]) {
 			}
 		}
 		else {
-			string out = Convert(Req_List[0]);
+			string out = Convert(Req_List[k]);
 			cout << out << endl;
 		}
 	}
-	else {  // Đọc nhiều requests từ file input.txt
-		for (int k = 0; k < Req_List.size(); k++) {
-			if (Req_List[k].p[1] == 0) {
-				QInt num1(Req_List[k].s1, Req_List[k].p[0]), num2(Req_List[k].s2, Req_List[k].p[0]);
-				int i = 0;
-				for (i; i < 18; i++) {
-					if (Req_List[k].op == operators[i])
-						break;
-				}
-				QInt result;
-				switch (i+1) {
-					case 1: {
-						result = num1 + num2;
-						break;
-					}
-					case 2: {
-						result = num1 - num2;
-						break;
-					}
-					case 3: {
-						result = num1 * num2;
-						break;
-					}
-					case 4: {
-						result = num1 / num2;
-						break;
-					}
-					case 5: {
-						if (num1 < num2) cout << "True";
-						else cout << "False";
-						break;
-					}
-					case 6: {
-						if (num1 > num2) cout << "True";
-						else cout << "False";
-						break;
-					}
-					case 7: {
-						if (num1 == num2) cout << "True";
-						else cout << "False";
-						break;
-					}
-					case 8: {
-						if (num1 <= num2) cout << "True";
-						else cout << "False";
-						break;
-					}
-					case 9: {
-						if (num1 >= num2) cout << "True";
-						else cout << "False";
-						break;
-					}
-					case 10: {
-						result = num1 & num2;
-						break;
-					}
-					case 11: {
-						result = num1 | num2;
-						break;
-					}
-					case 12: {
-						result = num1 ^ num2;
-						break;
-					}
-					case 13: {
-						//result = num1 ~ num2;
-						break;
-					}
-					case 14: {
-						result = num1 << stoi(num2.QIntToDec());
-						break;
-					}
-					case 15: {
-						result = num1 >> stoi(num2.QIntToDec());
-						break;
-					}
-					case 16: {
-						result = num1.rol(stoi(num2.QIntToDec()));
-						break;
-					}
-					case 17: {
-						result = num1.ror(stoi(num2.QIntToDec()));
-						break;
-					}
-				}
-				switch (Req_List[k].p[0]) {
-					case 2: {
-						cout << result.QIntToBin() << endl;
-						break;
-					}
-					case 10: {
-						cout << result.QIntToDec() << endl;
-						break;
-					}
-					case 16: {
-						cout << result.QIntToHex() << endl;
-						break;
-					}
-				}
-			}
-			else {
-				string out = Convert(Req_List[k]);
-				cout << out << endl;
-			}
-		}
-	}
+
 
 	system("pause");
 	return 0;
