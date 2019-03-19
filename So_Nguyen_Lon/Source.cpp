@@ -279,7 +279,6 @@ string HexToBin(const string &x)
 			kq += temp[x[i] - 'A' + 10];
 	
 	}
-	cout << kq;
 	return kq;
 }
 
