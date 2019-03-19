@@ -494,13 +494,12 @@ string QInt::QIntToDec()
 
 	for (int i = 0; i < 4; i++)
 	{
-		for (int j = 0; j < 31; j++)
+		for (int j = 0; j < 32; j++)
 		{
 			if ((1 << 31 - j) & (*this).data[i])
 			{
-				ans.push_back('1');
+				ans = Sum(ans, Exponential("2", 127 - 32 * i - j));
 			}
-			else ans.push_back('0');
 		}
 	}
 	return ans;

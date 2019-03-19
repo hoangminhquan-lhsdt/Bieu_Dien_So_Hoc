@@ -89,13 +89,9 @@ int main(int argc, char* argv[]) {
 		Input_Struct ti = Doc_Terminal(argc, argv);
 
 
-	int x=-2, y, z;
-	x = 1 << 31;
-	string as;
-	as = HexToBin("AF");
-    QInt N("AF",16),M("3",10),Q;
-	Q=N.rol(1);
-	Q = N / M;
+	
+	QInt N("462652", 10);
+	cout << N.QIntToDec();
 	system("pause");
 	return 0;
 }
