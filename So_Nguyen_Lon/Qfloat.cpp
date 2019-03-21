@@ -40,10 +40,12 @@ void Qfloat::ScanQfloat()
 		int count=0;
 		do {
 			phanthuc =  Multiply(phanthuc,"2");
+			
 			while (phanthuc[phanthuc.length()-1] == '0')
 			{
 				phanthuc.erase(phanthuc.length()-1,1);
 			}
+
 			if (phanthuc[0] == '0')
 				bin_thuc += '0';
 			else {
@@ -55,8 +57,8 @@ void Qfloat::ScanQfloat()
 			count++;
 		} while (phanthuc != "1" && count <= 112);
 	}
+	
 	int exponent = 0;
-	//cout << binNguyen << "." << binThuc << endl;
 	if (bin_nguyen.length() >= 2)
 	{
 		string temp;
@@ -66,18 +68,17 @@ void Qfloat::ScanQfloat()
 	}
 	else// bin nguyen length ==1
 	{
-		if (bin_nguyen == "0")
+		if (bin_nguyen == "0")// về hình thức là dịch dấu phẩy sang phải
 		{
 			for (int i = 0; i < bin_thuc.length(); i++)
-			{
 				if (bin_thuc[i] == '1')
 				{
 					exponent = i + 1;
-					bin_thuc.erase(i, 1);
 					break;
 				}
-				else bin_thuc.erase(i, 1);
-			}
+				//else bin_thuc.erase(i, 1);
+
+			bin_thuc.erase(0,exponent);// xóa 'exponent' số đầu tiên
 			exponent *= -1;// có dạng như: 2^-2, 2^-100..
 		}
 	}
@@ -87,16 +88,19 @@ void Qfloat::ScanQfloat()
 		bin_thuc.insert(bin_thuc.end(), 112 - bin_thuc.length(), '0');
 	else // dài quá 112 thì cắt bớt phía bên phải
 		bin_thuc.resize(112);
-	cout << "e= " << exponent << endl;
+	
+	
+	//cout << "e= " << exponent << endl;
+
+
 	string expo = Tra2(exponent+16383);// quá k=16383
 	if (expo.length() < 15)
 		expo.insert(0, 15 - expo.length(), '0');
 	string kq;
-	kq += sign;
-	kq += ' ' + expo + ' ';
-	kq += bin_thuc;
-	cout << kq << endl;
-	//cout << bin_nguyen << "   " << bin_thuc << endl;
+	kq += sign  + expo  + bin_thuc;
+
+	for (int i = 0, j = 0; i < 4; i++, j += 32)
+		this->data[i] = BinDec(kq.substr(j, 32));
 }
 
 
