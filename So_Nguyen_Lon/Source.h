@@ -19,4 +19,4 @@ string Exponential(string s1, int n);
 string HexToBin(const string & x);
 int checkstatusdigits(string &a);
 
-bool checkBase10(const string &x)
+bool checkBase10(const string &x);

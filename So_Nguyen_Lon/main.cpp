@@ -88,17 +88,21 @@ int main(int argc, char* argv[]) {
 	else
 		Input_Struct ti = Doc_Terminal(argc, argv);
 
-
-	/*x.ScanQInt();
+	/*QInt x;
+	x.ScanQInt();
 	x.PrintQInt();
 	cout << "He 2: " << x.QIntToBin() << endl;
 	cout << "He 16: " << x.QIntToHex() << endl;
 	QInt y= x << 2;
 	cout << "x << 2 = ";
 	y.PrintQInt();*/
-	QInt a("-5"), b("5");
-	QInt c = a + b;
-	c.PrintQInt();
+	/*QInt x("8793278316383117319", 10);
+	cout << x.QIntToBin() << endl;
+	*/
+	Qfloat a;
+	a.ScanQfloat();
+
 	system("pause");
+
 }
 
