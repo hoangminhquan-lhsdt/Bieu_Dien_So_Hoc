@@ -99,6 +99,7 @@ int main(int argc, char* argv[]) {
 	/*QInt x("8793278316383117319", 10);
 	cout << x.QIntToBin() << endl;
 	*/
+	
 	Qfloat a;
 	a.ScanQfloat();
 
