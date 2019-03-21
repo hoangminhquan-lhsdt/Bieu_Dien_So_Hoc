@@ -18,7 +18,6 @@ string Multiply(string s1, string s2);
 string Exponential(string s1, int n);
 string HexToBin(const string & x);
 int checkstatusdigits(string &a);
-
 bool checkBase10(const string &x);
-
 string Tra2(int a);
+string BinToHex(string bit);

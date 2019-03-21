@@ -87,8 +87,11 @@ void Qfloat::ScanQfloat()
 	if (bin_thuc.length() < 112)
 		bin_thuc.insert(bin_thuc.end(), 112 - bin_thuc.length(), '0');
 	else // dài quá 112 thì cắt bớt phía bên phải
+	{
+		if (bin_thuc[128] == '1')
+			bin_thuc = 
 		bin_thuc.resize(112);
-	
+	}
 	
 	//cout << "e= " << exponent << endl;
 
@@ -105,9 +108,16 @@ void Qfloat::ScanQfloat()
 
 void Qfloat::PrintQfloat()
 {
-	string bit=;
+	string bit;
+	for (int i = 0; i < 4; i++)
+		bit += Tra2(this->data[i]);
+
+
+
+
 	bool negative = false;
-	if()
+	cout << bit << endl;
+
 }
 
 

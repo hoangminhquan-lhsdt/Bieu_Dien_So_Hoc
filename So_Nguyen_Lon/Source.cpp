@@ -308,4 +308,31 @@ string Tra2(int a)
 	return tra;
 }
 
+string BinToHex(string bit)
+{
+	int len = bit.length();
+	if (len % 4 != 0)
+		bit.insert(0, 4 - (len % 4), '0');
+
+	string kq,temp;
+	int n = bit.length() / 4;// số lần lặp
+	int a;// chứa kq hệ 10 từ chuỗi 4 bitnhịphân
+	for (int i = 0, j = 0; i < n; i++, j += 4)
+	{
+		temp = bit.substr(j, 4);
+		a = BinDec(temp);
+		switch (a)
+		{
+		case 10: kq+='A'; break;
+		case 11: kq+='B'; break;
+		case 12: kq += 'C'; break;
+		case 13: kq += 'D'; break;
+		case 14: kq += 'E'; break;
+		case 15: kq += 'F'; break;
+		default: kq += itoc(a); break;
+		}
+	}
+	return kq;
+}
+
 
