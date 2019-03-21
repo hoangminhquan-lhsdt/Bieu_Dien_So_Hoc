@@ -103,6 +103,18 @@ void Qfloat::ScanQfloat()
 		this->data[i] = BinDec(kq.substr(j, 32));
 }
 
+void Qfloat::PrintQfloat()
+{
+	string bit=;
+	bool negative = false;
+	if()
+}
+
+
+string Qfloat::DecToBin()
+{
+	return string();
+}
 
 Qfloat::~Qfloat()
 {

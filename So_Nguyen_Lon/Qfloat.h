@@ -10,7 +10,7 @@ public:
 	void ScanQfloat();
 	void PrintQfloat();
 	Qfloat BinToDec(string bit);
-	string DecToBin(Qfloat x);
+	string DecToBin();
 	~Qfloat();
 };
 
