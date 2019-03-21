@@ -20,3 +20,5 @@ string HexToBin(const string & x);
 int checkstatusdigits(string &a);
 
 bool checkBase10(const string &x);
+
+string Tra2(int a);

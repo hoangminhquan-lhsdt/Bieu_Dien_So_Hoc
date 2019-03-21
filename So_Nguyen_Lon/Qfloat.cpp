@@ -68,7 +68,7 @@ void Qfloat::ScanQfloat()
 	if (bin_thuc.length() < 112)
 		bin_thuc.insert(bin_thuc.end(), 112 - bin_thuc.length(), '0');
 	char buffer[10];
-	string expo = DecStrToBinStr(_itoa(exponent+127,buffer,10));
+	string expo = Tra2(exponent+1023);// quá k=1023
 	if (expo.length() < 15)
 		expo.insert(expo.begin(), 15 - expo.length(), '0');
 	string kq;

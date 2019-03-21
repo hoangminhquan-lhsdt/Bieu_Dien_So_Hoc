@@ -294,5 +294,18 @@ bool checkBase10(const string &x)
 			return false;
 	return true;
 }
+string Tra2(int a)
+{
+	string tra;
+	int sodu;
+	while (a != 0)
+	{
+		sodu = a % 2;
+		tra.push_back(sodu + '0');
+		a = a / 2;
+	}
+	reverse(tra.begin(), tra.end());
+	return tra;
+}
 
 
