@@ -67,14 +67,16 @@ void Qfloat::ScanQfloat()
 
 	if (bin_thuc.length() < 112)
 		bin_thuc.insert(bin_thuc.end(), 112 - bin_thuc.length(), '0');
-
-	string expo = Tra2(exponent + 127);
+	char buffer[10];
+	string expo = DecStrToBinStr(_itoa(exponent+127,buffer,10));
+	if (expo.length() < 15)
+		expo.insert(expo.begin(), 15 - expo.length(), '0');
 	string kq;
 	kq += sign;
 	kq += ' ' + expo + ' ';
-	kq += binThuc;
-
-	cout << bin_nguyen << "   " << bin_thuc << endl;
+	kq += bin_thuc;
+	cout << kq << endl;
+	//cout << bin_nguyen << "   " << bin_thuc << endl;
 }
 
 
