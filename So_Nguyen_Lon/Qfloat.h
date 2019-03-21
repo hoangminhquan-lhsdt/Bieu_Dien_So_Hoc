@@ -9,6 +9,8 @@ public:
 	Qfloat();
 	void ScanQfloat();
 	void PrintQfloat();
+	Qfloat BinToDec(string bit);
+	string DecToBin(Qfloat x);
 	~Qfloat();
 };
 
