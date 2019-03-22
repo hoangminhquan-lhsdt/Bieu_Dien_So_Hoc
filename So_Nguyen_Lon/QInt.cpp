@@ -500,6 +500,9 @@ string QInt::QIntToBin()
 	{
 		nhan += Tra2(this->data[i]);
 	}
+	int first1 = nhan.find_first_of('1');
+	if (first1 != 0)
+		nhan.erase(0, first1);
 	return nhan;
 }
 
