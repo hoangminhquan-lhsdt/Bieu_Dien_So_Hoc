@@ -4,7 +4,7 @@
 #include <vector>
 #include <fstream>
 #include <conio.h>
-#include <map>
+
 #include"Source.h"
 #include "QInt.h"
 #include "Qfloat.h"
