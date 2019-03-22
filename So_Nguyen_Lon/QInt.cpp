@@ -259,6 +259,11 @@ QInt QInt::operator<<(int x)
 	return Result;
 }
 
+QInt QInt::operator<<(QInt x)
+{
+	return (*this) << atoi(x.QIntToDec().c_str());
+}
+
 QInt QInt::operator>>(int x)
 {
 	QInt Result;
@@ -284,6 +289,11 @@ QInt QInt::operator>>(int x)
 			Result.data[0] += pow(2, 31);
 	}
 	return Result;
+}
+
+QInt QInt::operator>>(QInt x)
+{
+	return (*this) >> atoi(x.QIntToDec().c_str());
 }
 
 QInt QInt::rol(int x)

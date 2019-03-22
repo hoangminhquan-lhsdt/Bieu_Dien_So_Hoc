@@ -102,7 +102,7 @@ string Convert(Input_Struct in) {
 }
 
 int main(int argc, char* argv[]) {
-	string operators[17] = { "+", "-", "*", "/", "<", ">", "==", "<=", ">=", "&", "|", "^", "~", "<<", ">>", "rol", "ror" };
+	/*string operators[17] = { "+", "-", "*", "/", "<", ">", "==", "<=", ">=", "&", "|", "^", "~", "<<", ">>", "rol", "ror" };
 
 	fstream f;
 	f.open("output.txt", ios::out);
@@ -230,6 +230,11 @@ int main(int argc, char* argv[]) {
 
 
 	f.close();
+	*/
+
+	QInt A("1"), B("2"), C;
+	C = A << B;
+
 	system("pause");
 	return 0;
 }

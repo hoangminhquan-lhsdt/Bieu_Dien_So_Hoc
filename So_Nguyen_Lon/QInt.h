@@ -45,7 +45,9 @@ public:
 
 	// bitshift operators
 	QInt operator<<(int x);
+	QInt operator<<(QInt x);
 	QInt operator>>(int x);
+	QInt operator>>(QInt x);
 	QInt rol(int x);
 	QInt ror(int x);
 
