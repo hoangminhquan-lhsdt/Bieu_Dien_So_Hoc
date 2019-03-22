@@ -63,7 +63,7 @@ vector<Input_Struct> Doc_File(char* argv[]) {
 	return Req_List;
 }
 
-string Convert(Input_Struct in) {
+string ConvertQInt(Input_Struct in) {
 	if (in.p[0] == 2 && in.p[1] == 10) {
 		return QInt(in.s1, 2).QIntToDec();
 	}
@@ -84,6 +84,14 @@ string Convert(Input_Struct in) {
 	else {
 		return QInt(in.s1, 16).QIntToDec();
 	}
+}
+
+string ConvertQfloat(Input_Struct in) {
+	if (in.p[0] == 2 && in.p[1] == 10) {
+		return;
+	}
+	else
+		return;
 }
 
 void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List) {
@@ -198,7 +206,7 @@ void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List) {
 		}
 
 		else {
-			string out = Convert(Req_List[k]);
+			string out = ConvertQInt(Req_List[k]);
 			cout << out << endl;
 			f << out << endl;
 		}
@@ -206,7 +214,11 @@ void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List) {
 }
 
 void XuLyQfloat(fstream &f, vector<Input_Struct> &Req_List) {
-
+	for (int k = 0; k < Req_List.size(); k++) {
+		string out = ConvertQfloat(Req_List[k]);
+		cout << out << endl;
+		f << out << endl;
+	}
 }
 
 int main(int argc, char* argv[]) {
