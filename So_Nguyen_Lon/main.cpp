@@ -61,11 +61,11 @@ Input_Struct Doc_Input_Dong(string &str) {
 	return in;
 }
 
-vector<Input_Struct> Doc_File() {
+vector<Input_Struct> Doc_File(char* argv[]) {
 	vector<Input_Struct> Req_List;
 
 	fstream f;
-	f.open("input.txt", ios::in);
+	f.open(argv[1], ios::in);
 	Input_Struct in;
 	string temp;
 	while (f) {
@@ -75,6 +75,7 @@ vector<Input_Struct> Doc_File() {
 		Req_List.push_back(in);
 	}
 
+	f.close();
 	return Req_List;
 }
 
@@ -101,23 +102,8 @@ string Convert(Input_Struct in) {
 	}
 }
 
-int main(int argc, char* argv[]) {
+void XuLy(fstream &f, vector<Input_Struct> &Req_List) {
 	string operators[17] = { "+", "-", "*", "/", "<", ">", "==", "<=", ">=", "&", "|", "^", "~", "<<", ">>", "rol", "ror" };
-
-	fstream f;
-	f.open("output.txt", ios::out);
-
-	vector<Input_Struct> Req_List;
-	if (argc == 1) {  // tham số duy nhất là tên file thực thi -> đọc từ input.txt
-		Req_List = Doc_File();
-		if (Req_List.size() == 0) {
-			cout << "Loi: khong doc duoc file input.txt\n";
-			return 0;
-		}
-	}
-	else  // Nhiều tham số -> chạy bằng tham số dòng lệnh
-		Req_List.push_back(Doc_Terminal(argc, argv));
-
 
 	for (int k = 0; k < Req_List.size(); k++) {
 		if (Req_List[k].p[1] == 0) {
@@ -128,97 +114,97 @@ int main(int argc, char* argv[]) {
 					break;
 			}
 			QInt result;
-			switch (i+1) {
-				case 1: {
-					result = num1 + num2;
-					break;
-				}
-				case 2: {
-					result = num1 - num2;
-					break;
-				}
-				case 3: {
-					result = num1 * num2;
-					break;
-				}
-				case 4: {
-					result = num1 / num2;
-					break;
-				}
-				case 5: {
-					if (num1 < num2) cout << "True";
-					else cout << "False";
-					break;
-				}
-				case 6: {
-					if (num1 > num2) cout << "True";
-					else cout << "False";
-					break;
-				}
-				case 7: {
-					if (num1 == num2) cout << "True";
-					else cout << "False";
-					break;
-				}
-				case 8: {
-					if (num1 <= num2) cout << "True";
-					else cout << "False";
-					break;
-				}
-				case 9: {
-					if (num1 >= num2) cout << "True";
-					else cout << "False";
-					break;
-				}
-				case 10: {
-					result = num1 & num2;
-					break;
-				}
-				case 11: {
-					result = num1 | num2;
-					break;
-				}
-				case 12: {
-					result = num1 ^ num2;
-					break;
-				}
-				case 13: {
-					//result = num1 ~ num2;
-					break;
-				}
-				case 14: {
-					result = num1 << stoi(num2.QIntToDec());
-					break;
-				}
-				case 15: {
-					result = num1 >> stoi(num2.QIntToDec());
-					break;
-				}
-				case 16: {
-					result = num1.rol(stoi(num2.QIntToDec()));
-					break;
-				}
-				case 17: {
-					result = num1.ror(stoi(num2.QIntToDec()));
-					break;
-				}
+			switch (i + 1) {
+			case 1: {
+				result = num1 + num2;
+				break;
+			}
+			case 2: {
+				result = num1 - num2;
+				break;
+			}
+			case 3: {
+				result = num1 * num2;
+				break;
+			}
+			case 4: {
+				result = num1 / num2;
+				break;
+			}
+			case 5: {
+				if (num1 < num2) cout << "True";
+				else cout << "False";
+				break;
+			}
+			case 6: {
+				if (num1 > num2) cout << "True";
+				else cout << "False";
+				break;
+			}
+			case 7: {
+				if (num1 == num2) cout << "True";
+				else cout << "False";
+				break;
+			}
+			case 8: {
+				if (num1 <= num2) cout << "True";
+				else cout << "False";
+				break;
+			}
+			case 9: {
+				if (num1 >= num2) cout << "True";
+				else cout << "False";
+				break;
+			}
+			case 10: {
+				result = num1 & num2;
+				break;
+			}
+			case 11: {
+				result = num1 | num2;
+				break;
+			}
+			case 12: {
+				result = num1 ^ num2;
+				break;
+			}
+			case 13: {
+				//result = num1 ~ num2;
+				break;
+			}
+			case 14: {
+				result = num1 << stoi(num2.QIntToDec());
+				break;
+			}
+			case 15: {
+				result = num1 >> stoi(num2.QIntToDec());
+				break;
+			}
+			case 16: {
+				result = num1.rol(stoi(num2.QIntToDec()));
+				break;
+			}
+			case 17: {
+				result = num1.ror(stoi(num2.QIntToDec()));
+				break;
+			}
 			}
 			switch (Req_List[k].p[0]) {
-				case 2: {
-					cout << result.QIntToBin() << endl;
-					f << result.QIntToBin() << endl;
-					break;
-				}
-				case 10: {
-					cout << result.QIntToDec() << endl;
-					f << result.QIntToDec() << endl;
-					break;
-				}
-				case 16: {
-					cout << result.QIntToHex() << endl;
-					f << result.QIntToHex() << endl;
-					break;
-				}
+			case 2: {
+				cout << result.QIntToBin() << endl;
+				f << result.QIntToBin() << endl;
+				break;
+			}
+			case 10: {
+				cout << result.QIntToDec() << endl;
+				f << result.QIntToDec() << endl;
+				break;
+			}
+			case 16: {
+				cout << result.QIntToHex() << endl;
+				f << result.QIntToHex() << endl;
+				break;
+			}
 			}
 		}
 		else {
@@ -227,11 +213,32 @@ int main(int argc, char* argv[]) {
 			f << out << endl;
 		}
 	}
+}
+
+int main(int argc, char* argv[]) {
+	
+	fstream f;
+
+	vector<Input_Struct> Req_List;
+	if (argc == 3) {  // 3 tham số: Tên chương trình, tên file input, tên file output
+		Req_List = Doc_File(argv);
+		if (Req_List.size() == 0) {
+			cout << "Loi: khong doc duoc file " << argv[1] << endl;
+			return 0;
+		}
+		f.open(argv[2], ios::out);
+	}
+	else {  // trường hợp nhập 1 dòng request trực tiếp từ tham số dòng lệnh: đưa vào hàm đọc và tách thành phần request
+		Req_List.push_back(Doc_Terminal(argc, argv));
+		f.open("output.txt", ios::out);
+	}
+
+
+	XuLy(f, Req_List);
 
 
 	f.close();
 	
-
 	system("pause");
 	return 0;
 }

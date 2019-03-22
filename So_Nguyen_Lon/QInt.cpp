@@ -520,19 +520,28 @@ string QInt::QIntToHex()
 
 string QInt::QIntToDec()
 {
+	QInt X = (*this);
 	string ans;
 	string test = "2";
-
+	bool Sign = false;
+	if ((1 << 31) & (*this).data[0])
+	{
+		Sign = true;
+		X = ~(X - QInt("1"));
+	}
 	for (int i = 0; i < 4; i++)
 	{
 		for (int j = 0; j < 32; j++)
 		{
-			if ((1 << 31 - j) & (*this).data[i])
+
+			if ((1 << 31 - j) & X.data[i])
 			{
 				ans = Sum(ans, Exponential("2", 127 - 32 * i - j));
 			}
 		}
 	}
+	if (Sign)
+		ans = '-' + ans;
 	return ans;
 }
 
