@@ -79,7 +79,8 @@ int main(int argc, char* argv[])
 {
 	string s;
 	QInt x;
-	s= x.BinToDec();
+	s = Divide("2", "3");
+	
 	cout << s;
 	_getch();
 	return 0;

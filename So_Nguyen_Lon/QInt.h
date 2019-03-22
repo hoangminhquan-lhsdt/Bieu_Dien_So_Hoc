@@ -47,13 +47,15 @@ public:
 	QInt ror(int K);
 
 	// base conversion
-	string BinToDec();
+	string BinToString();
 };
 
 
 int removedot(string &a);
 void insertdot(string &a, int x);
 string Sum( string a,  string b);
+string Subtract(string a, string b);
 string Multiply(string s1, string s2);
+string Divide(string a, string b);
 string Exponential(string s1, int n);
 
