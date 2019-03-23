@@ -302,12 +302,12 @@ string Sum(string a,  string b)
 			insertdot(ans, x3);
 			removezero(ans);
 		}
-		if (a.compare(b) == -1)
+		else if (a.compare(b) == -1)
 		{
 			ans = Subtract(b, a);
 			ans.push_back( '-');
 		}
-		
+		else ans.push_back('0');
 	
 		reverse(ans.begin(), ans.end());
 		return ans;
@@ -501,7 +501,10 @@ string QInt::BinToString()
 
 string BinToString()
 {
-	string ans;
+
+
+
 	return string();
+	
 }
 	

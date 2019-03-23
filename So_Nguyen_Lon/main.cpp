@@ -79,7 +79,7 @@ int main(int argc, char* argv[])
 {
 	string s;
 	QInt x;
-	s = Divide("2", "3");
+	s = Divide("2", "4");
 	
 	cout << s;
 	_getch();
