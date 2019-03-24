@@ -436,6 +436,44 @@ string Subtract(string a, string b)
 	return c;
 }
 
+string Multiply(string s1, string s2)
+{
+	string a = s1, b = s2, c;
+	char  sumchar;
+	int y1 = checkstatusdigits(a), y2 = checkstatusdigits(b);
+	int x1 = removedot(a), x2 = removedot(b);
+	int reb = 0, i, j, Sum = 0, n1, n2, x, y;
+	n1 = a.length();
+	n2 = b.length();
+	for (i = 1; i <= (n1 + n2); i++)
+	{
+		Sum = reb;
+		for (j = 1; j <= i; j++)
+		{
+			if ((n1 + j - i - 1) >= 0 && (n2 - j >= 0))
+			{
+				x = a[n1 + j - i - 1] - '0';
+				y = b[n2 - j] - '0';
+				Sum += x * y;
+			}
+		}
+
+		reb = Sum / 10;
+		sumchar = itoc(Sum % 10);
+		c = sumchar + c;
+	}
+	insertdot(c, x1 + x2);
+	removezero(c);
+	//Cần khử 0 thừa trước sau đố mới chèn dấu - vào nếu có 
+	if (y1 != y2 && !(c[0] == '0'&& c.length() == 1)) //trái dấu 
+	{
+		c = '-' + c;
+
+	}
+	return c;
+}
+
+/*
 string Multiply(string a, string b)
 {
 	string c;
@@ -470,14 +508,14 @@ string Multiply(string a, string b)
 	}
 	reverse(c.begin(), c.end());
 	insertdot(c, x1 + x2);
-
+	removezero(c);
 	if (y1 != y2 && (c != "0")) //trái dấu 
 	{
 		c.insert(c.begin(), '-');
 	}
-	removezero(c);
+	
 	return c;
-}
+}*/
 
 string DivideInteger(string a, string b) //Chia lấy phần nguyên 
 {
