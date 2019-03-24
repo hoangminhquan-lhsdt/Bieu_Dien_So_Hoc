@@ -141,6 +141,7 @@ void Qfloat::PrintQfloat()
 	{
 		bit.erase(bit.length() - 1, 1);
 	}//101101110000000 --> 10110111
+
 	string bin_nguyen = "1";
 	if (E > 0)
 	{
@@ -161,21 +162,14 @@ void Qfloat::PrintQfloat()
 		if (bin_nguyen[i] == '1')
 			kq_nguyen = Sum(kq_nguyen, Exponential("2", j));
 	}
-	//cout << kq_nguyen << endl;
 	string kq_thapphan;
 	for (int i = 0; i < bit.length(); i++)
 	{
 		if (bit[i] == '1')
 			kq_thapphan = Sum(kq_thapphan, HaiMuN_Am((i + 1)*-1));
 	}
-	kq_thapphan.erase(0, 1);
+	kq_thapphan.erase(0, 1);/// 0.12345 thì còn .12345 để ráp vào kq_nguyên
 	string kq = kq_nguyen + kq_thapphan;
-
-
-
-
-
-
 
 	cout << kq << endl;
 }
