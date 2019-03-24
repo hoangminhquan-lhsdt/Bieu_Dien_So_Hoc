@@ -503,6 +503,8 @@ string QInt::QIntToBin()
 	int first1 = nhan.find_first_of('1');
 	if (first1 != 0)
 		nhan.erase(0, first1);
+	if (nhan.length() == 0)
+		nhan = "0";
 	return nhan;
 }
 
@@ -515,6 +517,8 @@ string QInt::QIntToHex()
 		{
 			re += Tra1016(this->data[i]);
 		}
+	if (re.length() == 0)
+		re = "0";
 	return re;
 }
 
@@ -522,7 +526,6 @@ string QInt::QIntToDec()
 {
 	QInt X = (*this);
 	string ans;
-	string test = "2";
 	bool Sign = false;
 	if ((1 << 31) & (*this).data[0])
 	{
@@ -542,6 +545,8 @@ string QInt::QIntToDec()
 	}
 	if (Sign)
 		ans = '-' + ans;
+	if (ans.length() == 0)
+		ans = "0";
 	return ans;
 }
 

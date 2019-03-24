@@ -13,10 +13,15 @@ int ctoi(char a);
 char itoc(int a);
 int removedot(string &a);
 void insertdot(string &a, int x);
+int Compare(string s1, string s2);
 string Sum(string a, string b);
+string Subtract(string a, string b);
 string Multiply(string s1, string s2);
+string DivideInteger(string a, string b);
+string DivideRemainder(string a, string b);
+string Divide(string a, string b);
 string Exponential(string s1, int n);
 string HexToBin(const string & x);
 int checkstatusdigits(string &a);
-
+void removezero(string & a);
 bool checkBase10(const string &x);

@@ -88,10 +88,10 @@ string ConvertQInt(Input_Struct in) {
 
 string ConvertQfloat(Input_Struct in) {
 	if (in.p[0] == 2 && in.p[1] == 10) {
-		return string();
+		return "A";
 	}
 	else
-		return string();
+		return "A";
 }
 
 void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List) {
@@ -205,7 +205,8 @@ void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List) {
 			}
 		}
 
-		else {
+		else //Phép đổi 
+		{ 
 			string out = ConvertQInt(Req_List[k]);
 			cout << out << endl;
 			f << out << endl;
