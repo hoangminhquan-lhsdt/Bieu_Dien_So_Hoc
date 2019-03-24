@@ -110,6 +110,7 @@ int main(int argc, char* argv[]) {
 	string x;
 	cin >> x;
 	Qfloat f(x,10);
+	f.DecToBin();
 	f.PrintQfloat();
 	system("pause");
 

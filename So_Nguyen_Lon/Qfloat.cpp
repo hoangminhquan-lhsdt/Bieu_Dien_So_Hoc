@@ -138,7 +138,7 @@ void Qfloat::PrintQfloat()
 	int E = BinDec(exponent) - 16383;
 	exponent.clear();// exponent hết tác dụng
 	//cout << E << endl;
-	while (bit[bit.length() - 1] == '0')
+	while (bit[bit.length() - 1] == '0'&& bit.length()>1)
 	{
 		bit.erase(bit.length() - 1, 1);
 	}//101101110000000 --> 10110111

@@ -675,8 +675,7 @@ string HaiMuN_Am(int n)
 		thuong += itoc(j);
 		string thuong_nhan_sochia = Multiply(thuong.substr(thuong.length() - 1, 1), sochia);
 		removezero(thuong_nhan_sochia);
-		sobichia = Sub(sobichia, thuong_nhan_sochia);
-		// số bhia= sobichia -thuong*sochia
+		sobichia = Sub(sobichia, thuong_nhan_sochia);// số bi chia= sobichia -thuong*sochia
 
 	}
 
