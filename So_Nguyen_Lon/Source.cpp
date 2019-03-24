@@ -335,4 +335,139 @@ string BinToHex(string bit)
 	return kq;
 }
 
+string HaiMuN_Am(int n)
+{
+	if (n >= 0)
+		return string();
+	n = abs(n);
+	// kq : 2^-n = 1/2^n
+	string pow = Exponential("2", n);
+
+
+	string sobichia("1");
+	string sochia = pow;
+	pow.clear();
+	int count = 1;
+	string thuong;
+	while (sobichia != "0")
+	{
+		if (smallerThan(sobichia, sochia))
+		{
+			//if(count ==1)
+				//thuong += '0';// lần chia thứ 1 mượn 10 xong nếu nhỏ hơn thì thương thêm 0, còn các lần sau thì ko
+
+			sobichia += '0';
+		}
+		// số bị chia lớn hơn số chia
+		{
+			string i = "0";
+			string kq_temp;
+			int j = 0;
+			while(1)
+			{
+				kq_temp = Multiply(i, sochia);
+				for (int i = 0; i < kq_temp.length() - 1; i++)
+				{
+					if (kq_temp[i] == '0')
+					{
+						kq_temp.erase(i, 1);
+						i--;
+					}
+					else break;
+				}
+
+				if (smallerThan(kq_temp, sobichia))
+				{
+					j++;
+					i = Sum(i, "1");// i++
+				}
+				else {
+					j = j - 1;
+					break;
+					//cỏn i = i-1 nhưng do chuỗi nên khỏi làm cho mệt
+				}
+			}
+			thuong += itoc(j);
+			string thuong_nhan_sochia = Multiply(thuong.substr(thuong.length() - 1, 1), sochia);
+			for (int i = 0; i < thuong_nhan_sochia.length() - 1; i++)
+			{
+				if (thuong_nhan_sochia[i] == '0')
+				{
+					thuong_nhan_sochia.erase(i, 1);
+					i--;
+				}
+				else break;
+			}
+			sobichia = Sub(sobichia, thuong_nhan_sochia);
+			// làm số bhia= sobichia -thuong*sochia
+		}
+		//count = 0;
+	}
+
+	thuong = "0." + thuong;
+	cout << thuong << endl;
+	return thuong;
+}
+
+bool smallerThan(const string & a, const string & b)// a<b ?
+{
+	if (a.length() < b.length())
+		return true;
+	else if(a.length() > b.length())
+		return false;
+	else
+	{
+		for (int i = 0; i < a.length(); i++)
+		{
+			if (ctoi(a[i]) == ctoi(b[i]))
+				continue;
+			if (ctoi(a[i]) < ctoi(b[i]))
+				return true;
+			return false;
+		}
+	}
+}
+
+string Sub(string a, string b)// a b là chuỗi số dương
+{
+	if (a == b)
+		return string("0");
+	char sign = '+';
+	string sobitru = a, sotru = b;
+	if (smallerThan(a, b)) // nếu a < b--> kq sẽ âm
+	{
+		sign = '-';
+		sobitru = b;
+		sotru = a;
+	}
+	sotru.insert(0, sobitru.length() - sotru.length(), '0');
+	string kq;
+	int muon=0,temp_kq;
+	for (int i = sotru.length()-1; i > 0; i--)
+	{
+		if (sobitru[i] < sotru[i])
+		{
+			temp_kq = (10 + ctoi(sobitru[i]) - ctoi(sotru[i]) - muon);
+			muon = 1;
+		}
+		else if (sobitru[i] > sotru[i]) {
+			temp_kq = ctoi(sobitru[i]) - ctoi(sotru[i]) - muon;
+			muon = 0;
+		}
+		else
+		{
+			if (muon == 0)
+				temp_kq = 0;
+			else {
+				temp_kq = 9;
+				muon = 1;
+			}
+		}
+		kq = itoc(temp_kq) + kq;
+	}
+	if (sign == '-')
+		kq = '-' + kq;
+	//cout << kq << endl;
+	return kq;
+}
 

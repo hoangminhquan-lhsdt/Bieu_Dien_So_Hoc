@@ -21,3 +21,6 @@ int checkstatusdigits(string &a);
 bool checkBase10(const string &x);
 string Tra2(int a);
 string BinToHex(string bit);
+string HaiMuN_Am(int n);// n<0
+bool smallerThan(const string &a,const string &b);
+string Sub(string a, string b);

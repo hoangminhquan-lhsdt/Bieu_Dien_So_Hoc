@@ -99,10 +99,10 @@ int main(int argc, char* argv[]) {
 	/*QInt x("8793278316383117319", 10);
 	cout << x.QIntToBin() << endl;
 	*/
-	Qfloat a;
-	a.ScanQfloat();
-	a.PrintQfloat();
-
+	string a = "888888888888888888888888", b = "999999999999999999999999";
+	cout << Sub(a, b) << endl;
+	string c = HaiMuN_Am(-9);
+	cout << c;
 	system("pause");
 
 }
