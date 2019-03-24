@@ -88,10 +88,10 @@ string ConvertQInt(Input_Struct in) {
 
 string ConvertQfloat(Input_Struct in) {
 	if (in.p[0] == 2 && in.p[1] == 10) {
-		return;
+		return string();
 	}
 	else
-		return;
+		return string();
 }
 
 void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List) {
@@ -233,7 +233,7 @@ int main(int argc, char* argv[]) {
 	}
 	f.open(argv[2], ios::out);
 
-	if (*argv[3] == '1')
+	if (argv[3] == "1")
 		XuLyQInt(f, Req_List);
 	else
 		XuLyQfloat(f, Req_List);
