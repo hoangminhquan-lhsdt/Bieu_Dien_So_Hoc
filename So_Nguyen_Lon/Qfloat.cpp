@@ -118,6 +118,7 @@ void Qfloat::ScanQfloat()
 	cin >> x;
 	Qfloat temp(x, 10);
 	(*this) = temp;
+
 }
 
 void Qfloat::PrintQfloat()

@@ -78,32 +78,10 @@ vector<Input_Struct> Doc_File() {
 }
 
 int main(int argc, char* argv[]) {
-	if (argc == 1) {
-		vector<Input_Struct> Req_List = Doc_File();
-		for (int i = 0; i < Req_List.size(); i++) {
-			cout << "Request " << i + 1 << ":\n";
-			cout << Req_List[i].p[0] << " " << Req_List[i].p[1] << " " << Req_List[i].s1 << " " << Req_List[i].op << " " << Req_List[i].s2 << endl << endl;
-		}
-	}
-	else
-		Input_Struct ti = Doc_Terminal(argc, argv);
-
-	/*QInt x;
-	x.ScanQInt();
-	x.PrintQInt();
-	cout << "He 2: " << x.QIntToBin() << endl;
-	cout << "He 16: " << x.QIntToHex() << endl;
-	QInt y= x << 2;
-	cout << "x << 2 = ";
-	y.PrintQInt();*/
-	/*QInt x("8793278316383117319", 10);
-	cout << x.QIntToBin() << endl;
-	*/
-	string a = "888888888888888888888888", b = "999999999999999999999999";
-	cout << Sub(a, b) << endl;
-	string c = HaiMuN_Am(-9);
-	cout << c;
+	Qfloat X;
+	X.ScanQfloat();
+	
 	system("pause");
-
+	return 1;
 }
 
