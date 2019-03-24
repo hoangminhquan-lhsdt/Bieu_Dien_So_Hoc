@@ -273,6 +273,7 @@ string Sum(string a,  string b)
 				ans.push_back(a[a.size() - n - i - 1]);
 			}
 		}
+		reverse(ans.begin(), ans.end());
 	}
 	else
 	{
@@ -309,7 +310,7 @@ string Sum(string a,  string b)
 		}
 		else ans.push_back('0');
 	
-		reverse(ans.begin(), ans.end());
+
 		return ans;
 
 	}
@@ -334,11 +335,13 @@ string Multiply(string a, string b)
 	string c;
 	char sumchar;
 	int reb = 0, i, j, Sum = 0, x, y, n1, n2;
-	n1 = a.length();
-	n2 = b.length();
 
 	int y1 = checkstatusdigits(a), y2 = checkstatusdigits(b);
 	int x1 = removedot(a), x2 = removedot(b);
+
+	n1 = a.length();
+	n2 = b.length();
+
 	for (i = 1; i < (n1 + n2); i++)
 	{
 
@@ -382,8 +385,15 @@ string DivideInteger(string a,string b) //Chia lấy phần nguyên
 	{
 
 		d.push_back(a[i]);
-
-		x = d.compare(b);
+		if (d.length() == b.length())
+		{
+			x = d.compare(b);
+		}
+		else if (d.length() > b.length())
+		{
+			x = 1;
+		}
+		else x = -1;
 		if (x == -1)
 		{
 			if (d=="0" && a[i] == '0')
@@ -403,12 +413,22 @@ string DivideInteger(string a,string b) //Chia lấy phần nguyên
 				}
 			i++;
 			continue;
-		}count = 0;
+		}
+		count = 0;
+
 		while (x != -1)
 		{
 			d = Subtract(d, b);
 			count++;
-			x = d.compare(b);
+			if (d.length() == b.length())
+			{
+				x = d.compare(b);
+			}
+			else if (d.length() > b.length())
+			{
+				x = 1;
+			}
+			else x = -1;
 
 		}
 
