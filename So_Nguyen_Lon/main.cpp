@@ -234,7 +234,7 @@ int main(int argc, char* argv[]) {
 	}
 	f.open(argv[2], ios::out);
 
-	if (*argv[3] == '1')
+	if (argv[3] == "1")
 		XuLyQInt(f, Req_List);
 	else
 		XuLyQfloat(f, Req_List);
