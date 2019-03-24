@@ -62,6 +62,7 @@ Qfloat::Qfloat(string x)
 	}
 	this->data[3 - count] = BinDec(x) + this->data[3 - count];
 }
+
 Qfloat::Qfloat(string x, int mode)
 {
 	if (mode == 10)
@@ -176,7 +177,7 @@ void Qfloat::ScanQfloat()
 	(*this) = temp;
 
 }
-/*
+
 void Qfloat::PrintQfloat()
 {
 	string bit;
@@ -223,11 +224,11 @@ void Qfloat::PrintQfloat()
 	
 
 
-
+	*/
 
 	//cout << kq_nguyen << endl;
 }
-*/
+
 Qfloat Qfloat::BinToDec(string bit)
 {
 	// trong qfloat bit phải mặc định dài 128 bit
@@ -256,9 +257,10 @@ Qfloat & Qfloat::operator=(const Qfloat & src)
 
 Qfloat::~Qfloat()
 {
+
 }
 
-
+/*
 void Qfloat::PrintQfloat()
 {
 	int temp = 0;
@@ -298,6 +300,6 @@ void Qfloat::PrintQfloat()
 	}
 	cout << ans << endl;
 }
-
+*/
 
 

@@ -475,6 +475,7 @@ string Multiply(string a, string b)
 	{
 		c.insert(c.begin(), '-');
 	}
+	removezero(c);
 	return c;
 }
 
@@ -689,7 +690,7 @@ string QuadExpo(int number)
 	if (re.length() < 15)
 	{
 		string moi(15 - re.length(), '0');
-		re = re + moi;
+		re = moi + re;
 	}
 	return re;
 }

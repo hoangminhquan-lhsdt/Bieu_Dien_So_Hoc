@@ -223,7 +223,7 @@ void XuLyQfloat(fstream &f, vector<Input_Struct> &Req_List) {
 }
 
 int main(int argc, char* argv[]) {
-	
+	/*
 	fstream f;
 
 	vector<Input_Struct> Req_List;
@@ -234,12 +234,16 @@ int main(int argc, char* argv[]) {
 	}
 	f.open(argv[2], ios::out);
 
-	if (argv[3] == "1")
+	if (*argv[3] == '1')
 		XuLyQInt(f, Req_List);
 	else
 		XuLyQfloat(f, Req_List);
-
-	f.close();
+		*/
+	//QInt X("-1", 10);
+	Qfloat A("0.4");
+	//A.PrintQfloat();
+	//f.close();
+	//cout << Multiply("123", "0");
 	system("pause");
 	return 0;
 }
