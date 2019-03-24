@@ -79,8 +79,8 @@ int main(int argc, char* argv[])
 {
 	string s;
 	QInt x;
-	s = Divide("2", "3");
-	
+	//s = Sum("100", "100");
+	s = Exponential("2",-128);
 	cout << s;
 	_getch();
 	return 0;
