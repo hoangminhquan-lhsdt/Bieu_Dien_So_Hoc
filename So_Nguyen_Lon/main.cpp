@@ -240,7 +240,6 @@ int main(int argc, char* argv[]) {
 		XuLyQfloat(f, Req_List);
 
 	f.close();
-	
 	system("pause");
 	return 0;
 }
