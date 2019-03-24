@@ -238,15 +238,20 @@ int main(int argc, char* argv[]) {
 		XuLyQInt(f, Req_List);
 	else
 		XuLyQfloat(f, Req_List);
-		*/
-	//QInt X("-1", 10);
-	Qfloat A("0.25",10);
-	//string x= Exponential("2", -1);
-	//string y = Multiply("1", x);
+	*/
+
+
+	string x;
+	Qfloat A("0.25", 10);
 	A.PrintQfloat();
-	//A.PrintQfloat();
-	//f.close();
-	//cout << Multiply("123", "0");
+
+
+
+
+
+
+
+
 	system("pause");
 	return 0;
 }
