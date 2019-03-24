@@ -6,7 +6,6 @@ private:
 	unsigned int data[4];
 public:
 	Qfloat();
-	Qfloat(string x);
 	Qfloat(string x, int mode);
 	Qfloat(const Qfloat & src);
 	void ScanQfloat();

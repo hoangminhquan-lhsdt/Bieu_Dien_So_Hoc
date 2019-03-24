@@ -27,10 +27,4 @@ int checkstatusdigits(string &a);
 void removezero(string & a);
 bool checkBase10(const string &x);
 
-string ThapPhan(string x);
 
-int ReExpo(string x, int & k);
-
-string QuadPres(string nhiphan);
-
-string QuadExpo(int number);

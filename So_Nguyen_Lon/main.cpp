@@ -240,7 +240,7 @@ int main(int argc, char* argv[]) {
 		XuLyQfloat(f, Req_List);
 		*/
 	//QInt X("-1", 10);
-	Qfloat A("0.4");
+	Qfloat A("0.5",10);
 	//A.PrintQfloat();
 	//f.close();
 	//cout << Multiply("123", "0");
