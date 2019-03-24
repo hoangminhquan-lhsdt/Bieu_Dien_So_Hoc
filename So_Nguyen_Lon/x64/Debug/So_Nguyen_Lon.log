@@ -1,3 +1,7 @@
 ﻿  Qfloat.cpp
-c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qfloat.cpp(68): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qfloat.cpp(62): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qfloat.cpp(87): warning C4553: '==': result of expression not used; did you intend '='?
+c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qfloat.cpp(159): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  main.cpp
+  Generating Code...
   So_Nguyen_Lon.vcxproj -> C:\Users\home\source\repos\laohacsieudeptrai\So_Nguyen_Lon\x64\Debug\So_Nguyen_Lon.exe

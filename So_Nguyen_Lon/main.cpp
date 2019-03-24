@@ -100,9 +100,17 @@ int main(int argc, char* argv[]) {
 	cout << x.QIntToBin() << endl;
 	*/
 	string a = "888888888888888888888888", b = "999999999999999999999999";
-	cout << Sub(a, b) << endl;
-	string c = HaiMuN_Am(-9);
-	cout << c;
+	/*cout << Sub(a, b) << endl;
+	cout << Subtract(a, b) << endl;
+	cout << Subtract("18", "12") << endl;
+	cout << Divide("1", "512") << endl;*/
+	////string c = HaiMuN_Am(-9);
+	//cout << c;
+	//cout << HaiMuN_Am(-9) << endl;
+	string x;
+	cin >> x;
+	Qfloat f(x,10);
+	f.PrintQfloat();
 	system("pause");
 
 }
