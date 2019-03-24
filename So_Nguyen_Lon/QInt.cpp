@@ -27,8 +27,6 @@ QInt::QInt(string x)
 		}
 }
 
-
-
 QInt::QInt(string x, int mode)
 {
 	if (mode == 2)
@@ -68,6 +66,7 @@ QInt::QInt(string x, int mode)
 		(*this) = this->BinToQInt(HexToBin(x));
 	}
 }
+
 QInt::~QInt()
 {
 }
@@ -228,12 +227,11 @@ QInt QInt::operator~()
 {
 	QInt X;
 	X = (*this);
-	int i,j;
+	int i, j;
 	for (i = 0; i < 4; i++)
 	{
 		for (j = 31; j >= 0; j--)
 			X.data[i] = X.data[i] ^ (1 << (32 - j - 1));
-		
 	}
 	return X;
 }
@@ -489,8 +487,6 @@ QInt QInt::BinToQInt(string x)
 	Result.data[3 - count] = BinDec(x) + Result.data[3 - count];
 	return Result;
 }
-
-
 
 string QInt::QIntToBin()
 {

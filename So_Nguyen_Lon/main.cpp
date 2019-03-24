@@ -10,33 +10,48 @@
 #include "Qfloat.h"
 using namespace std;
 
-struct Input_Struct {
+struct Input_Struct 
+{
 	int p[2];
 	string s1;
 	string op;
 	string s2;
 };
 
-Input_Struct Doc_Input_Dong(string &str) {
+Input_Struct Doc_Input_Dong(string &str) 
+{
 	vector<int> Space_Positions;
-	for (int i = 0; i < str.length(); i++) {
+	for (int i = 0; i < str.length(); i++) 
+	{
 		if (str[i] == ' ')
 			Space_Positions.push_back(i);
 	}
 
 	Input_Struct in;
-	if (Space_Positions.size() == 2) {  // 2 dấu cách tức đây là phép convert
+	if (Space_Positions.size() == 2) 
+	{  // 2 dấu cách tức đây là phép convert
 		in.p[0] = atoi(str.substr(0, Space_Positions[0]).c_str());
-		in.p[1] = atoi(str.substr(Space_Positions[0] + 1, Space_Positions[1] - Space_Positions[0] - 1).c_str());
+
+		string s = str.substr(Space_Positions[0] + 1, Space_Positions[1] - Space_Positions[0] - 1);
+		if (s == "~") 
+		{  // lấy phủ định
+			in.op = s;
+			in.p[1] = 0;
+			in.s2 = "null";
+		}
+		else  // đổi hệ cơ số
+			in.p[1] = atoi(str.substr(Space_Positions[0] + 1, Space_Positions[1] - Space_Positions[0] - 1).c_str());
 		in.s1 = str.substr(Space_Positions[1] + 1, str.length() - Space_Positions[1] - 1);
 	}
-	else {  // trường hợp còn lại là 3 dấu cách, tức đây là một biểu thức
+	else 
+	{  // trường hợp còn lại là 3 dấu cách, tức đây là một biểu thức
 		in.p[0] = atoi(str.substr(0, Space_Positions[0]).c_str());
 		in.p[1] = 0;
 		in.s1 = str.substr(Space_Positions[0] + 1, Space_Positions[1] - Space_Positions[0] - 1).c_str();
 		if (Space_Positions[2] - Space_Positions[1] == 2)
 			in.op.push_back(str[Space_Positions[1] + 1]);
-		else {
+		else 
+		{
 			in.op.push_back(str[Space_Positions[1] + 1]);
 			in.op.push_back(str[Space_Positions[2] - 1]);
 		}
@@ -45,7 +60,8 @@ Input_Struct Doc_Input_Dong(string &str) {
 	return in;
 }
 
-vector<Input_Struct> Doc_File(char* argv[]) {
+vector<Input_Struct> Doc_File(char* argv[]) 
+{
 	vector<Input_Struct> Req_List;
 
 	fstream f;
@@ -63,54 +79,71 @@ vector<Input_Struct> Doc_File(char* argv[]) {
 	return Req_List;
 }
 
-string ConvertQInt(Input_Struct in) {
-	if (in.p[0] == 2 && in.p[1] == 10) {
+string ConvertQInt(Input_Struct in) 
+{
+	if (in.p[0] == 2 && in.p[1] == 10) 
+	{
 		return QInt(in.s1, 2).QIntToDec();
 	}
-	else if (in.p[0] == 2 && in.p[1] == 16) {
+	else if (in.p[0] == 2 && in.p[1] == 16) 
+	{
 		return QInt(in.s1, 2).QIntToHex();
 	}
 
-	else if (in.p[0] == 10 && in.p[1] == 2) {
+	else if (in.p[0] == 10 && in.p[1] == 2) 
+	{
 		return QInt(in.s1, 10).QIntToBin();
 	}
-	else if (in.p[0] == 10 && in.p[1] == 16) {
+	else if (in.p[0] == 10 && in.p[1] == 16) 
+	{
 		return QInt(in.s1, 10).QIntToHex();
 	}
 
-	else if (in.p[0] == 16 && in.p[1] == 2) {
+	else if (in.p[0] == 16 && in.p[1] == 2) 
+	{
 		return QInt(in.s1, 16).QIntToBin();
 	}
-	else {
+	else 
+	{
 		return QInt(in.s1, 16).QIntToDec();
 	}
 }
 
-string ConvertQfloat(Input_Struct in) {
-	if (in.p[0] == 2 && in.p[1] == 10) {
+string ConvertQfloat(Input_Struct in) 
+{
+	if (in.p[0] == 2 && in.p[1] == 10) 
+	{
 		return "A";
 	}
 	else
 		return "A";
 }
 
-void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List) {
+void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List) 
+{
 	// danh sách các operators
 	string operators[17] = { "+", "-", "*", "/", "<", ">", "==", "<=", ">=", "&", "|", "^", "~", "<<", ">>", "rol", "ror" };
 
-	for (int k = 0; k < Req_List.size(); k++) {
-		if (Req_List[k].p[1] == 0) {  // kiểm tra liệu có p thứ 2 hay không, nếu không có tức request là một biểu thức,
-									  // nếu có thì đây là một phép đổi
+	for (int k = 0; k < Req_List.size(); k++) 
+	{
+		if (Req_List[k].p[1] == 0) 
+		{  // kiểm tra liệu có p thứ 2 hay không, nếu không có tức request là một biểu thức,
+		   // nếu có thì đây là một phép đổi
 
-			QInt num1(Req_List[k].s1, Req_List[k].p[0]), num2(Req_List[k].s2, Req_List[k].p[0]);
+			QInt num1(Req_List[k].s1, Req_List[k].p[0]);
+			QInt num2;
+			if (Req_List[k].s2 != "null")
+				num2 = QInt(Req_List[k].s2, Req_List[k].p[0]);
 			int i = 0;
-			for (i; i < 18; i++) {
+			for (i; i < 18; i++) 
+			{
 				if (Req_List[k].op == operators[i])
 					break;
 			}
 
 			QInt result;
-			switch (i + 1) {
+			switch (i + 1) 
+			{
 				case 1: {
 					result = num1 + num2;
 					break;
@@ -165,7 +198,7 @@ void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List) {
 					break;
 				}
 				case 13: {
-					//result = num1 ~ num2;
+					result = ~num1;
 					break;
 				}
 				case 14: {
@@ -186,7 +219,8 @@ void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List) {
 				}
 			}
 
-			switch (Req_List[k].p[0]) {  // kiểm tra và đổi kết quả thành chuỗi để xuất
+			switch (Req_List[k].p[0]) 
+			{  // kiểm tra và đổi kết quả thành chuỗi để xuất
 				case 2: {
 					cout << result.QIntToBin() << endl;
 					f << result.QIntToBin() << endl;
@@ -214,27 +248,31 @@ void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List) {
 	}
 }
 
-void XuLyQfloat(fstream &f, vector<Input_Struct> &Req_List) {
-	for (int k = 0; k < Req_List.size(); k++) {
+void XuLyQfloat(fstream &f, vector<Input_Struct> &Req_List) 
+{
+	for (int k = 0; k < Req_List.size(); k++) 
+	{
 		string out = ConvertQfloat(Req_List[k]);
 		cout << out << endl;
 		f << out << endl;
 	}
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv[]) 
+{
 	
 	fstream f;
 
 	vector<Input_Struct> Req_List;
 	Req_List = Doc_File(argv);
-	if (Req_List.size() == 0) {
+	if (Req_List.size() == 0) 
+	{
 		cout << "Loi: khong doc duoc file " << argv[1] << endl;
 		return 0;
 	}
 	f.open(argv[2], ios::out);
 
-	if (argv[3] == "1")
+	if (*argv[3] == '1')
 		XuLyQInt(f, Req_List);
 	else
 		XuLyQfloat(f, Req_List);
