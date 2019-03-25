@@ -32,5 +32,3 @@ string HaiMuN_Am(int n);
 bool smallerThan(string a, string b);
 
 string Sub(string a, string b);
-
-

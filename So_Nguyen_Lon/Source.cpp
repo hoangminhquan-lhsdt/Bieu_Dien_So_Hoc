@@ -121,6 +121,7 @@ int checkstatusdigits(string &a)
 
 void removezero(string &a) {
 	int i = 0;
+	int sign=checkstatusdigits(a);
 	while (a[0] == '0')
 	{
 		if (a.length() == 1)
@@ -149,6 +150,8 @@ void removezero(string &a) {
 				n--;
 			}
 		}
+	if (sign == 0 && Compare(a, "0") != 0)
+		a = '-' + a;
 }
 
 int removedot(string &a) //Trả về số phần tử sau dấu chấm và xóa dấu
@@ -722,3 +725,4 @@ string Sub(string a, string b)// a b là chuỗi số dương
 	return kq
 		;
 }
+
