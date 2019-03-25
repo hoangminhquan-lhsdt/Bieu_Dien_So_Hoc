@@ -279,9 +279,11 @@ int main(int argc, char* argv[])
 
 	f.close();
 	*/
-	Qfloat A("0000000000.00000000000000000", 10);
+	string x;
+	cin >> x;
+	Qfloat A(x, 10);
 	A.PrintQfloat();
-
+	//cout << Divide("1", "2147483648");
 	system("pause");
 	return 0;
 }
