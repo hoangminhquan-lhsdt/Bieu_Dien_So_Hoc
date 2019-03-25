@@ -3,7 +3,6 @@
 #include <iostream>
 #include <string>
 using namespace std;
-
 int ctoi(char x);
 int BinDec(string x);
 string DecStrToBinStr(string x);
@@ -26,9 +25,6 @@ string HexToBin(const string & x);
 int checkstatusdigits(string &a);
 void removezero(string & a);
 bool checkBase10(const string &x);
-
 string HaiMuN_Am(int n);
-
 bool smallerThan(string a, string b);
-
 string Sub(string a, string b);
