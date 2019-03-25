@@ -12,6 +12,7 @@ public:
 	void PrintQfloat();
 	Qfloat BinToDec(string bit);
 	string DecToBin();
+	string QfloatToDec();
 	Qfloat & operator=(const Qfloat & src);
 	~Qfloat();
 

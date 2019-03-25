@@ -113,10 +113,10 @@ string ConvertQfloat(Input_Struct in)
 {
 	if (in.p[0] == 2 && in.p[1] == 10) 
 	{
-		return "A";
+		return Qfloat(in.s1, 2).QfloatToDec();
 	}
 	else
-		return "A";
+		return Qfloat(in.s1, 10).DecToBin();
 }
 
 void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List) 
@@ -279,11 +279,10 @@ int main(int argc, char* argv[])
 
 	f.close();
 	*/
-	string x;
-	cin >> x;
-	Qfloat A(x, 10);
-	A.PrintQfloat();
-	//cout << Divide("1", "2147483648");
+	string a = ("00111111111111110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
+	Qfloat X(a, 2);
+	X.PrintQfloat();
+	
 	system("pause");
 	return 0;
 }
