@@ -95,6 +95,7 @@ Qfloat::Qfloat(string x, int mode)
 		
 		string kq = sign + expo + bin_thuc;
 		//cout << kq << endl;
+
 		for (int i = 0, j = 0; i < 4; i++, j += 32)
 			this->data[i] = BinDec(kq.substr(j, 32));
 	}
@@ -145,24 +146,25 @@ void Qfloat::PrintQfloat()
 	int E = BinDec(exponent) - 16383;
 	exponent.clear();// exponent hết tác dụng
 	//cout << E << endl;
-	while (bit[bit.length() - 1] == '0'&& bit.length() > 2)
-		bit.erase(bit.length() - 1, 1);
-	//101101110000000 --> 10110111 || 0000000 --> 0
-
+	
+	
+	
 	string bin_nguyen = "1";
-	if (E > 0)
+	if (E >= 0)
 	{
 		bin_nguyen.insert(bin_nguyen.length(), bit.substr(0, E));
 		bit.erase(0, E);
 	}
 	else
-	{
+	{//1000
 		bin_nguyen = "0";
 		bit = '1' + bit;// vd: 1.01*2^-1 <-->.101
 		bit.insert(0, abs(E) - 1, '0');
 	}
 	//cout << bin_nguyen << "." << bit << endl;
-
+	while (bit[bit.length() - 1] == '0'&& bit.length() > 1)
+		bit.erase(bit.length() - 1, 1);
+	//101101110000000 --> 10110111 || 0000000 --> 0
 	string kq_nguyen = "0";
 	for (int i = bin_nguyen.length() - 1, j = 0; i >= 0; i--, j++)
 	{
