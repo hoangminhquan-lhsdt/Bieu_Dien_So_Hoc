@@ -1,24 +1,5 @@
-﻿  QInt.cpp
-c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(251): warning C4244: '-=': conversion from 'double' to 'unsigned int', possible loss of data
-c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(283): warning C4244: '+=': conversion from 'double' to 'unsigned int', possible loss of data
-c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(289): warning C4244: '+=': conversion from 'double' to 'unsigned int', possible loss of data
-c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(311): warning C4244: '-=': conversion from 'double' to 'unsigned int', possible loss of data
-c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(338): warning C4244: '+=': conversion from 'double' to 'unsigned int', possible loss of data
-c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(345): warning C4244: '+=': conversion from 'double' to 'unsigned int', possible loss of data
-c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(527): warning C4554: '<<': check operator precedence for possible error; use parentheses to clarify precedence
-c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qint.cpp(577): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Source.cpp
-c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(13): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
-c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(113): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(113): warning C4101: 'j': unreferenced local variable
-c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(130): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(153): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(153): warning C4101: 'count': unreferenced local variable
-c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(223): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(224): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  main.cpp
-  Generating Code...
-c:\users\admin\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(268): warning C4715: 'Exponential': not all control paths return a value
-  LINK : C:\Users\Admin\Source\Repos\laohacsieudeptrai\So_Nguyen_Lon\x64\Debug\So_Nguyen_Lon.exe not found or not built by the last incremental link; performing full link
-  So_Nguyen_Lon.vcxproj -> C:\Users\Admin\Source\Repos\laohacsieudeptrai\So_Nguyen_Lon\x64\Debug\So_Nguyen_Lon.exe
+﻿  Qfloat.cpp
+c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qfloat.cpp(64): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qfloat.cpp(89): warning C4553: '==': result of expression not used; did you intend '='?
+c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\qfloat.cpp(171): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  So_Nguyen_Lon.vcxproj -> C:\Users\home\source\repos\laohacsieudeptrai\So_Nguyen_Lon\x64\Debug\So_Nguyen_Lon.exe

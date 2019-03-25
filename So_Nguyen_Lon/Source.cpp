@@ -726,3 +726,43 @@ string Sub(string a, string b)// a b là chuỗi số dương
 		;
 }
 
+bool isExeption(string bit)
+{
+	bit.erase(0, 1);
+	string Expo = bit.substr(0, 15);
+	bit.erase(0, 15);
+	string Signifcand = bit;
+	bit.clear();
+	// kt E= 000.....0000?
+	int count_expo_0 = 0, count_expo_1 = 0;
+	for (int i = 0; i < Expo.length(); i++)
+	{
+		if (Expo[i] == '0')
+			count_expo_0++;
+		else count_expo_1++;
+	}
+	if (count_expo_0 == Expo.length())// toàn là bit 0
+		Expo = "0";
+	else if (count_expo_1 == Expo.length())
+		Expo = "1";
+	// kiểm tra Sig =0000.....0000?
+	int count_sign_0 = 0;
+	for (int i = 0; i < Signifcand.length(); i++)
+	{
+		if (Signifcand[i] == '0')
+			count_sign_0++;
+	}
+	if (count_sign_0 == Signifcand.length())// toàn là bit 0
+		Signifcand = "0";
+
+	if (Expo == "0" && Signifcand == "0")
+		return true;
+	else if (Expo == "0"&& Signifcand != "0")
+		return true;
+	else if (Expo == "1"&& Signifcand == "0")
+		return true;
+	else if (Expo == "1"&& Signifcand != "0")
+		return true;
+	return false;
+}
+

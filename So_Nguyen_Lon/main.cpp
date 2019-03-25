@@ -279,9 +279,10 @@ int main(int argc, char* argv[])
 
 	f.close();
 	*/
-	Qfloat A("0000000000.00000000000000000", 10);
+	Qfloat A("6.0", 10);
 	A.PrintQfloat();
-
+	
+	//cout << Multiply("0.623", "2");
 	system("pause");
 	return 0;
 }
