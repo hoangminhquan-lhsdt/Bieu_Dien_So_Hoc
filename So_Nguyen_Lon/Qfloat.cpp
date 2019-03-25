@@ -92,12 +92,9 @@ Qfloat::Qfloat(string x, int mode)
 		string expo = Tra2((exponent)+16383);// quá k=16383
 		if (expo.length() < 15)
 			expo.insert(0, 15 - expo.length(), '0');
-		// kiểm tra các trường hợp đặc biệt
-
-
-
+		
 		string kq = sign + expo + bin_thuc;
-		cout << kq << endl;
+		//cout << kq << endl;
 		for (int i = 0, j = 0; i < 4; i++, j += 32)
 			this->data[i] = BinDec(kq.substr(j, 32));
 	}
@@ -148,10 +145,9 @@ void Qfloat::PrintQfloat()
 	int E = BinDec(exponent) - 16383;
 	exponent.clear();// exponent hết tác dụng
 	//cout << E << endl;
-	while (bit[bit.length() - 1] == '0'&& bit.length() > 1)
-	{
+	while (bit[bit.length() - 1] == '0'&& bit.length() > 2)
 		bit.erase(bit.length() - 1, 1);
-	}//101101110000000 --> 10110111 || 0000000 --> 0
+	//101101110000000 --> 10110111 || 0000000 --> 0
 
 	string bin_nguyen = "1";
 	if (E > 0)
@@ -174,10 +170,12 @@ void Qfloat::PrintQfloat()
 			kq_nguyen = Sum(kq_nguyen, Exponential("2", j));
 	}
 	string kq_thapphan;
+	//cout << kq_nguyen << endl;
 	for (int i = 0; i < bit.length(); i++)
 	{
 		if (bit[i] == '1')
 			kq_thapphan = Sum(kq_thapphan, HaiMuN_Am((i + 1)*-1));
+			//kq_thapphan = Sum(kq_thapphan, Multiply(kq_thapphan, "0.5"));
 	}
 	kq_thapphan.erase(0, 1);/// 0.12345 thì còn .12345 để ráp vào kq_nguyên
 	string kq = kq_nguyen + kq_thapphan;

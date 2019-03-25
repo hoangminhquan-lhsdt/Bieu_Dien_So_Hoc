@@ -640,7 +640,7 @@ string HaiMuN_Am(int n)
 				i = Sum(i, "1");// i++
 			}
 			else {
-				j = j - 1;
+				j--;
 				break;
 				//cỏn i = i-1 nhưng do chuỗi nên khỏi làm cho mệt
 			}
@@ -652,7 +652,6 @@ string HaiMuN_Am(int n)
 		sobichia = Sub(sobichia, thuong_nhan_sochia);// số bi chia= sobichia -thuong*sochia
 
 	}
-
 	thuong = "0." + thuong;
 	//cout << thuong << endl;
 	return thuong;
@@ -722,8 +721,7 @@ string Sub(string a, string b)// a b là chuỗi số dương
 		kq = '-' + kq;
 	//cout << kq << endl;
 	removezero(kq);
-	return kq
-		;
+	return kq;
 }
 
 bool isExeption(string bit)
