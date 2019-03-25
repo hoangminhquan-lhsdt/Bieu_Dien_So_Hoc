@@ -8,6 +8,7 @@ int ctoi(char x);
 int BinDec(string x);
 string DecStrToBinStr(string x);
 string Tra2(unsigned int a);
+string Tra2(int a);
 string Tra1016(unsigned int a);
 int ctoi(char a);
 char itoc(int a);
@@ -25,3 +26,11 @@ string HexToBin(const string & x);
 int checkstatusdigits(string &a);
 void removezero(string & a);
 bool checkBase10(const string &x);
+
+string ThapPhan(string x);
+
+int ReExpo(string x, int & k);
+
+string QuadPres(string nhiphan);
+
+string QuadExpo(int number);
