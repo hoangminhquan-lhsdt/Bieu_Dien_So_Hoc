@@ -17,7 +17,7 @@ Qfloat::Qfloat(string x, int mode)
 			sign = '1';
 			x.erase(0, 1);
 		}
-		string phannguyen, phanthuc = "0";
+		string phannguyen, phanthuc = "0.";
 		int i = 0;
 		for (i; i < x.length(); i++)
 		{
@@ -40,9 +40,6 @@ Qfloat::Qfloat(string x, int mode)
 			int count = 0;
 			do {
 				phanthuc = Multiply(phanthuc, "2");
-				while (phanthuc[phanthuc.length() - 1] == '0'&& phanthuc.length() > 1)
-					phanthuc.erase(phanthuc.length() - 1, 1);
-
 				if (phanthuc[0] == '0')
 					bin_thuc += '0';
 				else {
@@ -54,6 +51,7 @@ Qfloat::Qfloat(string x, int mode)
 				count++;
 			} while (phanthuc != "1" && count <= 112);
 		}
+
 
 		int exponent = 0;
 		if (bin_nguyen.length() >= 2)
@@ -87,13 +85,11 @@ Qfloat::Qfloat(string x, int mode)
 				bin_thuc[111] == '1'; // làm tròn lên
 			bin_thuc.resize(112);
 		}
-		string expo = Tra2(exponent + 16383);// quá k=16383
+		string expo = Tra2((exponent)+16383);// quá k=16383
 		if (expo.length() < 15)
 			expo.insert(0, 15 - expo.length(), '0');
 		string kq = sign + expo + bin_thuc;
-		kq += sign;
-		kq += ' ' + expo + ' ' + bin_thuc;
-		//cout << kq << endl;
+		
 		for (int i = 0, j = 0; i < 4; i++, j += 32)
 			this->data[i] = BinDec(kq.substr(j, 32));
 	}
@@ -121,7 +117,7 @@ void Qfloat::ScanQfloat()
 	(*this) = temp;
 
 }
-
+/*
 void Qfloat::PrintQfloat()
 {
 	string bit;
@@ -141,14 +137,15 @@ void Qfloat::PrintQfloat()
 	//cout << E << endl;
 	while (bit.length() >0 && bit[bit.length() - 1] == '0')
 		bit.erase(bit.length() - 1);
-	string Dec;
+	string Dec,H="1";
 	Dec.erase(0, Dec.length());
 	Dec.push_back('1');
 	int count=-1;
 	while (bit.length() != 0)
 	{
+		H = Divide(H, "2");
 		if (bit[0] == '1')
-			Dec = Sum(Dec,Exponential("2", count));
+			Dec = Sum(Dec,H);
 		bit.erase(0, 1);
 		count--;
 	}
@@ -165,7 +162,7 @@ void Qfloat::PrintQfloat()
 		bit = '1' + bit;
 		bit.insert(0, abs(E) - 1, '0');
 	}
-	*/
+	
 	cout << Dec << endl;
 
 	/*string kq_nguyen = "0";
@@ -181,9 +178,60 @@ void Qfloat::PrintQfloat()
 
 	*/
 
-	//cout << kq_nguyen << endl;
-}
+void Qfloat::PrintQfloat()
+{
+	string bit;
+	for (int i = 0; i < 4; i++)
+		bit += Tra2(this->data[i]);
 
+	bool negative = false;
+	if (bit[0] == '1')
+		negative = true;
+	bit.erase(0, 1);
+
+	string exponent = bit.substr(0, 15);
+	bit.erase(0, 15);
+	// tới đây 'bit' chỉ chứa phần định trị
+	int E = BinDec(exponent) - 16383;
+	exponent.clear();// exponent hết tác dụng
+	//cout << E << endl;
+	while (bit[bit.length() - 1] == '0'&& bit.length() > 1)
+	{
+		bit.erase(bit.length() - 1, 1);
+	}//101101110000000 --> 10110111
+
+	string bin_nguyen = "1";
+	if (E > 0)
+	{
+		bin_nguyen.insert(bin_nguyen.length(), bit.substr(0, E));
+		bit.erase(0, E);
+	}
+	else
+	{
+		bin_nguyen = "0";
+		bit = '1' + bit;
+		bit.insert(0, abs(E) - 1, '0');
+	}
+	//cout << bin_nguyen << "." << bit << endl;
+
+	string kq_nguyen = "0";
+	for (int i = bin_nguyen.length() - 1, j = 0; i >= 0; i--, j++)
+	{
+		if (bin_nguyen[i] == '1')
+			kq_nguyen = Sum(kq_nguyen, Exponential("2", j));
+	}
+	string kq_thapphan;
+	for (int i = 0; i < bit.length(); i++)
+	{
+		if (bit[i] == '1')
+			kq_thapphan = Sum(kq_thapphan, HaiMuN_Am((i + 1)*-1));
+	}
+	kq_thapphan.erase(0, 1);/// 0.12345 thì còn .12345 để ráp vào kq_nguyên
+	string kq = kq_nguyen + kq_thapphan;
+	if (negative)
+		kq = '-' + kq;
+	cout << kq << endl;
+}
 Qfloat Qfloat::BinToDec(string bit)
 {
 	// trong qfloat bit phải mặc định dài 128 bit

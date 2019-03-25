@@ -58,13 +58,12 @@ string Tra2(unsigned int a)
 			sodu = a % 2;
 			tra.push_back(sodu + '0');
 			a = a / 2;
-		}
+		} // a=1 =>
 		if (tra.length() < 32)
 		{
 			string c(32 - tra.length(), '0');
-			tra += c;
+			tra = tra + c;
 		}
-
 		reverse(tra.begin(), tra.end());
 		return tra;
 	}
@@ -159,8 +158,7 @@ int removedot(string &a) //Trả về số phần tử sau dấu chấm và xóa
 	{
 		if (a[i] == '.')
 		{
-			a.erase(i, 1
-			);
+			a.erase(i, 1);
 			return x;
 		}
 		else
@@ -197,15 +195,13 @@ int Compare(string s1, string s2)
 {
 	string a = s1;
 	string b = s2;
-	//Shorten(a);
-	//Shorten(b);
 	if ((a[0] == '-'))
 	{
 		if (b[0] == '-')
 		{
 			string temp = a;
 			a = b;
-			b = a;
+			b = temp;
 			a.erase(0, 1);
 			b.erase(0, 1);
 		}
@@ -473,50 +469,6 @@ string Multiply(string s1, string s2)
 	return c;
 }
 
-/*
-string Multiply(string a, string b)
-{
-	string c;
-	char sumchar;
-	int reb = 0, i, j, Sum = 0, x, y, n1, n2;
-	n1 = a.length();
-	n2 = b.length();
-
-	int y1 = checkstatusdigits(a), y2 = checkstatusdigits(b);
-	int x1 = removedot(a), x2 = removedot(b);
-	for (i = 1; i < (n1 + n2); i++)
-	{
-
-		for (j = 0; j < i; j++)
-		{
-			if (((n1 + j - i) >= 0 && (n1 + j - i <= n1)) && ((n2 - j - 1 >= 0) && (n2 - j - 1 <= n2)))
-			{
-				x = ctoi(a[n1 + j - i]);
-				y = ctoi(b[n2 - j - 1]);
-				Sum += x * y;
-			}
-		}
-
-
-		sumchar = itoc(Sum % 10);
-		Sum /= 10;
-		c.push_back(sumchar);
-	}
-	if (Sum > 0)
-	{
-		c.push_back(itoc(Sum));
-	}
-	reverse(c.begin(), c.end());
-	insertdot(c, x1 + x2);
-	removezero(c);
-	if (y1 != y2 && (c != "0")) //trái dấu 
-	{
-		c.insert(c.begin(), '-');
-	}
-	
-	return c;
-}*/
-
 string DivideInteger(string a, string b) //Chia lấy phần nguyên 
 {
 
@@ -592,7 +544,7 @@ string Divide(string a, string b)
 	string c = DivideInteger(a, b);
 	string e = DivideRemainder(a, b);
 	int count = 0;
-	while (e != "0" && count < 200)
+	while (Compare(e,"0") != 0 && count < 128)
 	{
 		e.push_back('0');
 		d = DivideInteger(e, b);
@@ -601,12 +553,10 @@ string Divide(string a, string b)
 		count++;
 	}
 	insertdot(c, count);
-
 	if (y1 != y2 && !(c[0] == '0'&& c.length() == 1)) //trái dấu 
 	{
 		c.insert(c.begin(), '-');
 	}
-	removezero(c);
 	return c;
 }
 
@@ -656,3 +606,119 @@ bool checkBase10(const string &x)
 }
 
 
+string HaiMuN_Am(int n)
+{
+	if (n >= 0)
+		return string();
+	n = abs(n);
+	// kq : 2^-n = 1/2^n
+	string pow = Exponential("2", n);
+
+
+	string sobichia("1");
+	string sochia = pow;
+	pow.clear();
+	string thuong;
+	while (sobichia != "0")
+	{
+		if (smallerThan(sobichia, sochia))
+			sobichia += '0';
+
+		string i = "0";
+		string kq_temp;
+		int j = 0;
+		while (1)
+		{
+			kq_temp = Multiply(i, sochia);
+			removezero(kq_temp);
+			if (smallerThan(kq_temp, sobichia))
+			{
+				j++;
+				i = Sum(i, "1");// i++
+			}
+			else {
+				j = j - 1;
+				break;
+				//cỏn i = i-1 nhưng do chuỗi nên khỏi làm cho mệt
+			}
+		}
+
+		thuong += itoc(j);
+		string thuong_nhan_sochia = Multiply(thuong.substr(thuong.length() - 1, 1), sochia);
+		removezero(thuong_nhan_sochia);
+		sobichia = Sub(sobichia, thuong_nhan_sochia);// số bi chia= sobichia -thuong*sochia
+
+	}
+
+	thuong = "0." + thuong;
+	//cout << thuong << endl;
+	return thuong;
+}
+
+bool smallerThan(string a, string b)// a<b ?
+{
+	removezero(a);
+	removezero(b);
+	if (a.length() < b.length())
+		return true;
+	else if (a.length() > b.length())
+		return false;
+	else
+	{
+		for (int i = 0; i < a.length(); i++)
+		{
+			if (ctoi(a[i]) == ctoi(b[i]))
+				continue;
+			if (ctoi(a[i]) < ctoi(b[i]))
+				return true;
+			return false;
+		}
+	}
+}
+
+string Sub(string a, string b)// a b là chuỗi số dương
+{
+	removezero(a);
+	removezero(b);
+	if (a == b)
+		return string("0");
+	char sign = '+';
+	string sobitru = a, sotru = b;
+	if (smallerThan(a, b)) // nếu a < b--> kq sẽ âm
+	{
+		sign = '-';
+		sobitru = b;
+		sotru = a;
+	}
+	sotru.insert(0, sobitru.length() - sotru.length(), '0');
+	string kq;
+	int muon = 0, temp_kq;
+	for (int i = sotru.length() - 1; i >= 0; i--)
+	{
+		if (sobitru[i] < sotru[i])
+		{
+			temp_kq = (10 + ctoi(sobitru[i]) - ctoi(sotru[i]) - muon);
+			muon = 1;
+		}
+		else if (sobitru[i] > sotru[i]) {
+			temp_kq = ctoi(sobitru[i]) - ctoi(sotru[i]) - muon;
+			muon = 0;
+		}
+		else
+		{
+			if (muon == 0)
+				temp_kq = 0;
+			else {
+				temp_kq = 9;
+				muon = 1;
+			}
+		}
+		kq = itoc(temp_kq) + kq;
+	}
+	if (sign == '-')
+		kq = '-' + kq;
+	//cout << kq << endl;
+	removezero(kq);
+	return kq
+		;
+}

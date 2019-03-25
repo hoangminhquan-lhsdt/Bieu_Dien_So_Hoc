@@ -19,7 +19,7 @@ struct Input_Struct {
 
 Input_Struct Doc_Input_Dong(string &str) {
 	vector<int> Space_Positions;
-	for (int i = 0; i < str.length(); i++) {
+for (int i = 0; i < str.length(); i++) {
 		if (str[i] == ' ')
 			Space_Positions.push_back(i);
 	}
@@ -241,13 +241,20 @@ int main(int argc, char* argv[]) {
 	*/
 
 
-	string x;
-	Qfloat A("0.25", 10);
+	//string x;
+	Qfloat A("-0.9990234375", 10);
 	A.PrintQfloat();
+	Qfloat B("16.235235", 10);
+	B.PrintQfloat();
+	Qfloat C("-0.125", 10);
+	C.PrintQfloat();
+	Qfloat D("-0.8", 10);
+	D.PrintQfloat();
 
 
 
 
+	//cout << Multiply("0", "123") << endl;
 
 
 

@@ -27,4 +27,10 @@ int checkstatusdigits(string &a);
 void removezero(string & a);
 bool checkBase10(const string &x);
 
+string HaiMuN_Am(int n);
+
+bool smallerThan(string a, string b);
+
+string Sub(string a, string b);
+
 
