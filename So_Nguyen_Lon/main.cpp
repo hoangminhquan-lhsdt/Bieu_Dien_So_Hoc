@@ -260,7 +260,7 @@ void XuLyQfloat(fstream &f, vector<Input_Struct> &Req_List)
 
 int main(int argc, char* argv[]) 
 {
-	/*
+	
 	fstream f;
 
 	vector<Input_Struct> Req_List;
@@ -278,10 +278,7 @@ int main(int argc, char* argv[])
 		XuLyQfloat(f, Req_List);
 
 	f.close();
-	*/
-	string a = ("00111111111111110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
-	Qfloat X(a, 2);
-	X.PrintQfloat();
+	
 	
 	system("pause");
 	return 0;

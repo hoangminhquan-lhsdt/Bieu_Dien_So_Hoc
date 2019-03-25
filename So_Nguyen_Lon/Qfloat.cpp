@@ -150,7 +150,7 @@ void Qfloat::PrintQfloat()
 	//101101110000000 --> 10110111 || 0000000 --> 0
 
 	string bin_nguyen = "1";
-	if (E > 0)
+	if (E >= 0)
 	{
 		bin_nguyen.insert(bin_nguyen.length(), bit.substr(0, E));
 		bit.erase(0, E);
@@ -224,7 +224,7 @@ string Qfloat::QfloatToDec()
 	//101101110000000 --> 10110111 || 0000000 --> 0
 
 	string bin_nguyen = "1";
-	if (E > 0)
+	if (E >= 0)
 	{
 		bin_nguyen.insert(bin_nguyen.length(), bit.substr(0, E));
 		bit.erase(0, E);
