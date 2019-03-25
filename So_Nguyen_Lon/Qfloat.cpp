@@ -8,9 +8,14 @@ Qfloat::Qfloat()
 
 Qfloat::Qfloat(string x, int mode)
 {
+
 	if (mode == 10)
 	{
-
+		removezero(x);
+		if (Compare(x, "0") == 0) {
+			(*this) = Qfloat();
+			return;
+		}
 		char sign = '0';
 		if (x[0] == '-')
 		{
