@@ -129,6 +129,8 @@ void Qfloat::PrintQfloat()
 	string bit;
 	for (int i = 0; i < 4; i++)
 		bit += Tra2(this->data[i]);
+	//cout << bit << endl;
+	//cout << bit.length() << endl;
 	if (isExeption(bit))// xử lý ngoại lệ
 	{
 		cout << "0" << endl;
@@ -145,12 +147,12 @@ void Qfloat::PrintQfloat()
 	int E = BinDec(exponent) - 16383;
 	exponent.clear();// exponent hết tác dụng
 	//cout << E << endl;
-	while (bit[bit.length() - 1] == '0'&& bit.length() > 2)
+	while (bit[bit.length() - 1] == '0'&& bit.length() > 2)	//101101110000000 --> 10110111 || 0000000 --> 0
 		bit.erase(bit.length() - 1, 1);
-	//101101110000000 --> 10110111 || 0000000 --> 0
+
 
 	string bin_nguyen = "1";
-	if (E > 0)
+	if (E >= 0)
 	{
 		bin_nguyen.insert(bin_nguyen.length(), bit.substr(0, E));
 		bit.erase(0, E);
@@ -183,6 +185,7 @@ void Qfloat::PrintQfloat()
 		kq = '-' + kq;
 	cout << kq << endl;
 }
+
 Qfloat Qfloat::BinToDec(string bit)
 {
 	// trong qfloat bit phải mặc định dài 128 bit

@@ -279,10 +279,9 @@ int main(int argc, char* argv[])
 
 	f.close();
 	*/
-	string x;
-	cin >> x;
-	Qfloat A(x, 10);
-	A.PrintQfloat();
+	
+	Qfloat A("12.1", 10);
+	cout << "haha"<< endl;	A.PrintQfloat();
 	//cout << Divide("1", "2147483648");
 	system("pause");
 	return 0;
