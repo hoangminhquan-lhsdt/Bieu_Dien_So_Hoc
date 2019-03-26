@@ -129,7 +129,7 @@ void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List)
 
 	for (int k = 0; k < Req_List.size(); k++) 
 	{
-		if (Req_List[k].p[1] == 0) 
+		if (Req_List[k].p[1] == 0)
 		{  // kiểm tra liệu có p thứ 2 hay không, nếu không có tức request là một biểu thức,
 		   // nếu có thì đây là một phép đổi
 
@@ -138,165 +138,201 @@ void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List)
 			if (Req_List[k].s2 != "null")
 				num2 = QInt(Req_List[k].s2, Req_List[k].p[0]);
 			int i = 0;
-			for (i; i < 18; i++) 
+			for (i; i < 18; i++)
 			{
 				if (Req_List[k].op == operators[i])
 					break;
 			}
-
 			QInt result;
-			switch (i + 1) 
+			switch (i + 1)
 			{
-				case 1: {
-					result = num1 + num2;
-					break;
+			case 1:
+			{
+				result = num1 + num2;
+				break;
+			}
+			case 2:
+			{
+				result = num1 - num2;
+				break;
+			}
+			case 3:
+			{
+				result = num1 * num2;
+				break;
+			}
+			case 4:
+			{
+				result = num1 / num2;
+				break;
+			}
+			case 5:
+			{
+				if (num1 < num2)
+				{
+					cout << "True\n";
+					f << "True\n";
 				}
-				case 2: {
-					result = num1 - num2;
-					break;
+				else
+				{
+					cout << "False\n";
+					f << "False\n";
 				}
-				case 3: {
-					result = num1 * num2;
-					break;
+				comparison = true;
+				break;
+			}
+			case 6:
+			{
+				if (num1 > num2)
+				{
+					cout << "True\n";
+					f << "True\n";
 				}
-				case 4: {
-					result = num1 / num2;
-					break;
+				else
+				{
+					cout << "False\n";
+					f << "False\n";
 				}
-				case 5: {
-					if (num1 < num2) 
-					{
-						cout << "True\n";
-						f << "True\n";
-					}
-					else 
-					{
-						cout << "False\n";
-						f << "False\n";
-					}
-					comparison = true;
-					break;
+				comparison = true;
+				break;
+			}
+			case 7:
+			{
+				if (num1 == num2)
+				{
+					cout << "True\n";
+					f << "True\n";
 				}
-				case 6: {
-					if (num1 > num2) 
-					{
-						cout << "True\n";
-						f << "True\n";
-					}
-					else
-					{
-						cout << "False\n";
-						f << "False\n";
-					}
-					comparison = true;
-					break;
+				else
+				{
+					cout << "False\n";
+					f << "False\n";
 				}
-				case 7: {
-					if (num1 == num2) 
-					{
-						cout << "True\n";
-						f << "True\n";
-					}
-					else
-					{
-						cout << "False\n";
-						f << "False\n";
-					}
-					comparison = true;
-					break;
+				comparison = true;
+				break;
+			}
+			case 8:
+			{
+				if (num1 <= num2)
+				{
+					cout << "True\n";
+					f << "True\n";
 				}
-				case 8: {
-					if (num1 <= num2) 
-					{
-						cout << "True\n";
-						f << "True\n";
-					}
-					else
-					{
-						cout << "False\n";
-						f << "False\n";
-					}
-					comparison = true;
-					break;
+				else
+				{
+					cout << "False\n";
+					f << "False\n";
 				}
-				case 9: {
-					if (num1 >= num2) 
-					{
-						cout << "True\n";
-						f << "True\n";
-					}
-					else
-					{
-						cout << "False\n";
-						f << "False\n";
-					}
-					comparison = true;
-					break;
+				comparison = true;
+				break;
+			}
+			case 9:
+			{
+				if (num1 >= num2)
+				{
+					cout << "True\n";
+					f << "True\n";
 				}
-				case 10: {
-					result = num1 & num2;
-					break;
+				else
+				{
+					cout << "False\n";
+					f << "False\n";
 				}
-				case 11: {
-					result = num1 | num2;
-					break;
-				}
-				case 12: {
-					result = num1 ^ num2;
-					break;
-				}
-				case 13: {
-					result = ~num1;
-					break;
-				}
-				case 14: {
-					result = num1 << stoi(num2.QIntToDec());
-					break;
-				}
-				case 15: {
-					result = num1 >> stoi(num2.QIntToDec());
-					break;
-				}
-				case 16: {
-					result = num1.rol(stoi(num2.QIntToDec()));
-					break;
-				}
-				case 17: {
-					result = num1.ror(stoi(num2.QIntToDec()));
-					break;
-				}
+				comparison = true;
+				break;
+			}
+			case 10:
+			{
+				result = num1 & num2;
+				break;
+			}
+			case 11:
+			{
+				result = num1 | num2;
+				break;
+			}
+			case 12:
+			{
+				result = num1 ^ num2;
+				break;
+			}
+			case 13:
+			{
+				result = ~num1;
+				break;
+			}
+			case 14:
+			{
+				result = num1 << stoi(num2.QIntToDec());
+				break;
+			}
+			case 15:
+			{
+				result = num1 >> stoi(num2.QIntToDec());
+				break;
+			}
+			case 16:
+			{
+				result = num1.rol(stoi(num2.QIntToDec()));
+				break;
+			}
+			case 17:
+			{
+				result = num1.ror(stoi(num2.QIntToDec()));
+				break;
+			}
 			}
 
 			if (!comparison)
 			{
 				switch (Req_List[k].p[0])
 				{  // kiểm tra và đổi kết quả thành chuỗi để xuất
-					case 2: {
-						cout << result.QIntToBin() << endl;
-						f << result.QIntToBin() << endl;
-						break;
-					}
-					case 10: {
-						cout << result.QIntToDec() << endl;
-						f << result.QIntToDec() << endl;
-						break;
-					}
-					case 16: {
-						cout << result.QIntToHex() << endl;
-						f << result.QIntToHex() << endl;
-						break;
-					}
+				case 2:
+				{
+					cout << result.QIntToBin();
+					f << result.QIntToBin();
+					break;
+				}
+				case 10:
+				{
+					cout << result.QIntToDec();
+					f << result.QIntToDec();
+					break;
+				}
+				case 16:
+				{
+					cout << result.QIntToHex();
+					f << result.QIntToHex();
+					break;
+				}
+				}
+				if (k != Req_List.size() - 1)
+				{
+					cout << endl;
+					f << endl;
 				}
 			}
 			else
+			{
 				comparison = false;
+				if (k != Req_List.size() - 1)
+				{
+					cout << endl;
+					f << endl;
+				}
+			}
 		}
 
 		else //Phép đổi 
 		{ 
 			string out = ConvertQInt(Req_List[k]);
-			cout << out << endl;
-			f << out << endl;
+			cout << out;
+			f << out;
+			if (k != Req_List.size() - 1)
+			{
+				cout << endl;
+				f << endl;
+			}
 		}
 	}
 }
@@ -329,10 +365,8 @@ int main(int argc, char* argv[])
 		XuLyQInt(f, Req_List);
 	else
 		XuLyQfloat(f, Req_List);
-
 	f.close();
-	
-	
+	cout << endl;
 	system("pause");
 	return 0;
 }
