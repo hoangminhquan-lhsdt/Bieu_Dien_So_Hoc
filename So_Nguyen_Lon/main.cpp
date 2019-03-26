@@ -170,13 +170,13 @@ void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List)
 			{
 				if (num1 < num2)
 				{
-					cout << "True\n";
-					f << "True\n";
+					cout << "True";
+					f << "True";
 				}
 				else
 				{
-					cout << "False\n";
-					f << "False\n";
+					cout << "False";
+					f << "False";
 				}
 				comparison = true;
 				break;
@@ -185,13 +185,13 @@ void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List)
 			{
 				if (num1 > num2)
 				{
-					cout << "True\n";
-					f << "True\n";
+					cout << "True";
+					f << "True";
 				}
 				else
 				{
-					cout << "False\n";
-					f << "False\n";
+					cout << "False";
+					f << "False";
 				}
 				comparison = true;
 				break;
@@ -200,13 +200,13 @@ void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List)
 			{
 				if (num1 == num2)
 				{
-					cout << "True\n";
-					f << "True\n";
+					cout << "True";
+					f << "True";
 				}
 				else
 				{
-					cout << "False\n";
-					f << "False\n";
+					cout << "False";
+					f << "False";
 				}
 				comparison = true;
 				break;
@@ -215,13 +215,13 @@ void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List)
 			{
 				if (num1 <= num2)
 				{
-					cout << "True\n";
-					f << "True\n";
+					cout << "True";
+					f << "True";
 				}
 				else
 				{
-					cout << "False\n";
-					f << "False\n";
+					cout << "False";
+					f << "False";
 				}
 				comparison = true;
 				break;
@@ -230,13 +230,13 @@ void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List)
 			{
 				if (num1 >= num2)
 				{
-					cout << "True\n";
-					f << "True\n";
+					cout << "True";
+					f << "True";
 				}
 				else
 				{
-					cout << "False\n";
-					f << "False\n";
+					cout << "False";
+					f << "False";
 				}
 				comparison = true;
 				break;
