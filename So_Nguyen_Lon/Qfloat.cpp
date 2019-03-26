@@ -145,10 +145,7 @@ void Qfloat::PrintQfloat()
 	int E = BinDec(exponent) - 16383;
 	exponent.clear();// exponent hết tác dụng
 	//cout << E << endl;
-	while (bit[bit.length() - 1] == '0'&& bit.length() > 2)
-		bit.erase(bit.length() - 1, 1);
-	//101101110000000 --> 10110111 || 0000000 --> 0
-
+	
 	string bin_nguyen = "1";
 	if (E >= 0)
 	{
@@ -162,6 +159,9 @@ void Qfloat::PrintQfloat()
 		bit.insert(0, abs(E) - 1, '0');
 	}
 	//cout << bin_nguyen << "." << bit << endl;
+	while (bit[bit.length() - 1] == '0'&& bit.length() >= 2)
+		bit.erase(bit.length() - 1, 1);
+	//101101110000000 --> 10110111 || 0000000 --> 0
 
 	string kq_nguyen = "0";
 	for (int i = bin_nguyen.length() - 1, j = 0; i >= 0; i--, j++)
@@ -219,10 +219,7 @@ string Qfloat::QfloatToDec()
 	int E = BinDec(exponent) - 16383;
 	exponent.clear();// exponent hết tác dụng
 	//cout << E << endl;
-	while (bit[bit.length() - 1] == '0'&& bit.length() > 2)
-		bit.erase(bit.length() - 1, 1);
-	//101101110000000 --> 10110111 || 0000000 --> 0
-
+	
 	string bin_nguyen = "1";
 	if (E >= 0)
 	{
@@ -236,6 +233,9 @@ string Qfloat::QfloatToDec()
 		bit.insert(0, abs(E) - 1, '0');
 	}
 	//cout << bin_nguyen << "." << bit << endl;
+	while (bit[bit.length() - 1] == '0'&& bit.length() > 2)
+		bit.erase(bit.length() - 1, 1);
+	//101101110000000 --> 10110111 || 0000000 --> 0
 
 	string kq_nguyen = "0";
 	for (int i = bin_nguyen.length() - 1, j = 0; i >= 0; i--, j++)
