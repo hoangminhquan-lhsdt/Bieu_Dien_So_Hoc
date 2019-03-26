@@ -52,8 +52,8 @@ Input_Struct Doc_Input_Dong(string &str)
 			in.op.push_back(str[Space_Positions[1] + 1]);
 		else 
 		{
-			in.op.push_back(str[Space_Positions[1] + 1]);
-			in.op.push_back(str[Space_Positions[2] - 1]);
+			for (int i = Space_Positions[1] + 1; i < Space_Positions[2]; i++)
+				in.op.push_back(str[i]);
 		}
 		in.s2 = str.substr(Space_Positions[2] + 1, str.length() - Space_Positions[2] - 1);
 	}
@@ -124,6 +124,9 @@ void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List)
 	// danh sách các operators
 	string operators[17] = { "+", "-", "*", "/", "<", ">", "==", "<=", ">=", "&", "|", "^", "~", "<<", ">>", "rol", "ror" };
 
+	// 
+	bool comparison = false;
+
 	for (int k = 0; k < Req_List.size(); k++) 
 	{
 		if (Req_List[k].p[1] == 0) 
@@ -161,28 +164,73 @@ void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List)
 					break;
 				}
 				case 5: {
-					if (num1 < num2) cout << "True";
-					else cout << "False";
+					if (num1 < num2) 
+					{
+						cout << "True\n";
+						f << "True\n";
+					}
+					else 
+					{
+						cout << "False\n";
+						f << "False\n";
+					}
+					comparison = true;
 					break;
 				}
 				case 6: {
-					if (num1 > num2) cout << "True";
-					else cout << "False";
+					if (num1 > num2) 
+					{
+						cout << "True\n";
+						f << "True\n";
+					}
+					else
+					{
+						cout << "False\n";
+						f << "False\n";
+					}
+					comparison = true;
 					break;
 				}
 				case 7: {
-					if (num1 == num2) cout << "True";
-					else cout << "False";
+					if (num1 == num2) 
+					{
+						cout << "True\n";
+						f << "True\n";
+					}
+					else
+					{
+						cout << "False\n";
+						f << "False\n";
+					}
+					comparison = true;
 					break;
 				}
 				case 8: {
-					if (num1 <= num2) cout << "True";
-					else cout << "False";
+					if (num1 <= num2) 
+					{
+						cout << "True\n";
+						f << "True\n";
+					}
+					else
+					{
+						cout << "False\n";
+						f << "False\n";
+					}
+					comparison = true;
 					break;
 				}
 				case 9: {
-					if (num1 >= num2) cout << "True";
-					else cout << "False";
+					if (num1 >= num2) 
+					{
+						cout << "True\n";
+						f << "True\n";
+					}
+					else
+					{
+						cout << "False\n";
+						f << "False\n";
+					}
+					comparison = true;
 					break;
 				}
 				case 10: {
@@ -219,24 +267,29 @@ void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List)
 				}
 			}
 
-			switch (Req_List[k].p[0]) 
-			{  // kiểm tra và đổi kết quả thành chuỗi để xuất
-				case 2: {
-					cout << result.QIntToBin() << endl;
-					f << result.QIntToBin() << endl;
-					break;
-				}
-				case 10: {
-					cout << result.QIntToDec() << endl;
-					f << result.QIntToDec() << endl;
-					break;
-				}
-				case 16: {
-					cout << result.QIntToHex() << endl;
-					f << result.QIntToHex() << endl;
-					break;
+			if (!comparison)
+			{
+				switch (Req_List[k].p[0])
+				{  // kiểm tra và đổi kết quả thành chuỗi để xuất
+					case 2: {
+						cout << result.QIntToBin() << endl;
+						f << result.QIntToBin() << endl;
+						break;
+					}
+					case 10: {
+						cout << result.QIntToDec() << endl;
+						f << result.QIntToDec() << endl;
+						break;
+					}
+					case 16: {
+						cout << result.QIntToHex() << endl;
+						f << result.QIntToHex() << endl;
+						break;
+					}
 				}
 			}
+			else
+				comparison = false;
 		}
 
 		else //Phép đổi 
