@@ -724,7 +724,7 @@ string Sub(string a, string b)// a b là chuỗi số dương
 	return kq;
 }
 
-bool isExeption(string bit)
+int isExeption(string bit)
 {
 	bit.erase(0, 1);
 	string Expo = bit.substr(0, 15);
@@ -754,13 +754,13 @@ bool isExeption(string bit)
 		Signifcand = "0";
 
 	if (Expo == "0" && Signifcand == "0")
-		return true;
+		return 0;// số 0.0
 	else if (Expo == "0"&& Signifcand != "0")
-		return true;
+		return -1;// denormalized (số ko thể chuẩn hóa)
 	else if (Expo == "1"&& Signifcand == "0")
-		return true;
+		return -2;//infinity
 	else if (Expo == "1"&& Signifcand != "0")
-		return true;
-	return false;
+		return -3;//not a number
+	return 1;
 }
 

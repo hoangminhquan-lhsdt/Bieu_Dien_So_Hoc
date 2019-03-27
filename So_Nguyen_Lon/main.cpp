@@ -280,8 +280,8 @@ int main(int argc, char* argv[])
 	f.close();
 	*/
 	
-	Qfloat A("12.1", 10);
-	cout << "haha"<< endl;	A.PrintQfloat();
+	Qfloat A("01111111111111101111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111", 2);
+	A.PrintQfloat();
 	//cout << Divide("1", "2147483648");
 	system("pause");
 	return 0;

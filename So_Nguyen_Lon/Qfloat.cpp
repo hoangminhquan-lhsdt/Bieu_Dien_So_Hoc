@@ -131,9 +131,22 @@ void Qfloat::PrintQfloat()
 		bit += Tra2(this->data[i]);
 	//cout << bit << endl;
 	//cout << bit.length() << endl;
-	if (isExeption(bit))// xử lý ngoại lệ
+	int xulyngoaile = isExeption(bit);
+	if(xulyngoaile==0)// xử lý ngoại lệ
 	{
-		cout << "0" << endl;
+		cout << "0.0" << endl;
+		return;
+	}else if (xulyngoaile == -1)// xử lý ngoại lệ
+	{
+		cout << "denormalized" << endl;
+		return;
+	}else if (xulyngoaile == -2)// xử lý ngoại lệ
+	{
+		cout << "infinity" << endl;
+		return;
+	}else if (xulyngoaile == -3)// xử lý ngoại lệ
+	{
+		cout << "not a number" << endl;
 		return;
 	}
 	bool negative = false;
@@ -147,23 +160,35 @@ void Qfloat::PrintQfloat()
 	int E = BinDec(exponent) - 16383;
 	exponent.clear();// exponent hết tác dụng
 	//cout << E << endl;
-	while (bit[bit.length() - 1] == '0'&& bit.length() > 2)	//101101110000000 --> 10110111 || 0000000 --> 0
-		bit.erase(bit.length() - 1, 1);
-
+	
 
 	string bin_nguyen = "1";
 	if (E >= 0)
 	{
 		bin_nguyen.insert(bin_nguyen.length(), bit.substr(0, E));
 		bit.erase(0, E);
+		if (E > 112)
+		{
+			bin_nguyen.insert(bin_nguyen.length(), E - 112, '0');
+		}
 	}
 	else
 	{
 		bin_nguyen = "0";
-		bit = '1' + bit;// vd: 1.01*2^-1 <-->.101
+		bit = '1' + bit;// vd: 1.011101*2^-1 <-->.1011101
 		bit.insert(0, abs(E) - 1, '0');
+		if (abs(E )> 112)
+		{
+			bit.insert(0, abs(E) - 112, '0');
+		}
+		//nếu abs E >112 thì cũng khôn cần phải đẩy th
 	}
 	//cout << bin_nguyen << "." << bit << endl;
+	if (bit.length() == 0)
+		bit += '0';
+	
+	while (bit[bit.length() - 1] == '0'&& bit.length() > 2)	//101101110000000 --> 10110111 || 0000000 --> 0
+		bit.erase(bit.length() - 1, 1);
 
 	string kq_nguyen = "0";
 	for (int i = bin_nguyen.length() - 1, j = 0; i >= 0; i--, j++)
