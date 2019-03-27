@@ -183,6 +183,7 @@ void Qfloat::PrintQfloat()
 	string kq = kq_nguyen + kq_thapphan;
 	if (negative)
 		kq = '-' + kq;
+	Round(kq);
 	cout << kq << endl;
 }
 
@@ -201,6 +202,67 @@ string Qfloat::DecToBin()
 		bit += Tra2(this->data[i]);
 	return bit;
 }
+string Qfloat::QfloatToDec()
+{
+	string bit;
+	for (int i = 0; i < 4; i++)
+		bit += Tra2(this->data[i]);
+	if (isExeption(bit))// xử lý ngoại lệ
+	{
+		return "0";
+	}
+	bool negative = false;
+	if (bit[0] == '1')
+		negative = true;
+	bit.erase(0, 1);
+
+	string exponent = bit.substr(0, 15);
+	bit.erase(0, 15);
+	// tới đây 'bit' chỉ chứa phần định trị
+	int E = BinDec(exponent) - 16383;
+	exponent.clear();// exponent hết tác dụng
+	//cout << E << endl;
+
+	string bin_nguyen = "1";
+	if (E >= 0)
+	{
+		bin_nguyen.insert(bin_nguyen.length(), bit.substr(0, E));
+		bit.erase(0, E);
+	}
+	else
+	{
+		bin_nguyen = "0";
+		bit = '1' + bit;// vd: 1.01*2^-1 <-->.101
+		bit.insert(0, abs(E) - 1, '0');
+	}
+	//cout << bin_nguyen << "." << bit << endl;
+	while (bit[bit.length() - 1] == '0'&& bit.length() > 2)
+		bit.erase(bit.length() - 1, 1);
+	//101101110000000 --> 10110111 || 0000000 --> 0
+
+	string kq_nguyen = "0";
+	for (int i = bin_nguyen.length() - 1, j = 0; i >= 0; i--, j++)
+	{
+		if (bin_nguyen[i] == '1')
+			kq_nguyen = Sum(kq_nguyen, Exponential("2", j));
+	}
+	string kq_thapphan;
+	//cout << kq_nguyen << endl;
+	for (int i = 0; i < bit.length(); i++)
+	{
+		if (bit[i] == '1')
+			kq_thapphan = Sum(kq_thapphan, HaiMuN_Am((i + 1)*-1));
+		//kq_thapphan = Sum(kq_thapphan, Multiply(kq_thapphan, "0.5"));
+	}
+	kq_thapphan.erase(0, 1);/// 0.12345 thì còn .12345 để ráp vào kq_nguyên
+	string kq = kq_nguyen + kq_thapphan;
+	if (negative)
+		kq = '-' + kq;
+	return kq;
+}
+
+
+
 
 Qfloat & Qfloat::operator=(const Qfloat & src)
 {

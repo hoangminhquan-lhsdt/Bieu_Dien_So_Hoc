@@ -764,3 +764,14 @@ bool isExeption(string bit)
 	return false;
 }
 
+void Round(string &dec)
+{
+	string find("99999");
+	int pos = dec.find(find);
+	if (pos >= 0)
+	{
+		dec[pos - 1] = itoc(ctoi(dec[pos - 1]) + 1);
+		dec.resize(pos);
+	}
+
+}

@@ -280,7 +280,7 @@ int main(int argc, char* argv[])
 	f.close();
 	*/
 	
-	Qfloat A("17154542.1546514545540", 10);
+	Qfloat A("4653184651865548.4849999951846845", 10);
 	A.PrintQfloat();
 	//cout << Divide("1", "2147483648");
 	system("pause");
