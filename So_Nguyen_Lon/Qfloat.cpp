@@ -255,22 +255,18 @@ string Qfloat::QfloatToDec()
 	int xulyngoaile = isExeption(bit);
 	if (xulyngoaile == 0)// xử lý ngoại lệ
 	{
-		cout << "0.0" << endl;
 		return "0.0";
 	}
 	else if (xulyngoaile == -1)// xử lý ngoại lệ
 	{
-		cout << "denormalized" << endl;
 		return "denormalized";
 	}
 	else if (xulyngoaile == -2)// xử lý ngoại lệ
 	{
-		cout << "infinity" << endl;
 		return "infinity";
 	}
 	else if (xulyngoaile == -3)// xử lý ngoại lệ
 	{
-		cout << "not a number" << endl;
 		return "not a number";
 	}
 	bool negative = false;
