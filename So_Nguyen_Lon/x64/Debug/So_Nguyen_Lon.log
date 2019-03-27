@@ -1,20 +1,2 @@
-﻿  Source.cpp
-c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(13): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
-c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(137): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(159): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(177): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(224): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(228): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(258): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(261): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(312): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(330): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(407): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(445): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(446): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(480): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(698): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(283): warning C4715: 'Compare': not all control paths return a value
-c:\users\home\source\repos\laohacsieudeptrai\so_nguyen_lon\so_nguyen_lon\source.cpp(679): warning C4715: 'smallerThan': not all control paths return a value
+﻿  main.cpp
   So_Nguyen_Lon.vcxproj -> C:\Users\home\source\repos\laohacsieudeptrai\So_Nguyen_Lon\x64\Debug\So_Nguyen_Lon.exe
