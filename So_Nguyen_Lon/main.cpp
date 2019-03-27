@@ -342,14 +342,18 @@ void XuLyQfloat(fstream &f, vector<Input_Struct> &Req_List)
 	for (int k = 0; k < Req_List.size(); k++) 
 	{
 		string out = ConvertQfloat(Req_List[k]);
-		cout << out << endl;
-		f << out << endl;
+		cout << out;
+		f << out;
+		if (k != Req_List.size() - 1)
+		{
+			cout << endl;
+			f << endl;
+		}
 	}
 }
 
 int main(int argc, char* argv[]) 
 {
-	
 	fstream f;
 
 	vector<Input_Struct> Req_List;

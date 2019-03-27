@@ -52,4 +52,4 @@ bool smallerThan(string a, string b);
 // Trừ 2 chuỗi số ?
 string Sub(string a, string b);
 // Kiểm tra trường hợp ngoại lệ cho Qfloat
-bool isExeption(string bit);
+int isExeption(string bit);
