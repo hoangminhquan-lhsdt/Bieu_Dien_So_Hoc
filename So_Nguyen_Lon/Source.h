@@ -33,6 +33,4 @@ bool smallerThan(string a, string b);
 
 string Sub(string a, string b);
 
-bool isExeption(string bit);
-
-void Round(string & dec);
+int isExeption(string bit);
