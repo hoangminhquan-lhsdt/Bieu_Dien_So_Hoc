@@ -42,7 +42,11 @@ Qfloat::Qfloat(string x, int mode)
 		string bin_thuc;
 		if (phanthuc != "0")
 		{
-			int count = 0;
+			int count = bin_nguyen.length()-1;
+
+			bool temp = false;
+			if (count != 0)
+				temp = true;
 			do {
 				phanthuc = Multiply(phanthuc, "2");
 				if (phanthuc[0] == '0')
@@ -51,12 +55,30 @@ Qfloat::Qfloat(string x, int mode)
 					bin_thuc += '1';
 					if (phanthuc == "1")
 						break;
+					temp = true;
 					phanthuc[0] = '0';
 				}
+				if (temp)
 				count++;
 			} while (phanthuc != "1" && count <= 112);
 		}
-
+		/*
+		if (count1<10)//nếu chuỗi bin thực chưa có phần tử 1 thì tìm đến khi nào tìm được 10 phần tử '1' thì dừng.
+		{
+			
+			do {
+				phanthuc = Multiply(phanthuc, "2");
+				if (phanthuc[0] == '0')
+					bin_thuc += '0';
+				else {
+					bin_thuc += '1';
+					if (phanthuc == "1")
+						break;
+					count1++;
+					phanthuc[0] = '0';
+				}
+			} while (count1<10);
+		}*/
 		int exponent = 0;
 		if (bin_nguyen.length() >= 2)// dấu chấm trong TH này sẽ dời qua trái
 		{
@@ -176,10 +198,6 @@ void Qfloat::PrintQfloat()
 		bin_nguyen = "0";
 		bit = '1' + bit;// vd: 1.011101*2^-1 <-->.1011101
 		bit.insert(0, abs(E) - 1, '0');
-		if (abs(E )> 112)
-		{
-			bit.insert(0, abs(E) - 112, '0');
-		}
 		//nếu abs E >112 thì cũng khôn cần phải đẩy th
 	}
 	//cout << bin_nguyen << "." << bit << endl;
@@ -282,11 +300,7 @@ string Qfloat::QfloatToDec()
 		bin_nguyen = "0";
 		bit = '1' + bit;// vd: 1.011101*2^-1 <-->.1011101
 		bit.insert(0, abs(E) - 1, '0');
-		if (abs(E) > 112)
-		{
-			bit.insert(0, abs(E) - 112, '0');
-		}
-		//nếu abs E >112 thì cũng khôn cần phải đẩy th
+		//nếu abs E >112 thì cũng khôn cần phải đẩy thêm...
 	}
 	//cout << bin_nguyen << "." << bit << endl;
 	if (bit.length() == 0)
