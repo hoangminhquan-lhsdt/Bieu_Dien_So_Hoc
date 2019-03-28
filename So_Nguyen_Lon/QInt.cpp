@@ -71,6 +71,54 @@ QInt::~QInt()
 {
 }
 
+void QInt::ScanQInt()
+{
+	string x;
+	cout << "Enter a number: ";  cin >> x;
+	while (checkBase10(x) == false)
+	{
+		cout << "Re-enter the number: "; cin >> x;
+	}
+	bool negative = false;
+	if (x[0] == '-')
+	{
+		x.erase(0, 1);
+		negative = true;
+	}
+	string bin = DecStrToBinStr(x);
+	(*this) = BinToQInt(bin);
+	if (negative)
+	{
+		QInt bu2("1");
+		(*this) = ~(*this) + bu2;
+	}
+}
+
+void QInt::PrintQInt()
+{
+	QInt res = (*this);
+	string bin;
+	bool negative = false;
+	string temp = Tra2(this->data[0]);
+	if (temp[0] == '1')
+		negative = true;
+
+	if (negative)
+	{
+		res = ~((*this) - QInt("1"));
+	}
+	bin = res.QIntToBin();
+	string kq = "0";
+	for (int i = bin.length() - 1, j = 0; i >= 0; i--, j++)
+	{
+		if (bin[i] == '1')
+			kq = Sum(kq, Exponential("2", j));
+	}
+	if (negative)
+		kq.insert(kq.begin(), '-');
+	cout << kq << endl;
+}
+
 QInt QInt::operator+(const QInt & N)
 {
 	QInt Result;
@@ -345,13 +393,14 @@ QInt QInt::ror(int x)
 	return Result;
 }
 
-QInt QInt::operator=(const QInt & N)
+QInt & QInt::operator=(const QInt & N)
 {
-	for (int i = 0; i < 4; i++)
+	if (this != &N)
 	{
-		(*this).data[i] = N.data[i];                                                                                                                                                                                                                                                                 
+		for (int i = 0; i < 4; i++)
+			this->data[i] = N.data[i];
 	}
-	return(*this);
+	return *this;
 }
 
 bool QInt::operator>(const QInt & N)
@@ -544,55 +593,4 @@ string QInt::QIntToDec()
 	if (ans.length() == 0)
 		ans = "0";
 	return ans;
-}
-
-void QInt::ScanQInt()
-{
-	string x;
-	cout << "Enter a number: ";  cin >> x;
-	while (checkBase10(x) == false)
-	{
-		cout << "Re-enter the number: "; cin >> x;
-	}
-	//x="-340282366920938463463374607431768211455";
-	bool negative = false;
-	if (x[0] == '-')
-	{
-		x.erase(0, 1);
-		negative = true;
-	}
-	string bin = DecStrToBinStr(x);
-	(*this) = BinToQInt(bin);
-	if (negative)
-	{
-		QInt bu2("1");
-		(*this) = ~(*this) + bu2;
-	}
-	/* for (int i = 0; i < 4; i++)
-		 cout << this->data[i] << " ";*/
-}
-
-void QInt::PrintQInt()
-{
-	QInt res = (*this);
-	string bin;
-	bool negative = false;
-	string temp = Tra2(this->data[0]);
-	if (temp[0] == '1')// số âm
-		negative = true;
-
-	if (negative)
-	{
-		res = ~((*this) - QInt("1"));
-	}
-	bin = res.QIntToBin();
-	string kq = "0";
-	for (int i = bin.length() - 1, j = 0; i >= 0; i--, j++)
-	{
-		if (bin[i] == '1')
-			kq = Sum(kq, Exponential("2", j));
-	}
-	if (negative)
-		kq.insert(kq.begin(), '-');
-	cout << kq << endl;
 }

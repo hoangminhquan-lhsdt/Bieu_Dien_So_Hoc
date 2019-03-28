@@ -8,8 +8,10 @@
 #include"Source.h"
 #include "QInt.h"
 #include "Qfloat.h"
+
 using namespace std;
 
+// Struct cấu trúc cho mỗi request
 struct Input_Struct 
 {
 	int p[2];
@@ -18,6 +20,7 @@ struct Input_Struct
 	string s2;
 };
 
+// Đọc từng dòng request và lưu nó vào cấu trúc Input_Struct
 Input_Struct Doc_Input_Dong(string &str) 
 {
 	vector<int> Space_Positions;
@@ -60,6 +63,7 @@ Input_Struct Doc_Input_Dong(string &str)
 	return in;
 }
 
+// Đọc file input và trả ra vector chứa các request
 vector<Input_Struct> Doc_File(char* argv[]) 
 {
 	vector<Input_Struct> Req_List;
@@ -79,6 +83,7 @@ vector<Input_Struct> Doc_File(char* argv[])
 	return Req_List;
 }
 
+// Xử lý các request đổi hệ cơ số cho QInt
 string ConvertQInt(Input_Struct in) 
 {
 	if (in.p[0] == 2 && in.p[1] == 10) 
@@ -109,6 +114,7 @@ string ConvertQInt(Input_Struct in)
 	}
 }
 
+// Xử lý các request đổi hệ cơ số cho QInt
 string ConvertQfloat(Input_Struct in) 
 {
 	if (in.p[0] == 2 && in.p[1] == 10) 
@@ -119,6 +125,7 @@ string ConvertQfloat(Input_Struct in)
 		return Qfloat(in.s1, 10).DecToBin();
 }
 
+// Đọc cấu trúc request và đưa vào hàm xử lý tương ứng cho QInt
 void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List) 
 {
 	// danh sách các operators
@@ -337,6 +344,7 @@ void XuLyQInt(fstream &f, vector<Input_Struct> &Req_List)
 	}
 }
 
+// Đọc cấu trúc request và đưa vào hàm xử lý tương ứng cho Qfloat
 void XuLyQfloat(fstream &f, vector<Input_Struct> &Req_List) 
 {
 	for (int k = 0; k < Req_List.size(); k++) 
