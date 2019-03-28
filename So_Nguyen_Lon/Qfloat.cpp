@@ -42,7 +42,7 @@ Qfloat::Qfloat(string x, int mode)
 		string bin_thuc;
 		if (phanthuc != "0")
 		{
-			int count = bin_nguyen.length()-1;
+			int count = bin_nguyen.length();
 
 			bool temp = false;
 			if (count != 0)

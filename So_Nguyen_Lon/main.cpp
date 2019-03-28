@@ -362,9 +362,7 @@ void XuLyQfloat(fstream &f, vector<Input_Struct> &Req_List)
 
 int main(int argc, char* argv[]) 
 {
-	
 	fstream f;
-
 	vector<Input_Struct> Req_List;
 	Req_List = Doc_File(argv);
 	if (Req_List.size() == 0) 
